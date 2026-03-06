@@ -1,0 +1,268 @@
+{
+    "name": "PhishingAttack",
+    "display_name": "Phishing Attack",
+    "description": "A case template for handling suspected or confirmed phishing incidents, including validation, analysis, scoping, containment, remediation, communications, and post-incident improvement.",
+    "author": "Zachary Carter",
+    "title_prefix": "[PHISHING]",
+    "summary": "Investigation of a suspected or confirmed phishing campaign involving malicious email, embedded links, attachments, impersonation, business email compromise, or credential-harvesting content. Scope, user interaction, compromise status, and business impact are under investigation.",
+    "tags": [
+        "phishing",
+        "email",
+        "credential-phishing",
+        "malware-delivery",
+        "bec",
+        "account-compromise"
+    ],
+    "tasks": [
+        {
+            "title": "Validate and classify reported email",
+            "description": "Determine whether the reported message is malicious, suspicious, spam, or legitimate. Classify the phishing subtype, such as credential harvesting, malware delivery, business email compromise, callback phishing, QR phishing, or other social engineering.",
+            "tags": [
+                "triage",
+                "validation",
+                "classification"
+            ]
+        },
+        {
+            "title": "Preserve phishing evidence",
+            "description": "Preserve the original email, headers, body content, embedded URLs, attachments, screenshots, mailbox logs, message trace results, authentication results, and any related user-reported artifacts for investigation and documentation.",
+            "tags": [
+                "evidence",
+                "preservation",
+                "email"
+            ]
+        },
+        {
+            "title": "Determine campaign scope and affected recipients",
+            "description": "Identify all recipients, mailboxes, groups, and external parties that received the message. Determine whether similar messages remain in mailboxes or were delivered elsewhere in the environment.",
+            "tags": [
+                "scope",
+                "recipients",
+                "mailboxes"
+            ]
+        },
+        {
+            "title": "Analyze headers, sender identity, and delivery path",
+            "description": "Analyze the message headers, sender information, authentication results, routing details, reply-to values, lookalike domains, and delivery path to understand how the message was delivered and whether sender identity was spoofed or compromised.",
+            "tags": [
+                "headers",
+                "sender",
+                "delivery"
+            ]
+        },
+        {
+            "title": "Analyze URLs, domains, and hosted content",
+            "description": "Review embedded links, redirect chains, domains, landing pages, host infrastructure, URL shorteners, QR-code targets, and related web content for malicious behavior, credential harvesting, payload delivery, or impersonation.",
+            "tags": [
+                "urls",
+                "domains",
+                "infrastructure"
+            ]
+        },
+        {
+            "title": "Analyze attachments and payload behavior",
+            "description": "Inspect attachments, archives, embedded documents, scripts, macros, and other payloads for malicious behavior. Determine whether the message delivered malware, droppers, remote access tools, or other suspicious content.",
+            "tags": [
+                "attachments",
+                "payloads",
+                "malware"
+            ]
+        },
+        {
+            "title": "Extract, validate, and track IOCs",
+            "description": "Extract and validate indicators of compromise from message content, headers, attachments, hosted infrastructure, and analysis results. Add confirmed indicators to the case and share with downstream systems as authorized.",
+            "tags": [
+                "iocs",
+                "intel",
+                "tracking"
+            ]
+        },
+        {
+            "title": "Determine user interaction and compromise status",
+            "description": "Identify whether recipients opened the message, clicked links, submitted credentials, replied, enabled macros, executed attachments, approved MFA prompts, or otherwise interacted with the phishing content. Determine whether user or host compromise occurred.",
+            "tags": [
+                "user-action",
+                "compromise",
+                "investigation"
+            ]
+        },
+        {
+            "title": "Contain phishing messages and infrastructure",
+            "description": "Remove or quarantine matching messages from mailboxes, block malicious senders, domains, URLs, IPs, and hashes as appropriate, and disable malicious inbox rules or other persistence mechanisms associated with the phishing activity.",
+            "tags": [
+                "containment",
+                "blocking",
+                "mail-removal"
+            ]
+        },
+        {
+            "title": "Remediate affected accounts and hosts",
+            "description": "For impacted users or systems, reset passwords, revoke sessions and tokens, review MFA status, identify malicious inbox rules, investigate suspicious sign-ins, isolate affected hosts if needed, and remove malicious artifacts or persistence.",
+            "tags": [
+                "remediation",
+                "accounts",
+                "hosts"
+            ]
+        },
+        {
+            "title": "Notify affected users and stakeholders",
+            "description": "Notify impacted recipients, service desk staff, messaging administrators, management, and other stakeholders as appropriate. Provide clear guidance on password resets, MFA review, reporting procedures, host triage, and additional follow-up steps.",
+            "tags": [
+                "communications",
+                "users",
+                "stakeholders"
+            ]
+        },
+        {
+            "title": "Improve detections, blocking, and awareness content",
+            "description": "Update email protections, detections, allow and block lists, user guidance, awareness material, and reporting procedures based on the observed phishing technique, lure, and control gaps identified during the investigation.",
+            "tags": [
+                "improvement",
+                "detection",
+                "awareness"
+            ]
+        },
+        {
+            "title": "Document findings and close case",
+            "description": "Document the phishing type, delivery mechanism, affected users, compromise status, containment actions, business impact, and lessons learned. Confirm required remediation and notifications are complete before case closure.",
+            "tags": [
+                "closure",
+                "findings",
+                "post-incident"
+            ]
+        }
+    ],
+    "note_directories": [
+        {
+            "title": "Incident Overview",
+            "notes": [
+                {
+                    "title": "Initial report",
+                    "content": "Document how the phishing message was reported, when it was identified, and why the case was opened."
+                },
+                {
+                    "title": "Current status",
+                    "content": "Track the current investigation phase, key updates, blockers, and next steps."
+                },
+                {
+                    "title": "Campaign classification",
+                    "content": "Document the phishing subtype, lure theme, suspected intent, and any related campaigns or clusters."
+                },
+                {
+                    "title": "Decision log",
+                    "content": "Record major decisions, approvals, and significant events during the investigation."
+                }
+            ]
+        },
+        {
+            "title": "Email and Delivery Analysis",
+            "notes": [
+                {
+                    "title": "Header analysis",
+                    "content": "Document relevant header findings, routing artifacts, authentication results, and anomalies."
+                },
+                {
+                    "title": "Sender and domain analysis",
+                    "content": "Summarize sender identity, display name abuse, reply-to values, lookalike domains, and related findings."
+                },
+                {
+                    "title": "Delivery path",
+                    "content": "Track message delivery path, mail flow details, message trace results, and affected systems or gateways."
+                },
+                {
+                    "title": "Lure theme and content",
+                    "content": "Summarize the message subject, body content, impersonation theme, urgency cues, and social engineering elements."
+                }
+            ]
+        },
+        {
+            "title": "Payload and Infrastructure",
+            "notes": [
+                {
+                    "title": "URL analysis",
+                    "content": "Document embedded links, redirect chains, landing pages, credential harvest forms, and related infrastructure."
+                },
+                {
+                    "title": "Domain and IP analysis",
+                    "content": "Summarize hosting infrastructure, registrant details if available, passive DNS, WHOIS context, and infrastructure relationships."
+                },
+                {
+                    "title": "Attachment analysis",
+                    "content": "Record attachment names, hashes, types, execution behavior, sandbox results, and payload observations."
+                },
+                {
+                    "title": "IOC summary",
+                    "content": "Summarize confirmed indicators of compromise and relevant intelligence context."
+                }
+            ]
+        },
+        {
+            "title": "Scope and Impact",
+            "notes": [
+                {
+                    "title": "Affected recipients",
+                    "content": "List users, groups, mailboxes, and external recipients affected by the phishing campaign."
+                },
+                {
+                    "title": "User interactions",
+                    "content": "Track who opened, clicked, replied, submitted credentials, approved MFA prompts, or executed attachments."
+                },
+                {
+                    "title": "Account compromise status",
+                    "content": "Document suspected or confirmed account compromise, suspicious sign-ins, inbox rule abuse, and related findings."
+                },
+                {
+                    "title": "Host impact",
+                    "content": "Document any malware execution, endpoint impact, persistence, or other host-level findings."
+                },
+                {
+                    "title": "Business impact and fraud risk",
+                    "content": "Summarize operational impact, potential fraud exposure, impersonation risk, and any financial or reputational concerns."
+                }
+            ]
+        },
+        {
+            "title": "Containment and Remediation",
+            "notes": [
+                {
+                    "title": "Message removal actions",
+                    "content": "Document message quarantine, purge actions, mailbox search results, and related containment steps."
+                },
+                {
+                    "title": "Blocking actions",
+                    "content": "Track sender, domain, URL, IP, attachment hash, and mail security control blocks or tuning changes."
+                },
+                {
+                    "title": "Account remediation",
+                    "content": "Document password resets, token revocations, MFA changes, inbox rule cleanup, and other identity-related actions."
+                },
+                {
+                    "title": "Endpoint remediation",
+                    "content": "Document host isolation, malware removal, forensic collection, rebuilding, or other endpoint response steps where applicable."
+                }
+            ]
+        },
+        {
+            "title": "Communications and Closure",
+            "notes": [
+                {
+                    "title": "User notifications",
+                    "content": "Summarize notifications, guidance, and response instructions sent to affected or potentially affected users."
+                },
+                {
+                    "title": "Stakeholder updates",
+                    "content": "Document updates sent to service desk, mail administrators, management, legal, or other stakeholders."
+                },
+                {
+                    "title": "Findings summary",
+                    "content": "Provide a concise summary of the phishing campaign, scope, compromise status, and key investigative conclusions."
+                },
+                {
+                    "title": "Lessons learned and improvements",
+                    "content": "Document detection gaps, control improvements, awareness updates, and recommendations for future prevention and response."
+                }
+            ]
+        }
+    ],
+    "classification": "fraud:phishing"
+}
