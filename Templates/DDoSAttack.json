@@ -1,0 +1,224 @@
+{
+  "name": "DDoSAttack",
+  "display_name": "DDoS Attack",
+  "description": "A case template for handling suspected or confirmed distributed denial-of-service incidents, including validation, attack characterization, provider coordination, mitigation, recovery validation, communications, and post-incident improvement.",
+  "author": "OpenAI",
+  "title_prefix": "[DDOS]",
+  "summary": "Investigation and mitigation of a suspected or confirmed distributed denial-of-service event affecting network, application, or service availability. Scope, traffic profile, business impact, mitigation effectiveness, and any related malicious activity are under investigation.",
+  "tags": [
+    "ddos",
+    "availability",
+    "network",
+    "service-disruption",
+    "traffic-flood",
+    "application-layer"
+  ],
+  "tasks": [
+    {
+      "title": "Validate service disruption and classify incident",
+      "description": "Confirm whether the incident is a distributed denial-of-service event, a non-malicious traffic surge, an application fault, a provider outage, a routing issue, or another availability-related issue. Identify affected services, users, and initial business impact.",
+      "tags": [
+        "triage",
+        "validation",
+        "availability"
+      ]
+    },
+    {
+      "title": "Identify affected services, users, and business impact",
+      "description": "Determine which applications, public-facing services, IPs, hostnames, networks, business units, customers, or internal users are affected. Document confirmed and suspected operational impact.",
+      "tags": [
+        "scope",
+        "impact",
+        "services"
+      ]
+    },
+    {
+      "title": "Characterize attack type, target, and traffic profile",
+      "description": "Determine whether the activity is volumetric, protocol-based, or application-layer. Identify targeted IPs, domains, hostnames, services, ports, protocols, request patterns, peak bandwidth, packets per second, duration, source distribution, and any reflection or amplification indicators.",
+      "tags": [
+        "analysis",
+        "traffic-profile",
+        "targeting"
+      ]
+    },
+    {
+      "title": "Coordinate with providers and infrastructure teams",
+      "description": "Notify and coordinate with internal network and platform teams, internet service providers, hosting providers, CDN providers, WAF teams, cloud teams, and any DDoS mitigation or scrubbing providers needed to support response and service restoration.",
+      "tags": [
+        "coordination",
+        "providers",
+        "infrastructure"
+      ]
+    },
+    {
+      "title": "Implement layered mitigation actions",
+      "description": "Apply mitigation measures such as traffic filtering, ACLs, rate limiting, WAF rules, CDN protections, upstream provider controls, scrubbing services, geoblocking where appropriate, routing changes, caching changes, autoscaling, or failover actions to reduce impact and restore service.",
+      "tags": [
+        "mitigation",
+        "traffic-control",
+        "availability"
+      ]
+    },
+    {
+      "title": "Monitor attack activity and validate service restoration",
+      "description": "Monitor traffic, service availability, application performance, and mitigation effectiveness to confirm the attack is being reduced or contained, services are restored, and recurring waves or collateral issues are identified quickly.",
+      "tags": [
+        "monitoring",
+        "validation",
+        "restoration"
+      ]
+    },
+    {
+      "title": "Investigate attack patterns, likely intent, and related activity",
+      "description": "Review attack timing, infrastructure patterns, recurrence, targeting, extortion indicators, and whether the DDoS may have been intended as disruption, coercion, or distraction for other malicious activity. Correlate with other security alerts and intelligence where relevant.",
+      "tags": [
+        "investigation",
+        "patterns",
+        "context"
+      ]
+    },
+    {
+      "title": "Provide stakeholder and customer status updates",
+      "description": "Provide timely updates to leadership, service owners, help desk, communications staff, affected business units, and customers as appropriate. Document service impact, current status, mitigation progress, and expected next steps.",
+      "tags": [
+        "communications",
+        "stakeholders",
+        "status"
+      ]
+    },
+    {
+      "title": "Improve defenses, playbooks, and escalation paths",
+      "description": "Update DDoS protections, provider escalation contacts, thresholds, alerting, WAF and CDN tuning, rate limits, traffic filtering rules, failover procedures, and incident response playbooks based on findings from the event.",
+      "tags": [
+        "improvements",
+        "playbooks",
+        "defense"
+      ]
+    },
+    {
+      "title": "Document findings and close case",
+      "description": "Document the affected services, traffic profile, mitigation actions, duration, business impact, provider coordination, recovery status, investigative findings, and lessons learned. Confirm required remediation and follow-up actions are complete before closing the case.",
+      "tags": [
+        "closure",
+        "findings",
+        "post-incident"
+      ]
+    }
+  ],
+  "note_directories": [
+    {
+      "title": "Incident Overview",
+      "notes": [
+        {
+          "title": "Initial alert or report",
+          "content": "Document how the potential DDoS or service disruption was identified, when it began, and why the case was opened."
+        },
+        {
+          "title": "Current status",
+          "content": "Track the current status of the incident, mitigation progress, blockers, and next steps."
+        },
+        {
+          "title": "Decision log",
+          "content": "Record major decisions, approvals, escalations, and significant events during the incident."
+        },
+        {
+          "title": "Stakeholders and providers",
+          "content": "List internal stakeholders, service owners, infrastructure teams, providers, and mitigation contacts involved in the response."
+        }
+      ]
+    },
+    {
+      "title": "Attack Characterization",
+      "notes": [
+        {
+          "title": "Targeted services",
+          "content": "Document the targeted IPs, domains, hostnames, applications, APIs, or network services affected by the attack."
+        },
+        {
+          "title": "Traffic profile",
+          "content": "Summarize bandwidth, packets per second, request patterns, protocol mix, duration, and wave or burst characteristics."
+        },
+        {
+          "title": "Protocols and ports",
+          "content": "Record relevant protocols, ports, and service-specific observations associated with the attack traffic."
+        },
+        {
+          "title": "Source distribution and infrastructure",
+          "content": "Document source IP distribution, ASNs, geographies, botnet patterns, reflection sources, or amplification infrastructure where relevant."
+        },
+        {
+          "title": "Reflection or amplification findings",
+          "content": "Record whether reflection or amplification techniques appear to be involved and document supporting evidence."
+        }
+      ]
+    },
+    {
+      "title": "Impact and Scope",
+      "notes": [
+        {
+          "title": "Service impact",
+          "content": "Describe the impact to service availability, performance, latency, error rates, or user access."
+        },
+        {
+          "title": "Business impact",
+          "content": "Document operational impact, affected business units, revenue or mission impact, customer-facing effects, and internal disruption."
+        },
+        {
+          "title": "Affected customers or users",
+          "content": "Track which customer groups, user populations, or internal users were impacted."
+        },
+        {
+          "title": "Time window and duration",
+          "content": "Document the start time, major phases, peaks, recovery milestones, and total duration of the event."
+        }
+      ]
+    },
+    {
+      "title": "Mitigation and Recovery",
+      "notes": [
+        {
+          "title": "Mitigation actions taken",
+          "content": "Document all traffic filtering, rate limiting, WAF, CDN, provider, routing, scaling, or scrubbing actions taken during response."
+        },
+        {
+          "title": "Provider coordination",
+          "content": "Summarize support cases, escalation paths, provider actions, and key communications with external mitigation partners."
+        },
+        {
+          "title": "Recovery validation",
+          "content": "Record how service restoration and mitigation effectiveness were validated, including any recurring attack waves or collateral issues."
+        },
+        {
+          "title": "Residual issues",
+          "content": "Document remaining instability, degraded performance, tuning gaps, or unresolved follow-up actions after the main event."
+        }
+      ]
+    },
+    {
+      "title": "Investigation and Post-Incident",
+      "notes": [
+        {
+          "title": "Attack patterns and recurrence",
+          "content": "Summarize recurring traffic patterns, historical similarities, campaign context, or repeat targeting observations."
+        },
+        {
+          "title": "Related threats or extortion",
+          "content": "Document any extortion communications, diversion indicators, related intrusion concerns, or correlated threat intelligence."
+        },
+        {
+          "title": "Findings summary",
+          "content": "Provide a concise summary of the attack, affected services, mitigation actions, recovery timeline, and investigative conclusions."
+        },
+        {
+          "title": "Improvement actions",
+          "content": "Document recommended improvements to defenses, thresholds, provider coordination, architecture, and response procedures."
+        },
+        {
+          "title": "Lessons learned",
+          "content": "Capture lessons learned, control gaps, process gaps, and follow-up recommendations."
+        }
+      ]
+    }
+  ],
+  "classification": "availability:ddos"
+}
