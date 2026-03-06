@@ -6,12 +6,9 @@
   "title_prefix": "[DDOS]",
   "summary": "Investigation and mitigation of a suspected or confirmed distributed denial-of-service event affecting network, application, or service availability. Scope, traffic profile, business impact, mitigation effectiveness, and any related malicious activity are under investigation.",
   "tags": [
-    "ddos",
-    "availability",
-    "network",
-    "service-disruption",
-    "traffic-flood",
-    "application-layer"
+    "tlp:amber",
+    "workflow:state=\"draft\"",
+    "CERT-XLM:availability=\"ddos\""
   ],
   "tasks": [
     {
