@@ -1,295 +1,265 @@
 {
-  "name": "UnauthorizedAccessIntrusion",
-  "display_name": "Unauthorized Access / Intrusion",
-  "description": "A case template for handling suspected or confirmed unauthorized access or intrusion incidents, including validation, evidence preservation, scoping, containment, root-cause analysis, impact assessment, remediation, and post-incident follow-up.",
-  "author": "Zachary Carter",
-  "title_prefix": "[INTRUSION]",
-  "summary": "Investigation of a suspected or confirmed unauthorized access or intrusion incident involving compromise of systems, accounts, applications, services, or infrastructure. Scope, access path, attacker activity, affected assets, and business impact are under investigation.",
-  "tags": [
-    "intrusion",
-    "unauthorized-access",
-    "compromise",
-    "incident-response",
-    "lateral-movement",
-    "persistence",
-    "containment"
-  ],
-  "tasks": [
-    {
-      "title": "Validate and classify intrusion event",
-      "description": "Determine whether the observed activity represents confirmed unauthorized access, attempted intrusion, suspicious but unconfirmed activity, misconfiguration, legitimate administrative activity, or a false positive. Identify the initial systems, accounts, or services involved.",
-      "tags": [
-        "triage",
-        "validation",
-        "classification"
-      ]
-    },
-    {
-      "title": "Initiate stakeholder coordination and escalation",
-      "description": "Notify and coordinate with the appropriate internal stakeholders, including system owners, infrastructure teams, identity teams, security leadership, management, legal, privacy, and other affected parties as needed based on scope and severity.",
-      "tags": [
-        "coordination",
-        "escalation",
-        "stakeholders"
-      ]
-    },
-    {
-      "title": "Identify affected systems, accounts, and services",
-      "description": "Determine the affected hosts, user accounts, service accounts, applications, remote access paths, administrative interfaces, storage locations, and business services. Document confirmed and suspected scope.",
-      "tags": [
-        "scope",
-        "assets",
-        "impact"
-      ]
-    },
-    {
-      "title": "Preserve evidence and relevant records",
-      "description": "Preserve relevant system logs, authentication logs, EDR telemetry, network telemetry, volatile evidence, host artifacts, cloud logs, remote access records, process execution history, registry or configuration artifacts, file system evidence, and other records needed to support a defensible investigation.",
-      "tags": [
-        "evidence",
-        "preservation",
-        "forensics"
-      ]
-    },
-    {
-      "title": "Determine initial access path",
-      "description": "Investigate how the intrusion began, such as compromised credentials, exposed remote access, brute force, phishing, exploited vulnerability, web application compromise, malware delivery, insider misuse, or third-party access. Document the suspected or confirmed entry point.",
-      "tags": [
-        "initial-access",
-        "root-cause",
-        "investigation"
-      ]
-    },
-    {
-      "title": "Investigate persistence, privilege escalation, and lateral movement",
-      "description": "Determine whether the threat actor established persistence, escalated privileges, moved laterally, accessed administrative tools, abused scheduled tasks or services, created accounts, modified policies, or used remote execution techniques to expand access.",
-      "tags": [
-        "persistence",
-        "privilege-escalation",
-        "lateral-movement"
-      ]
-    },
-    {
-      "title": "Assess affected data, systems, and business impact",
-      "description": "Determine whether data was accessed, copied, modified, deleted, or exfiltrated, and assess impact to system integrity, service availability, customer-facing operations, regulated data, and organizational risk.",
-      "tags": [
-        "data-impact",
-        "business-impact",
-        "risk"
-      ]
-    },
-    {
-      "title": "Contain affected systems, identities, and access paths",
-      "description": "Restrict unauthorized access by isolating hosts, disabling or restricting compromised accounts, revoking sessions, rotating credentials and keys, blocking malicious infrastructure, disabling exposed services, restricting administrative access, and implementing emergency controls while preserving critical evidence where possible.",
-      "tags": [
-        "containment",
-        "access-control",
-        "emergency-response"
-      ]
-    },
-    {
-      "title": "Eradicate malicious artifacts and unauthorized access",
-      "description": "Remove malware, backdoors, persistence mechanisms, malicious accounts, unauthorized tools, malicious tasks or services, and other attacker footholds. Eliminate the original access path and confirm that unauthorized access has been removed.",
-      "tags": [
-        "eradication",
-        "remediation",
-        "cleanup"
-      ]
-    },
-    {
-      "title": "Remediate vulnerabilities, credentials, and control gaps",
-      "description": "Patch exploited systems, correct insecure configurations, reset or rotate credentials, revoke tokens, replace exposed secrets, harden remote access paths, review trust relationships, and address control weaknesses identified during the investigation.",
-      "tags": [
-        "hardening",
-        "patching",
-        "credentials"
-      ]
-    },
-    {
-      "title": "Increase monitoring and validate recovery",
-      "description": "Increase monitoring on affected systems, identities, applications, and network paths. Validate that containment and eradication actions were effective, confirm there is no ongoing attacker activity, and monitor for reintrusion or delayed persistence.",
-      "tags": [
-        "monitoring",
-        "validation",
-        "recovery"
-      ]
-    },
-    {
-      "title": "Assess legal, privacy, compliance, and reporting obligations",
-      "description": "Determine whether legal, privacy, contractual, regulatory, or policy obligations apply based on the type of intrusion, affected systems, and impacted data. Document notification and reporting decisions and required coordination.",
-      "tags": [
-        "legal",
-        "privacy",
-        "compliance"
-      ]
-    },
-    {
-      "title": "Implement security improvements and close identified gaps",
-      "description": "Improve detection coverage, logging, access control, segmentation, MFA, remote access security, vulnerability management, incident response procedures, and other defenses based on lessons learned from the intrusion.",
-      "tags": [
-        "improvements",
-        "prevention",
-        "detection"
-      ]
-    },
-    {
-      "title": "Document findings and close case",
-      "description": "Document the intrusion path, affected assets, attacker activity, persistence, impact, containment actions, remediation steps, reporting decisions, and lessons learned. Confirm required follow-up actions are complete before case closure.",
-      "tags": [
-        "closure",
-        "findings",
-        "post-incident"
-      ]
-    }
-  ],
-  "note_directories": [
-    {
-      "title": "Incident Overview",
-      "notes": [
+    "name": "WebApplicationCompromise",
+    "display_name": "Web Application Compromise",
+    "description": "A case template for handling suspected or confirmed web application compromise incidents, including validation, scoping, evidence preservation, attack-path analysis, containment, remediation, provider coordination, impact assessment, and post-incident follow-up.",
+    "author": "Zachary Carter",
+    "title_prefix": "[WEBAPP]",
+    "summary": "Investigation of a suspected or confirmed web application compromise involving exploitation of a public-facing application, API, web server, middleware component, plugin, CMS, or related service. Scope, access path, persistence, affected data, and business impact are under investigation.",
+    "tags": [
+        "web-application",
+        "application-compromise",
+        "public-facing",
+        "intrusion",
+        "web-shell",
+        "api",
+        "exploitation"
+    ],
+    "tasks": [
         {
-          "title": "Initial alert or report",
-          "content": "Document how the suspected intrusion was identified, when it was discovered, and why the case was opened."
+            "title": "Validate and classify web application incident",
+            "description": "Determine whether the activity represents a confirmed compromise, attempted exploitation, false positive, vulnerability scan, misconfiguration, denial-of-service condition, or other web application security event. Identify the affected application, service, or component.",
+            "tags": [
+                "triage",
+                "validation",
+                "classification"
+            ]
         },
         {
-          "title": "Current status",
-          "content": "Track the current phase of the investigation, key updates, blockers, and next steps."
+            "title": "Initiate stakeholder and provider coordination",
+            "description": "Notify and coordinate with application owners, infrastructure teams, developers, DevOps, cloud teams, security leadership, legal, privacy, and any relevant hosting, CDN, WAF, or managed service providers needed to support response.",
+            "tags": [
+                "coordination",
+                "stakeholders",
+                "providers"
+            ]
         },
         {
-          "title": "Decision log",
-          "content": "Record major decisions, approvals, escalations, and significant events during the investigation."
+            "title": "Identify affected applications, hosts, and environments",
+            "description": "Determine the affected application, hostname, URL paths, APIs, containers, servers, databases, storage, secrets, service accounts, build pipelines, and environments such as production, staging, or development. Document confirmed and suspected scope.",
+            "tags": [
+                "scope",
+                "assets",
+                "environment"
+            ]
         },
         {
-          "title": "Stakeholders",
-          "content": "List involved stakeholders, including technical teams, management, legal, privacy, compliance, and business owners."
+            "title": "Preserve application, host, and platform evidence",
+            "description": "Preserve web server logs, application logs, API gateway logs, WAF logs, CDN logs, container logs, host artifacts, process details, deployment records, access logs, authentication logs, source snapshots, database logs, and relevant cloud telemetry needed for investigation.",
+            "tags": [
+                "evidence",
+                "preservation",
+                "logging"
+            ]
+        },
+        {
+            "title": "Characterize exploitation method and access path",
+            "description": "Determine how access was gained, such as SQL injection, remote code execution, authentication bypass, file upload abuse, command injection, deserialization, SSRF, credential compromise, exposed admin interface, plugin or CMS exploitation, or API abuse.",
+            "tags": [
+                "investigation",
+                "access-path",
+                "exploitation"
+            ]
+        },
+        {
+            "title": "Assess persistence, web shells, and attacker tooling",
+            "description": "Identify persistence mechanisms such as web shells, backdoors, malicious scripts, cron jobs, startup items, modified templates, unauthorized admin accounts, malicious plugins, rogue containers, or attacker tooling left on the application or supporting infrastructure.",
+            "tags": [
+                "persistence",
+                "web-shell",
+                "tooling"
+            ]
+        },
+        {
+            "title": "Determine affected data, credentials, and downstream systems",
+            "description": "Assess whether data was accessed, modified, deleted, or exfiltrated, and determine whether secrets, API keys, service credentials, session stores, databases, or downstream systems were impacted. Distinguish suspected impact from confirmed evidence.",
+            "tags": [
+                "data-impact",
+                "credentials",
+                "downstream"
+            ]
+        },
+        {
+            "title": "Contain affected application paths and infrastructure",
+            "description": "Contain the incident by blocking malicious requests, restricting vulnerable endpoints, isolating affected hosts or containers, disabling compromised accounts, removing public exposure where necessary, applying temporary WAF rules, and limiting attacker access while preserving evidence where possible.",
+            "tags": [
+                "containment",
+                "waf",
+                "access-control"
+            ]
+        },
+        {
+            "title": "Remediate vulnerabilities, malicious artifacts, and access issues",
+            "description": "Remove web shells and malicious code, patch exploited vulnerabilities, rotate credentials and secrets, revoke sessions, remove unauthorized users or keys, repair insecure configurations, validate application integrity, and eliminate the original access path.",
+            "tags": [
+                "remediation",
+                "patching",
+                "hardening"
+            ]
+        },
+        {
+            "title": "Assess business, legal, privacy, and regulatory impact",
+            "description": "Evaluate the impact to service availability, customer trust, data confidentiality, data integrity, contractual obligations, privacy exposure, legal risk, and regulatory obligations based on the nature of the compromise and affected information.",
+            "tags": [
+                "impact",
+                "legal",
+                "privacy"
+            ]
+        },
+        {
+            "title": "Validate recovery and increase monitoring",
+            "description": "Validate that the application is functioning normally after remediation, confirm malicious access has stopped, increase monitoring on affected application paths and infrastructure, and watch for reinfection, repeat exploitation, or suspicious administrator activity.",
+            "tags": [
+                "recovery",
+                "monitoring",
+                "validation"
+            ]
+        },
+        {
+            "title": "Implement security improvements and secure development follow-up",
+            "description": "Improve secure coding controls, WAF coverage, logging, alerting, dependency management, secret handling, CI/CD security, access control, patch management, and vulnerability management based on lessons learned from the incident.",
+            "tags": [
+                "improvements",
+                "secure-development",
+                "prevention"
+            ]
+        },
+        {
+            "title": "Document findings and close case",
+            "description": "Document the affected application, exploitation path, malicious artifacts, data impact, containment actions, remediation steps, provider coordination, business impact, and lessons learned. Confirm required follow-up actions are complete before case closure.",
+            "tags": [
+                "closure",
+                "findings",
+                "post-incident"
+            ]
         }
-      ]
-    },
-    {
-      "title": "Affected Environment",
-      "notes": [
+    ],
+    "note_directories": [
         {
-          "title": "Affected systems and services",
-          "content": "Document affected hosts, servers, endpoints, applications, remote access systems, administrative services, and infrastructure components."
+            "title": "Incident Overview",
+            "notes": [
+                {
+                    "title": "Initial alert or report",
+                    "content": "Document how the possible web application compromise was identified, when it was discovered, and why the case was opened."
+                },
+                {
+                    "title": "Current status",
+                    "content": "Track the current investigation phase, key updates, blockers, and next steps."
+                },
+                {
+                    "title": "Decision log",
+                    "content": "Record major decisions, approvals, escalations, and significant events during the investigation."
+                },
+                {
+                    "title": "Stakeholders and providers",
+                    "content": "List application owners, infrastructure teams, developers, cloud teams, legal or privacy contacts, and any involved providers or vendors."
+                }
+            ]
         },
         {
-          "title": "Affected accounts and identities",
-          "content": "Track user accounts, service accounts, admin accounts, tokens, certificates, or other identities relevant to the intrusion."
+            "title": "Application and Environment Scope",
+            "notes": [
+                {
+                    "title": "Affected application and components",
+                    "content": "Document the affected web application, APIs, plugins, CMS components, libraries, and supporting services involved in the incident."
+                },
+                {
+                    "title": "Affected hosts, containers, and environments",
+                    "content": "List impacted servers, containers, pods, virtual machines, storage, and environments such as production, staging, or development."
+                },
+                {
+                    "title": "Accounts, secrets, and service identities",
+                    "content": "Track affected admin accounts, service accounts, API keys, certificates, tokens, secrets, and deployment identities."
+                },
+                {
+                    "title": "Dependencies and downstream systems",
+                    "content": "Document related databases, external APIs, payment systems, identity providers, storage services, or other downstream systems connected to the application."
+                }
+            ]
         },
         {
-          "title": "Affected business functions",
-          "content": "Document impacted business services, departments, customers, partners, or operational processes."
+            "title": "Technical Investigation",
+            "notes": [
+                {
+                    "title": "Timeline of events",
+                    "content": "Build a defensible timeline of relevant requests, log events, administrative actions, code or deployment changes, and suspicious activity."
+                },
+                {
+                    "title": "Exploitation path",
+                    "content": "Summarize the suspected or confirmed vulnerability, exploit chain, request patterns, payloads, or access method used to compromise the application."
+                },
+                {
+                    "title": "Persistence and malicious artifacts",
+                    "content": "Document web shells, modified files, malicious plugins, altered templates, rogue users, backdoors, scheduled tasks, or other persistence mechanisms."
+                },
+                {
+                    "title": "Authentication and administrative activity",
+                    "content": "Record suspicious logins, privilege changes, session anomalies, unauthorized admin actions, and identity-related findings."
+                },
+                {
+                    "title": "Data and system impact",
+                    "content": "Summarize evidence of data access, modification, deletion, exfiltration, credential exposure, and downstream system impact."
+                }
+            ]
         },
         {
-          "title": "External infrastructure",
-          "content": "Record attacker IPs, domains, URLs, C2 infrastructure, VPN sources, cloud resources, or other external infrastructure tied to the case."
+            "title": "Containment and Remediation",
+            "notes": [
+                {
+                    "title": "Containment actions",
+                    "content": "Document WAF rules, endpoint restrictions, host or container isolation, exposure reductions, account restrictions, and other emergency controls applied during response."
+                },
+                {
+                    "title": "Credential and secret actions",
+                    "content": "Track password resets, secret rotation, key replacement, token revocation, and related access-control changes."
+                },
+                {
+                    "title": "Vulnerability and integrity remediation",
+                    "content": "Summarize patches applied, code fixes, plugin updates, dependency updates, integrity validation, and removal of malicious artifacts."
+                },
+                {
+                    "title": "Validation of remediation",
+                    "content": "Document how remediation was tested and how continued attacker access, reinfection, or repeat exploitation was ruled out or monitored."
+                }
+            ]
+        },
+        {
+            "title": "Impact and Communications",
+            "notes": [
+                {
+                    "title": "Business impact",
+                    "content": "Document service disruption, customer-facing impact, operational effects, and reputational concerns related to the incident."
+                },
+                {
+                    "title": "Legal and privacy coordination",
+                    "content": "Track guidance, decisions, and required actions involving legal, privacy, compliance, or regulatory stakeholders."
+                },
+                {
+                    "title": "Provider and vendor coordination",
+                    "content": "Summarize support cases, escalations, and investigative or mitigation actions involving cloud, hosting, CDN, WAF, or software vendors."
+                },
+                {
+                    "title": "Notification decisions",
+                    "content": "Record any notification obligations, rationale, recipients, and timelines where data or customer impact is involved."
+                }
+            ]
+        },
+        {
+            "title": "Post-Incident",
+            "notes": [
+                {
+                    "title": "Findings summary",
+                    "content": "Provide a concise summary of the application compromise, exploitation path, affected assets, impact, and investigative conclusions."
+                },
+                {
+                    "title": "Control improvements",
+                    "content": "Document recommended improvements to secure development, dependency management, monitoring, access control, secrets management, and defensive tooling."
+                },
+                {
+                    "title": "Lessons learned",
+                    "content": "Capture lessons learned, process gaps, detection gaps, and follow-up recommendations."
+                }
+            ]
         }
-      ]
-    },
-    {
-      "title": "Technical Investigation",
-      "notes": [
-        {
-          "title": "Timeline of events",
-          "content": "Build a defensible timeline of relevant system, account, network, process, and administrative activity."
-        },
-        {
-          "title": "Initial access findings",
-          "content": "Document the suspected or confirmed initial access path and supporting evidence."
-        },
-        {
-          "title": "Persistence and privilege escalation",
-          "content": "Summarize persistence mechanisms, account changes, privilege escalation activity, and other footholds established by the threat actor."
-        },
-        {
-          "title": "Lateral movement and execution",
-          "content": "Track lateral movement, remote execution, tool transfer, service creation, scripting activity, and related attacker actions."
-        },
-        {
-          "title": "Data access and exfiltration findings",
-          "content": "Document evidence of data access, staging, compression, transfer, deletion, modification, or exfiltration."
-        }
-      ]
-    },
-    {
-      "title": "Evidence",
-      "notes": [
-        {
-          "title": "Preserved evidence",
-          "content": "List preserved artifacts, logs, triage data, memory captures, forensic images, exports, and other evidence retained for the case."
-        },
-        {
-          "title": "Collection notes",
-          "content": "Document how evidence was collected, by whom, and any collection limitations or constraints."
-        },
-        {
-          "title": "Chain of custody",
-          "content": "Track evidence handling, storage, transfer, and access history where required."
-        },
-        {
-          "title": "Gaps and missing data",
-          "content": "Document missing logs, overwritten artifacts, visibility gaps, or other evidentiary limitations affecting the investigation."
-        }
-      ]
-    },
-    {
-      "title": "Containment and Remediation",
-      "notes": [
-        {
-          "title": "Containment actions",
-          "content": "Document host isolation, account restrictions, session revocations, infrastructure blocks, emergency control changes, and other containment measures."
-        },
-        {
-          "title": "Credential and access changes",
-          "content": "Track password resets, key or secret rotation, token revocation, MFA changes, and trust or access-control modifications."
-        },
-        {
-          "title": "Eradication actions",
-          "content": "Summarize malware removal, persistence removal, unauthorized account cleanup, patching, configuration fixes, and related remediation actions."
-        },
-        {
-          "title": "Validation of recovery",
-          "content": "Document how recovery and eradication were validated and how ongoing attacker activity was ruled out or monitored."
-        }
-      ]
-    },
-    {
-      "title": "Impact and Reporting",
-      "notes": [
-        {
-          "title": "Business impact",
-          "content": "Document operational, financial, customer-facing, reputational, and mission-related impacts associated with the intrusion."
-        },
-        {
-          "title": "Legal and privacy coordination",
-          "content": "Track discussions, guidance, and decisions involving legal, privacy, compliance, and reporting stakeholders."
-        },
-        {
-          "title": "Notification decisions",
-          "content": "Record notification obligations, rationale, recipients, and timelines for any internal or external reporting."
-        },
-        {
-          "title": "Executive updates",
-          "content": "Document status updates, decision points, and escalations communicated to leadership."
-        }
-      ]
-    },
-    {
-      "title": "Post-Incident",
-      "notes": [
-        {
-          "title": "Findings summary",
-          "content": "Provide a concise summary of the intrusion, affected assets, attacker activity, root cause, and investigative conclusions."
-        },
-        {
-          "title": "Control improvements",
-          "content": "Document recommended improvements to monitoring, access control, segmentation, hardening, remote access, logging, and response procedures."
-        },
-        {
-          "title": "Lessons learned",
-          "content": "Capture lessons learned, process gaps, detection gaps, and follow-up recommendations."
-        }
-      ]
-    }
-  ],
-  "classification": "intrusion:system-compromise"
+    ],
+    "classification": "intrusion:application-compromise"
 }
