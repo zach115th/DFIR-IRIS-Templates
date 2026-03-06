@@ -1,0 +1,282 @@
+{
+  "name": "BusinessEmailCompromise",
+  "display_name": "Business Email Compromise",
+  "description": "A case template for handling suspected or confirmed business email compromise incidents, including validation, mailbox analysis, fraud assessment, containment, remediation, communications, and post-incident follow-up.",
+  "author": "Zachary Carter",
+  "title_prefix": "[BEC]",
+  "summary": "Investigation of a suspected or confirmed business email compromise incident involving impersonation, account takeover, message thread hijacking, fraudulent payment or banking change requests, or other email-enabled financial or operational fraud. Scope, affected accounts, fraud exposure, and business impact are under investigation.",
+  "tags": [
+    "bec",
+    "business-email-compromise",
+    "email",
+    "account-compromise",
+    "fraud",
+    "impersonation",
+    "financial-risk"
+  ],
+  "tasks": [
+    {
+      "title": "Validate and classify reported BEC activity",
+      "description": "Determine whether the reported activity is business email compromise, mailbox takeover, vendor impersonation, executive impersonation, thread hijacking, invoice fraud, payroll fraud, gift card fraud, or a false positive. Distinguish between spoofed-email scenarios and true account compromise.",
+      "tags": [
+        "triage",
+        "validation",
+        "classification"
+      ]
+    },
+    {
+      "title": "Preserve email and account evidence",
+      "description": "Preserve relevant emails, headers, message traces, mailbox audit logs, sign-in logs, forwarding rules, delegate permissions, inbox rules, sent items, deleted items, OAuth grants, and other artifacts needed to establish a defensible timeline and support fraud analysis.",
+      "tags": [
+        "evidence",
+        "preservation",
+        "email"
+      ]
+    },
+    {
+      "title": "Identify affected accounts, mailboxes, and parties",
+      "description": "Determine which user accounts, mailboxes, distribution groups, aliases, vendors, customers, executives, finance staff, or external correspondents are affected. Document confirmed and suspected scope.",
+      "tags": [
+        "scope",
+        "accounts",
+        "parties"
+      ]
+    },
+    {
+      "title": "Analyze message content, headers, and delivery path",
+      "description": "Analyze message headers, sender identity, reply-to values, authentication results, routing details, display name abuse, impersonation indicators, and conversation context to determine how the fraud attempt or compromise was carried out.",
+      "tags": [
+        "analysis",
+        "headers",
+        "delivery"
+      ]
+    },
+    {
+      "title": "Assess mailbox compromise and persistence",
+      "description": "Determine whether the mailbox or account was compromised by reviewing suspicious sign-ins, MFA events, session activity, inbox rules, forwarding rules, delegate access, mailbox permissions, OAuth app consent, and sent-mail behavior.",
+      "tags": [
+        "mailbox",
+        "account-compromise",
+        "persistence"
+      ]
+    },
+    {
+      "title": "Assess fraud exposure and financial risk",
+      "description": "Determine whether fraudulent payment requests, banking changes, wire instructions, invoice changes, payroll changes, gift card requests, or other financial or business-process abuse occurred. Identify any actual or attempted loss and affected business processes.",
+      "tags": [
+        "fraud",
+        "financial-risk",
+        "business-impact"
+      ]
+    },
+    {
+      "title": "Contain malicious emails, accounts, and forwarding mechanisms",
+      "description": "Remove or quarantine malicious messages, disable malicious inbox or forwarding rules, revoke sessions and tokens, disable or restrict affected accounts if needed, block malicious senders or lookalike domains, and restrict other identified access paths.",
+      "tags": [
+        "containment",
+        "mail-removal",
+        "access-control"
+      ]
+    },
+    {
+      "title": "Remediate affected identities and mailbox settings",
+      "description": "Reset passwords, revoke sessions, review and re-enroll MFA where needed, remove unauthorized delegates, remove malicious app grants, clean mailbox rules, validate mailbox settings, and ensure control of the affected account has been restored.",
+      "tags": [
+        "remediation",
+        "identity",
+        "mailbox"
+      ]
+    },
+    {
+      "title": "Coordinate with finance, HR, legal, and management",
+      "description": "Coordinate investigative and response actions with finance, accounts payable, payroll, HR, legal, privacy, and management as appropriate to assess fraud exposure, authorize response steps, and guide communications or notification decisions.",
+      "tags": [
+        "coordination",
+        "finance",
+        "legal"
+      ]
+    },
+    {
+      "title": "Attempt transaction recovery and external coordination if needed",
+      "description": "If fraudulent payments or banking changes occurred, coordinate urgent recovery actions with financial institutions, payment processors, law enforcement, insurers, and affected third parties as appropriate. Document all timing and actions taken.",
+      "tags": [
+        "recovery",
+        "financial-fraud",
+        "external-coordination"
+      ]
+    },
+    {
+      "title": "Notify affected users and stakeholders",
+      "description": "Notify affected users, service desk staff, messaging administrators, finance teams, executives, vendors, customers, or other stakeholders as appropriate. Provide clear instructions for validation of requests, password resets, call-back verification, and follow-up actions.",
+      "tags": [
+        "communications",
+        "stakeholders",
+        "notification"
+      ]
+    },
+    {
+      "title": "Improve detections, controls, and awareness",
+      "description": "Update detection logic, mailbox auditing, alerting, email security controls, domain protections, conditional access, vendor payment validation procedures, callback verification practices, and user awareness content based on findings from the incident.",
+      "tags": [
+        "improvements",
+        "detection",
+        "awareness"
+      ]
+    },
+    {
+      "title": "Document findings and close case",
+      "description": "Document the affected accounts, impersonation method, compromise status, fraud exposure, containment actions, remediation steps, transaction recovery efforts, business impact, and lessons learned. Confirm required actions are complete before case closure.",
+      "tags": [
+        "closure",
+        "findings",
+        "post-incident"
+      ]
+    }
+  ],
+  "note_directories": [
+    {
+      "title": "Incident Overview",
+      "notes": [
+        {
+          "title": "Initial report",
+          "content": "Document how the possible BEC incident was identified, who reported it, when it was discovered, and why the case was opened."
+        },
+        {
+          "title": "Current status",
+          "content": "Track the current phase of the investigation, major updates, blockers, and next steps."
+        },
+        {
+          "title": "Classification",
+          "content": "Document the BEC subtype, such as executive impersonation, vendor fraud, payroll fraud, mailbox takeover, thread hijacking, or spoofed-email fraud."
+        },
+        {
+          "title": "Decision log",
+          "content": "Record major decisions, approvals, escalations, and significant events during the investigation."
+        }
+      ]
+    },
+    {
+      "title": "Accounts and Parties",
+      "notes": [
+        {
+          "title": "Affected accounts and mailboxes",
+          "content": "List affected user accounts, shared mailboxes, aliases, delegated mailboxes, and related email identities."
+        },
+        {
+          "title": "Internal stakeholders",
+          "content": "Document affected internal teams such as finance, payroll, HR, executives, legal, service desk, and messaging administrators."
+        },
+        {
+          "title": "External parties",
+          "content": "Track affected vendors, customers, partners, banks, payment processors, or other external correspondents involved in the case."
+        },
+        {
+          "title": "Business process impact",
+          "content": "Document which business processes were affected, such as accounts payable, vendor onboarding, payroll, purchasing, or executive communications."
+        }
+      ]
+    },
+    {
+      "title": "Email and Mailbox Analysis",
+      "notes": [
+        {
+          "title": "Header and delivery analysis",
+          "content": "Document relevant header findings, routing details, authentication results, sender anomalies, and delivery-path observations."
+        },
+        {
+          "title": "Impersonation and conversation analysis",
+          "content": "Summarize display name abuse, lookalike domains, thread hijacking, reply-to deception, social engineering themes, and message context."
+        },
+        {
+          "title": "Mailbox compromise findings",
+          "content": "Document suspicious sign-ins, forwarding rules, inbox rules, delegated access, sent-mail anomalies, deleted items activity, and persistence indicators."
+        },
+        {
+          "title": "OAuth and application access",
+          "content": "Record malicious or suspicious app consent, token abuse, third-party app access, and other identity or integration-related findings."
+        }
+      ]
+    },
+    {
+      "title": "Fraud and Financial Exposure",
+      "notes": [
+        {
+          "title": "Fraud scenario",
+          "content": "Document the nature of the fraud attempt, such as invoice diversion, banking change request, payroll redirect, gift card request, or executive impersonation."
+        },
+        {
+          "title": "Requested or completed transactions",
+          "content": "Track requested transfers, payment amounts, account numbers, changes requested, completed transactions, and associated timestamps."
+        },
+        {
+          "title": "Recovery actions",
+          "content": "Document actions taken to stop, reverse, recover, or trace fraudulent transactions or requested changes."
+        },
+        {
+          "title": "Business and financial impact",
+          "content": "Summarize actual or potential financial loss, operational impact, reputational concerns, and affected business relationships."
+        }
+      ]
+    },
+    {
+      "title": "Containment and Remediation",
+      "notes": [
+        {
+          "title": "Email containment actions",
+          "content": "Document message quarantine, purge actions, sender/domain blocks, and related mail-security control changes."
+        },
+        {
+          "title": "Identity remediation actions",
+          "content": "Track password resets, session revocations, MFA actions, app-grant removals, and access restrictions."
+        },
+        {
+          "title": "Mailbox cleanup actions",
+          "content": "Document removal of inbox rules, forwarding rules, delegate permissions, malicious signatures, and other unauthorized mailbox changes."
+        },
+        {
+          "title": "Validation of remediation",
+          "content": "Summarize how restored account control, mailbox integrity, and containment effectiveness were validated."
+        }
+      ]
+    },
+    {
+      "title": "Communications and Coordination",
+      "notes": [
+        {
+          "title": "Finance and business coordination",
+          "content": "Track discussions, approvals, and response actions involving finance, payroll, accounts payable, procurement, or other affected business teams."
+        },
+        {
+          "title": "Legal and management coordination",
+          "content": "Document communications, approvals, and guidance from legal, privacy, compliance, and management stakeholders."
+        },
+        {
+          "title": "External coordination",
+          "content": "Summarize communications with banks, insurers, law enforcement, vendors, customers, or other external parties."
+        },
+        {
+          "title": "User and stakeholder notifications",
+          "content": "Document notifications, call-back verifications, advisory messages, and instructions sent to affected users or stakeholders."
+        }
+      ]
+    },
+    {
+      "title": "Post-Incident",
+      "notes": [
+        {
+          "title": "Findings summary",
+          "content": "Provide a concise summary of the BEC incident, compromise status, fraud scenario, impact, and investigative conclusions."
+        },
+        {
+          "title": "Control improvements",
+          "content": "Document recommended improvements to mailbox protections, financial verification workflows, identity controls, monitoring, and user awareness."
+        },
+        {
+          "title": "Lessons learned",
+          "content": "Capture lessons learned, process gaps, detection gaps, and follow-up recommendations."
+        }
+      ]
+    }
+  ],
+  "classification": "fraud:phishing"
+}
