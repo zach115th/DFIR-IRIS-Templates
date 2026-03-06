@@ -1,289 +1,287 @@
 {
-    "name": "InsiderThreat",
-    "display_name": "Insider Threat",
-    "description": "A case template for handling suspected insider activity, including validation, evidence preservation, technical investigation, stakeholder coordination, protective actions, interviews, and post-incident follow-up.",
-    "author": "Zachary Carter",
-    "title_prefix": "[INSIDER]",
-    "summary": "Investigation of suspected insider activity involving potential misuse of access, unauthorized data handling, policy violations, or other actions by an internal user, contractor, or trusted third party. Scope, intent, impact, and supporting evidence remain under investigation.",
-    "tags": [
-        "insider-threat",
-        "suspected-insider-activity",
-        "employee",
-        "contractor",
-        "policy-violation",
-        "data-misuse"
-    ],
-    "tasks": [
+  "name": "InsiderThreat",
+  "display_name": "Insider Threat",
+  "description": "A case template for handling suspected insider activity, including validation, evidence preservation, technical investigation, stakeholder coordination, protective actions, interviews, and post-incident follow-up.",
+  "author": "Zachary Carter",
+  "title_prefix": "[INSIDER]",
+  "summary": "Investigation of suspected insider activity involving potential misuse of access, unauthorized data handling, policy violations, or other actions by an internal user, contractor, or trusted third party. Scope, intent, impact, and supporting evidence remain under investigation.",
+  "tags": [
+    "tlp:amber",
+    "workflow:state=\"draft\"",
+    "CERT-XLM:information-content-security=\"Unauthorised-information-access\"",
+    "CERT-XLM:conformity=\"security-policy\""
+  ],
+  "tasks": [
+    {
+      "title": "Validate allegation or alert",
+      "description": "Determine whether the reported activity is credible, benign, accidental, policy-related, malicious, or potentially the result of account compromise. Distinguish allegations from confirmed facts.",
+      "tags": [
+        "triage",
+        "validation",
+        "allegation"
+      ]
+    },
+    {
+      "title": "Initiate stakeholder coordination",
+      "description": "Notify and coordinate with the appropriate internal stakeholders, including management, HR, legal, privacy, and security leadership, to align investigative actions, evidence handling, monitoring, and communications.",
+      "tags": [
+        "coordination",
+        "hr",
+        "legal"
+      ]
+    },
+    {
+      "title": "Identify subject, affected resources, and scope",
+      "description": "Determine the involved subject or accounts, affected systems, data, applications, communications, and business processes. Document confirmed and suspected impact.",
+      "tags": [
+        "scope",
+        "assets",
+        "impact"
+      ]
+    },
+    {
+      "title": "Preserve evidence and establish retention requirements",
+      "description": "Preserve relevant logs, endpoint data, emails, chat records, file access records, cloud activity, authentication logs, DLP alerts, proxy logs, VPN logs, badge access data, and other evidence. Coordinate retention and legal hold requirements as needed.",
+      "tags": [
+        "evidence",
+        "preservation",
+        "retention"
+      ]
+    },
+    {
+      "title": "Collect and analyze technical evidence",
+      "description": "Collect and review logs, email records, collaboration platform data, endpoint artifacts, cloud activity, access records, and related evidence to establish a defensible timeline of activity and identify involved parties, systems, and actions.",
+      "tags": [
+        "forensics",
+        "analysis",
+        "timeline"
+      ]
+    },
+    {
+      "title": "Assess data access, misuse, and exfiltration",
+      "description": "Determine whether sensitive data was accessed, copied, printed, emailed, uploaded, synced to cloud services, transferred to removable media, or otherwise mishandled. Identify possible exfiltration paths and affected data types.",
+      "tags": [
+        "data-access",
+        "exfiltration",
+        "misuse"
+      ]
+    },
+    {
+      "title": "Assess account compromise versus insider activity",
+      "description": "Evaluate whether the observed activity was performed by the subject directly, by another individual using the subject's credentials, or through compromised devices, tokens, sessions, or accounts.",
+      "tags": [
+        "account-compromise",
+        "identity",
+        "attribution"
+      ]
+    },
+    {
+      "title": "Coordinate and implement protective actions",
+      "description": "Coordinate with management, HR, and legal to determine whether monitoring, access restrictions, credential resets, device seizure, privilege reduction, or other protective actions are appropriate and when they should be implemented.",
+      "tags": [
+        "containment",
+        "access-control",
+        "protective-actions"
+      ]
+    },
+    {
+      "title": "Establish secure evidence transfer method",
+      "description": "Set up an approved secure method for evidence collection and transfer, such as encrypted upload, secure case share, approved file transfer platform, or direct collection process.",
+      "tags": [
+        "administrative",
+        "evidence-transfer",
+        "security"
+      ]
+    },
+    {
+      "title": "Conduct witness and stakeholder interviews",
+      "description": "Interview witnesses, managers, system owners, and other relevant parties after sufficient technical groundwork has been established and in accordance with HR, legal, and organizational requirements.",
+      "tags": [
+        "interviews",
+        "witnesses",
+        "stakeholders"
+      ]
+    },
+    {
+      "title": "Conduct subject interview if authorized",
+      "description": "Interview the subject when approved by HR, legal, and management, using established findings to support questioning and documentation.",
+      "tags": [
+        "interviews",
+        "subject",
+        "authorized"
+      ]
+    },
+    {
+      "title": "Document findings, intent, and impact",
+      "description": "Document the investigative findings, assess likely intent, summarize business and data impact, identify policy or legal concerns, and capture unresolved questions or gaps.",
+      "tags": [
+        "findings",
+        "intent",
+        "impact"
+      ]
+    },
+    {
+      "title": "Implement control improvements",
+      "description": "Implement and recommend security, administrative, and monitoring improvements to reduce the likelihood of recurrence, including access governance, logging, DLP, HR processes, and detection coverage.",
+      "tags": [
+        "improvements",
+        "hardening",
+        "prevention"
+      ]
+    },
+    {
+      "title": "Close case and capture lessons learned",
+      "description": "Confirm that investigative objectives have been met, required actions and notifications are complete, documentation is finalized, and lessons learned are captured for future process and control improvements.",
+      "tags": [
+        "closure",
+        "lessons-learned",
+        "post-incident"
+      ]
+    }
+  ],
+  "note_directories": [
+    {
+      "title": "Incident Overview",
+      "notes": [
         {
-            "title": "Validate allegation or alert",
-            "description": "Determine whether the reported activity is credible, benign, accidental, policy-related, malicious, or potentially the result of account compromise. Distinguish allegations from confirmed facts.",
-            "tags": [
-                "triage",
-                "validation",
-                "allegation"
-            ]
+          "title": "Initial allegation or alert",
+          "content": "Document the initial report, allegation, alert source, and reason the case was opened."
         },
         {
-            "title": "Initiate stakeholder coordination",
-            "description": "Notify and coordinate with the appropriate internal stakeholders, including management, HR, legal, privacy, and security leadership, to align investigative actions, evidence handling, monitoring, and communications.",
-            "tags": [
-                "coordination",
-                "hr",
-                "legal"
-            ]
+          "title": "Current status",
+          "content": "Track the current investigation phase, key updates, blockers, and next steps."
         },
         {
-            "title": "Identify subject, affected resources, and scope",
-            "description": "Determine the involved subject or accounts, affected systems, data, applications, communications, and business processes. Document confirmed and suspected impact.",
-            "tags": [
-                "scope",
-                "assets",
-                "impact"
-            ]
+          "title": "Decision log",
+          "content": "Document key decisions, approvals, and major events during the investigation."
         },
         {
-            "title": "Preserve evidence and establish retention requirements",
-            "description": "Preserve relevant logs, endpoint data, emails, chat records, file access records, cloud activity, authentication logs, DLP alerts, proxy logs, VPN logs, badge access data, and other evidence. Coordinate retention and legal hold requirements as needed.",
-            "tags": [
-                "evidence",
-                "preservation",
-                "retention"
-            ]
-        },
-        {
-            "title": "Collect and analyze technical evidence",
-            "description": "Collect and review logs, email records, collaboration platform data, endpoint artifacts, cloud activity, access records, and related evidence to establish a defensible timeline of activity and identify involved parties, systems, and actions.",
-            "tags": [
-                "forensics",
-                "analysis",
-                "timeline"
-            ]
-        },
-        {
-            "title": "Assess data access, misuse, and exfiltration",
-            "description": "Determine whether sensitive data was accessed, copied, printed, emailed, uploaded, synced to cloud services, transferred to removable media, or otherwise mishandled. Identify possible exfiltration paths and affected data types.",
-            "tags": [
-                "data-access",
-                "exfiltration",
-                "misuse"
-            ]
-        },
-        {
-            "title": "Assess account compromise versus insider activity",
-            "description": "Evaluate whether the observed activity was performed by the subject directly, by another individual using the subject's credentials, or through compromised devices, tokens, sessions, or accounts.",
-            "tags": [
-                "account-compromise",
-                "identity",
-                "attribution"
-            ]
-        },
-        {
-            "title": "Coordinate and implement protective actions",
-            "description": "Coordinate with management, HR, and legal to determine whether monitoring, access restrictions, credential resets, device seizure, privilege reduction, or other protective actions are appropriate and when they should be implemented.",
-            "tags": [
-                "containment",
-                "access-control",
-                "protective-actions"
-            ]
-        },
-        {
-            "title": "Establish secure evidence transfer method",
-            "description": "Set up an approved secure method for evidence collection and transfer, such as encrypted upload, secure case share, approved file transfer platform, or direct collection process.",
-            "tags": [
-                "administrative",
-                "evidence-transfer",
-                "security"
-            ]
-        },
-        {
-            "title": "Conduct witness and stakeholder interviews",
-            "description": "Interview witnesses, managers, system owners, and other relevant parties after sufficient technical groundwork has been established and in accordance with HR, legal, and organizational requirements.",
-            "tags": [
-                "interviews",
-                "witnesses",
-                "stakeholders"
-            ]
-        },
-        {
-            "title": "Conduct subject interview if authorized",
-            "description": "Interview the subject when approved by HR, legal, and management, using established findings to support questioning and documentation.",
-            "tags": [
-                "interviews",
-                "subject",
-                "authorized"
-            ]
-        },
-        {
-            "title": "Document findings, intent, and impact",
-            "description": "Document the investigative findings, assess likely intent, summarize business and data impact, identify policy or legal concerns, and capture unresolved questions or gaps.",
-            "tags": [
-                "findings",
-                "intent",
-                "impact"
-            ]
-        },
-        {
-            "title": "Implement control improvements",
-            "description": "Implement and recommend security, administrative, and monitoring improvements to reduce the likelihood of recurrence, including access governance, logging, DLP, HR processes, and detection coverage.",
-            "tags": [
-                "improvements",
-                "hardening",
-                "prevention"
-            ]
-        },
-        {
-            "title": "Close case and capture lessons learned",
-            "description": "Confirm that investigative objectives have been met, required actions and notifications are complete, documentation is finalized, and lessons learned are captured for future process and control improvements.",
-            "tags": [
-                "closure",
-                "lessons-learned",
-                "post-incident"
-            ]
+          "title": "Stakeholders",
+          "content": "List involved stakeholders, including HR, legal, management, privacy, and technical teams."
         }
-    ],
-    "note_directories": [
+      ]
+    },
+    {
+      "title": "Subject and Access",
+      "notes": [
         {
-            "title": "Incident Overview",
-            "notes": [
-                {
-                    "title": "Initial allegation or alert",
-                    "content": "Document the initial report, allegation, alert source, and reason the case was opened."
-                },
-                {
-                    "title": "Current status",
-                    "content": "Track the current investigation phase, key updates, blockers, and next steps."
-                },
-                {
-                    "title": "Decision log",
-                    "content": "Document key decisions, approvals, and major events during the investigation."
-                },
-                {
-                    "title": "Stakeholders",
-                    "content": "List involved stakeholders, including HR, legal, management, privacy, and technical teams."
-                }
-            ]
+          "title": "Subject profile",
+          "content": "Document the subject's role, department, relationship to the organization, and relevant context."
         },
         {
-            "title": "Subject and Access",
-            "notes": [
-                {
-                    "title": "Subject profile",
-                    "content": "Document the subject's role, department, relationship to the organization, and relevant context."
-                },
-                {
-                    "title": "Accounts and privileges",
-                    "content": "Track associated user accounts, service accounts, admin rights, group memberships, and privileged access."
-                },
-                {
-                    "title": "Assigned devices and systems",
-                    "content": "Document the devices, systems, applications, and cloud resources associated with the subject."
-                },
-                {
-                    "title": "Physical access",
-                    "content": "Record badge access, building entry data, and other physical access information where relevant."
-                }
-            ]
+          "title": "Accounts and privileges",
+          "content": "Track associated user accounts, service accounts, admin rights, group memberships, and privileged access."
         },
         {
-            "title": "Technical Findings",
-            "notes": [
-                {
-                    "title": "Timeline of activity",
-                    "content": "Build a defensible timeline of observed activity from all available sources."
-                },
-                {
-                    "title": "Data access and file activity",
-                    "content": "Summarize file access, copying, renaming, deletion, printing, archiving, and related activity."
-                },
-                {
-                    "title": "Email and messaging activity",
-                    "content": "Document relevant email, chat, collaboration, or messaging activity tied to the investigation."
-                },
-                {
-                    "title": "Web, cloud, and transfer activity",
-                    "content": "Track uploads, downloads, webmail access, cloud sync, personal storage use, and other transfer activity."
-                },
-                {
-                    "title": "Authentication and remote access",
-                    "content": "Document login activity, VPN access, SSO events, MFA events, remote access, and suspicious authentication patterns."
-                },
-                {
-                    "title": "Removable media and peripheral use",
-                    "content": "Record USB device usage, external media activity, printer usage, and other peripheral interactions."
-                }
-            ]
+          "title": "Assigned devices and systems",
+          "content": "Document the devices, systems, applications, and cloud resources associated with the subject."
         },
         {
-            "title": "Evidence",
-            "notes": [
-                {
-                    "title": "Preserved evidence",
-                    "content": "List preserved artifacts, systems, mailboxes, logs, exports, and other retained evidence."
-                },
-                {
-                    "title": "Collection notes",
-                    "content": "Document how evidence was collected, by whom, and any collection limitations."
-                },
-                {
-                    "title": "Chain of custody",
-                    "content": "Track evidence handling, storage, transfer, and access history where required."
-                },
-                {
-                    "title": "Gaps and missing logs",
-                    "content": "Document unavailable data sources, retention gaps, overwritten logs, or other evidentiary limitations."
-                }
-            ]
-        },
-        {
-            "title": "Interviews and Coordination",
-            "notes": [
-                {
-                    "title": "Witness interviews",
-                    "content": "Summarize witness, manager, or system owner interviews and relevant observations."
-                },
-                {
-                    "title": "Subject interview",
-                    "content": "Document the subject interview, key responses, clarifications, and outcomes if conducted."
-                },
-                {
-                    "title": "HR coordination",
-                    "content": "Track discussions, guidance, and decisions involving HR."
-                },
-                {
-                    "title": "Legal and privacy coordination",
-                    "content": "Track legal, privacy, and compliance considerations, guidance, and required actions."
-                },
-                {
-                    "title": "Management updates",
-                    "content": "Document management briefings, approvals, and escalation decisions."
-                }
-            ]
-        },
-        {
-            "title": "Findings and Outcome",
-            "notes": [
-                {
-                    "title": "Findings summary",
-                    "content": "Summarize the key facts established during the investigation."
-                },
-                {
-                    "title": "Intent assessment",
-                    "content": "Assess whether the activity appears malicious, negligent, unauthorized, accidental, or attributable to account compromise."
-                },
-                {
-                    "title": "Business and data impact",
-                    "content": "Document business impact, data exposure, operational effects, and affected parties."
-                },
-                {
-                    "title": "Policy or legal concerns",
-                    "content": "Summarize policy violations, contractual issues, legal concerns, or other governance implications."
-                },
-                {
-                    "title": "Recommended actions",
-                    "content": "Document corrective actions, access changes, referrals, monitoring recommendations, and follow-up tasks."
-                }
-            ]
+          "title": "Physical access",
+          "content": "Record badge access, building entry data, and other physical access information where relevant."
         }
-    ],
-    "classification": "other:other"
+      ]
+    },
+    {
+      "title": "Technical Findings",
+      "notes": [
+        {
+          "title": "Timeline of activity",
+          "content": "Build a defensible timeline of observed activity from all available sources."
+        },
+        {
+          "title": "Data access and file activity",
+          "content": "Summarize file access, copying, renaming, deletion, printing, archiving, and related activity."
+        },
+        {
+          "title": "Email and messaging activity",
+          "content": "Document relevant email, chat, collaboration, or messaging activity tied to the investigation."
+        },
+        {
+          "title": "Web, cloud, and transfer activity",
+          "content": "Track uploads, downloads, webmail access, cloud sync, personal storage use, and other transfer activity."
+        },
+        {
+          "title": "Authentication and remote access",
+          "content": "Document login activity, VPN access, SSO events, MFA events, remote access, and suspicious authentication patterns."
+        },
+        {
+          "title": "Removable media and peripheral use",
+          "content": "Record USB device usage, external media activity, printer usage, and other peripheral interactions."
+        }
+      ]
+    },
+    {
+      "title": "Evidence",
+      "notes": [
+        {
+          "title": "Preserved evidence",
+          "content": "List preserved artifacts, systems, mailboxes, logs, exports, and other retained evidence."
+        },
+        {
+          "title": "Collection notes",
+          "content": "Document how evidence was collected, by whom, and any collection limitations."
+        },
+        {
+          "title": "Chain of custody",
+          "content": "Track evidence handling, storage, transfer, and access history where required."
+        },
+        {
+          "title": "Gaps and missing logs",
+          "content": "Document unavailable data sources, retention gaps, overwritten logs, or other evidentiary limitations."
+        }
+      ]
+    },
+    {
+      "title": "Interviews and Coordination",
+      "notes": [
+        {
+          "title": "Witness interviews",
+          "content": "Summarize witness, manager, or system owner interviews and relevant observations."
+        },
+        {
+          "title": "Subject interview",
+          "content": "Document the subject interview, key responses, clarifications, and outcomes if conducted."
+        },
+        {
+          "title": "HR coordination",
+          "content": "Track discussions, guidance, and decisions involving HR."
+        },
+        {
+          "title": "Legal and privacy coordination",
+          "content": "Track legal, privacy, and compliance considerations, guidance, and required actions."
+        },
+        {
+          "title": "Management updates",
+          "content": "Document management briefings, approvals, and escalation decisions."
+        }
+      ]
+    },
+    {
+      "title": "Findings and Outcome",
+      "notes": [
+        {
+          "title": "Findings summary",
+          "content": "Summarize the key facts established during the investigation."
+        },
+        {
+          "title": "Intent assessment",
+          "content": "Assess whether the activity appears malicious, negligent, unauthorized, accidental, or attributable to account compromise."
+        },
+        {
+          "title": "Business and data impact",
+          "content": "Document business impact, data exposure, operational effects, and affected parties."
+        },
+        {
+          "title": "Policy or legal concerns",
+          "content": "Summarize policy violations, contractual issues, legal concerns, or other governance implications."
+        },
+        {
+          "title": "Recommended actions",
+          "content": "Document corrective actions, access changes, referrals, monitoring recommendations, and follow-up tasks."
+        }
+      ]
+    }
+  ],
+  "classification": "other:other"
 }
