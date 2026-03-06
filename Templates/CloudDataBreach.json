@@ -1,286 +1,283 @@
 {
-    "name": "CloudDataBreach",
-    "display_name": "Cloud Data Breach",
-    "description": "A case template for handling suspected or confirmed cloud data exposure or breach incidents, including validation, evidence preservation, cloud scoping, containment, impact assessment, notification, and post-incident remediation.",
-    "author": "Zachary Carter",
-    "title_prefix": "[CLOUD]",
-    "summary": "Investigation of a suspected or confirmed cloud data exposure or breach involving unauthorized access, disclosure, misuse, or exfiltration of data in a cloud-hosted service, platform, tenant, or storage environment. Scope, affected data, access path, and impact are under investigation.",
-    "tags": [
+  "name": "CloudDataBreach",
+  "display_name": "Cloud Data Breach",
+  "description": "A case template for handling suspected or confirmed cloud data exposure or breach incidents, including validation, evidence preservation, cloud scoping, containment, impact assessment, notification, and post-incident remediation.",
+  "author": "Zachary Carter",
+  "title_prefix": "[CLOUD]",
+  "summary": "Investigation of a suspected or confirmed cloud data exposure or breach involving unauthorized access, disclosure, misuse, or exfiltration of data in a cloud-hosted service, platform, tenant, or storage environment. Scope, affected data, access path, and impact are under investigation.",
+  "tags": [
+    "tlp:amber",
+    "workflow:state=\"draft\"",
+    "CERT-XLM:information-content-security=\"Unauthorised-information-access\"",
+    "CERT-XLM:vulnerable=\"vulnerable-service\""
+  ],
+  "tasks": [
+    {
+      "title": "Validate and classify cloud breach event",
+      "description": "Determine whether the incident involves confirmed unauthorized access, public exposure, excessive permissions, compromised credentials, token or session abuse, application compromise, third-party access, misconfiguration, or a false positive. Distinguish suspected exposure from confirmed breach activity.",
+      "tags": [
+        "triage",
+        "validation",
+        "classification"
+      ]
+    },
+    {
+      "title": "Initiate stakeholder and provider coordination",
+      "description": "Notify and coordinate with internal stakeholders such as cloud administrators, identity teams, security leadership, legal, privacy, compliance, and management, as well as the relevant cloud provider or SaaS vendor if support or investigation assistance is required.",
+      "tags": [
+        "coordination",
+        "provider",
+        "stakeholders"
+      ]
+    },
+    {
+      "title": "Identify affected cloud services, identities, and data stores",
+      "description": "Determine the affected tenant, subscription, account, project, services, applications, storage locations, databases, mailboxes, identities, roles, and third-party integrations. Document confirmed and suspected scope.",
+      "tags": [
+        "scope",
         "cloud",
-        "data-breach",
-        "data-exposure",
+        "assets"
+      ]
+    },
+    {
+      "title": "Preserve cloud evidence and logging",
+      "description": "Preserve relevant audit logs, sign-in logs, API activity, administrative actions, object access records, IAM changes, OAuth activity, app consent records, storage access logs, snapshots, and any other provider or application telemetry needed for investigation and retention.",
+      "tags": [
+        "evidence",
+        "logging",
+        "preservation"
+      ]
+    },
+    {
+      "title": "Determine exposure, access, modification, and exfiltration scope",
+      "description": "Assess whether data was merely exposed, actually accessed, modified, deleted, shared, downloaded, or exfiltrated. Identify affected data types, data sensitivity, likely time range, and suspected actors or access sources.",
+      "tags": [
+        "exposure",
+        "access",
+        "exfiltration"
+      ]
+    },
+    {
+      "title": "Identify access path and root cause",
+      "description": "Investigate how access occurred, such as misconfiguration, compromised credentials, leaked keys, token abuse, excessive permissions, malicious or risky application consent, exploited cloud application weaknesses, or third-party access pathways.",
+      "tags": [
+        "root-cause",
+        "investigation",
+        "access-path"
+      ]
+    },
+    {
+      "title": "Contain identities, sessions, applications, and cloud resources",
+      "description": "Revoke active sessions, disable or restrict compromised accounts, rotate credentials and keys, remove malicious or excessive permissions, disable risky app integrations, remediate public exposure, restrict access to affected resources, and apply any necessary emergency controls.",
+      "tags": [
+        "containment",
         "iam",
-        "misconfiguration",
-        "saas",
-        "account-compromise"
-    ],
-    "tasks": [
+        "access-control"
+      ]
+    },
+    {
+      "title": "Assess business, legal, privacy, and regulatory impact",
+      "description": "Evaluate the impact to business operations, data confidentiality, data integrity, customers, contracts, regulated data, notification obligations, and overall organizational risk based on the nature and sensitivity of the affected data.",
+      "tags": [
+        "impact",
+        "legal",
+        "privacy"
+      ]
+    },
+    {
+      "title": "Remediate misconfigurations, credentials, tokens, keys, and app access",
+      "description": "Correct misconfigurations, reduce excessive permissions, rotate secrets and access keys, reset credentials, revoke tokens, review service principals and app registrations, remove unauthorized integrations, and validate that the original access path has been closed.",
+      "tags": [
+        "remediation",
+        "secrets",
+        "hardening"
+      ]
+    },
+    {
+      "title": "Assess and execute notification obligations",
+      "description": "Determine whether customers, regulators, partners, law enforcement, cyber insurance, or other affected parties must be notified based on legal, contractual, privacy, regulatory, or policy requirements, and document all decisions and communications.",
+      "tags": [
+        "notification",
+        "compliance",
+        "reporting"
+      ]
+    },
+    {
+      "title": "Increase monitoring and validate containment",
+      "description": "Increase monitoring on affected identities, applications, storage locations, and cloud resources. Validate that containment actions are effective and confirm that no continued unauthorized access, sharing, or exfiltration is occurring.",
+      "tags": [
+        "monitoring",
+        "validation",
+        "detection"
+      ]
+    },
+    {
+      "title": "Implement cloud security improvements and close gaps",
+      "description": "Improve IAM controls, alerting, logging retention, conditional access, key management, application governance, data sharing controls, backup and recovery strategy, and detection coverage based on identified weaknesses and lessons learned.",
+      "tags": [
+        "improvements",
+        "cloud-security",
+        "prevention"
+      ]
+    },
+    {
+      "title": "Document findings and close case",
+      "description": "Document the affected services, data types, access path, confirmed impact, containment actions, notifications, remediation steps, and lessons learned. Confirm required actions are complete before closing the case.",
+      "tags": [
+        "closure",
+        "findings",
+        "post-incident"
+      ]
+    }
+  ],
+  "note_directories": [
+    {
+      "title": "Incident Overview",
+      "notes": [
         {
-            "title": "Validate and classify cloud breach event",
-            "description": "Determine whether the incident involves confirmed unauthorized access, public exposure, excessive permissions, compromised credentials, token or session abuse, application compromise, third-party access, misconfiguration, or a false positive. Distinguish suspected exposure from confirmed breach activity.",
-            "tags": [
-                "triage",
-                "validation",
-                "classification"
-            ]
+          "title": "Initial report",
+          "content": "Document how the possible cloud breach or exposure was identified, when it was discovered, and why the case was opened."
         },
         {
-            "title": "Initiate stakeholder and provider coordination",
-            "description": "Notify and coordinate with internal stakeholders such as cloud administrators, identity teams, security leadership, legal, privacy, compliance, and management, as well as the relevant cloud provider or SaaS vendor if support or investigation assistance is required.",
-            "tags": [
-                "coordination",
-                "provider",
-                "stakeholders"
-            ]
+          "title": "Current status",
+          "content": "Track the current phase of the investigation, key updates, blockers, and next steps."
         },
         {
-            "title": "Identify affected cloud services, identities, and data stores",
-            "description": "Determine the affected tenant, subscription, account, project, services, applications, storage locations, databases, mailboxes, identities, roles, and third-party integrations. Document confirmed and suspected scope.",
-            "tags": [
-                "scope",
-                "cloud",
-                "assets"
-            ]
+          "title": "Decision log",
+          "content": "Record major decisions, approvals, escalations, and significant events during the investigation."
         },
         {
-            "title": "Preserve cloud evidence and logging",
-            "description": "Preserve relevant audit logs, sign-in logs, API activity, administrative actions, object access records, IAM changes, OAuth activity, app consent records, storage access logs, snapshots, and any other provider or application telemetry needed for investigation and retention.",
-            "tags": [
-                "evidence",
-                "logging",
-                "preservation"
-            ]
-        },
-        {
-            "title": "Determine exposure, access, modification, and exfiltration scope",
-            "description": "Assess whether data was merely exposed, actually accessed, modified, deleted, shared, downloaded, or exfiltrated. Identify affected data types, data sensitivity, likely time range, and suspected actors or access sources.",
-            "tags": [
-                "exposure",
-                "access",
-                "exfiltration"
-            ]
-        },
-        {
-            "title": "Identify access path and root cause",
-            "description": "Investigate how access occurred, such as misconfiguration, compromised credentials, leaked keys, token abuse, excessive permissions, malicious or risky application consent, exploited cloud application weaknesses, or third-party access pathways.",
-            "tags": [
-                "root-cause",
-                "investigation",
-                "access-path"
-            ]
-        },
-        {
-            "title": "Contain identities, sessions, applications, and cloud resources",
-            "description": "Revoke active sessions, disable or restrict compromised accounts, rotate credentials and keys, remove malicious or excessive permissions, disable risky app integrations, remediate public exposure, restrict access to affected resources, and apply any necessary emergency controls.",
-            "tags": [
-                "containment",
-                "iam",
-                "access-control"
-            ]
-        },
-        {
-            "title": "Assess business, legal, privacy, and regulatory impact",
-            "description": "Evaluate the impact to business operations, data confidentiality, data integrity, customers, contracts, regulated data, notification obligations, and overall organizational risk based on the nature and sensitivity of the affected data.",
-            "tags": [
-                "impact",
-                "legal",
-                "privacy"
-            ]
-        },
-        {
-            "title": "Remediate misconfigurations, credentials, tokens, keys, and app access",
-            "description": "Correct misconfigurations, reduce excessive permissions, rotate secrets and access keys, reset credentials, revoke tokens, review service principals and app registrations, remove unauthorized integrations, and validate that the original access path has been closed.",
-            "tags": [
-                "remediation",
-                "secrets",
-                "hardening"
-            ]
-        },
-        {
-            "title": "Assess and execute notification obligations",
-            "description": "Determine whether customers, regulators, partners, law enforcement, cyber insurance, or other affected parties must be notified based on legal, contractual, privacy, regulatory, or policy requirements, and document all decisions and communications.",
-            "tags": [
-                "notification",
-                "compliance",
-                "reporting"
-            ]
-        },
-        {
-            "title": "Increase monitoring and validate containment",
-            "description": "Increase monitoring on affected identities, applications, storage locations, and cloud resources. Validate that containment actions are effective and confirm that no continued unauthorized access, sharing, or exfiltration is occurring.",
-            "tags": [
-                "monitoring",
-                "validation",
-                "detection"
-            ]
-        },
-        {
-            "title": "Implement cloud security improvements and close gaps",
-            "description": "Improve IAM controls, alerting, logging retention, conditional access, key management, application governance, data sharing controls, backup and recovery strategy, and detection coverage based on identified weaknesses and lessons learned.",
-            "tags": [
-                "improvements",
-                "cloud-security",
-                "prevention"
-            ]
-        },
-        {
-            "title": "Document findings and close case",
-            "description": "Document the affected services, data types, access path, confirmed impact, containment actions, notifications, remediation steps, and lessons learned. Confirm required actions are complete before closing the case.",
-            "tags": [
-                "closure",
-                "findings",
-                "post-incident"
-            ]
+          "title": "Stakeholders and providers",
+          "content": "List internal stakeholders, cloud administrators, legal and privacy contacts, and any involved provider or vendor contacts."
         }
-    ],
-    "note_directories": [
+      ]
+    },
+    {
+      "title": "Cloud Environment",
+      "notes": [
         {
-            "title": "Incident Overview",
-            "notes": [
-                {
-                    "title": "Initial report",
-                    "content": "Document how the possible cloud breach or exposure was identified, when it was discovered, and why the case was opened."
-                },
-                {
-                    "title": "Current status",
-                    "content": "Track the current phase of the investigation, key updates, blockers, and next steps."
-                },
-                {
-                    "title": "Decision log",
-                    "content": "Record major decisions, approvals, escalations, and significant events during the investigation."
-                },
-                {
-                    "title": "Stakeholders and providers",
-                    "content": "List internal stakeholders, cloud administrators, legal and privacy contacts, and any involved provider or vendor contacts."
-                }
-            ]
+          "title": "Affected tenant or account",
+          "content": "Document the affected tenant, subscription, project, account, or organizational cloud boundary."
         },
         {
-            "title": "Cloud Environment",
-            "notes": [
-                {
-                    "title": "Affected tenant or account",
-                    "content": "Document the affected tenant, subscription, project, account, or organizational cloud boundary."
-                },
-                {
-                    "title": "Affected services and applications",
-                    "content": "List the involved cloud services, SaaS platforms, storage services, databases, mail systems, applications, and workloads."
-                },
-                {
-                    "title": "Affected identities and roles",
-                    "content": "Track impacted user accounts, service accounts, roles, permissions, groups, and privileged identities."
-                },
-                {
-                    "title": "Third-party applications and integrations",
-                    "content": "Document connected apps, service principals, OAuth grants, integrations, and vendor access relevant to the case."
-                }
-            ]
+          "title": "Affected services and applications",
+          "content": "List the involved cloud services, SaaS platforms, storage services, databases, mail systems, applications, and workloads."
         },
         {
-            "title": "Data and Exposure",
-            "notes": [
-                {
-                    "title": "Affected data sets",
-                    "content": "List the data stores, repositories, mailboxes, documents, records, objects, or databases involved in the incident."
-                },
-                {
-                    "title": "Data sensitivity",
-                    "content": "Document the sensitivity and classification of the affected data, including regulated, confidential, customer, employee, or operational data."
-                },
-                {
-                    "title": "Exposure versus confirmed access",
-                    "content": "Distinguish whether data was only exposed, or whether access, download, modification, deletion, or sharing was confirmed."
-                },
-                {
-                    "title": "Exfiltration findings",
-                    "content": "Summarize evidence of downloads, exports, sharing, synchronization, data movement, or suspected exfiltration."
-                }
-            ]
+          "title": "Affected identities and roles",
+          "content": "Track impacted user accounts, service accounts, roles, permissions, groups, and privileged identities."
         },
         {
-            "title": "Technical Investigation",
-            "notes": [
-                {
-                    "title": "Timeline of events",
-                    "content": "Build a defensible timeline of relevant cloud, identity, application, and data-access activity."
-                },
-                {
-                    "title": "Authentication and session activity",
-                    "content": "Document sign-ins, session behavior, token activity, MFA events, conditional access results, and suspicious login patterns."
-                },
-                {
-                    "title": "Administrative and API activity",
-                    "content": "Summarize administrative changes, API calls, object access, permission changes, configuration changes, and related telemetry."
-                },
-                {
-                    "title": "IAM and permission findings",
-                    "content": "Document excessive permissions, role changes, public exposure, app consent issues, or other identity and access management weaknesses."
-                },
-                {
-                    "title": "Root cause",
-                    "content": "Summarize the suspected or confirmed access path and root cause of the cloud data breach or exposure."
-                }
-            ]
-        },
-        {
-            "title": "Containment and Remediation",
-            "notes": [
-                {
-                    "title": "Access restriction actions",
-                    "content": "Document session revocations, account disablement, access restriction changes, emergency controls, and tenant-level containment actions."
-                },
-                {
-                    "title": "Credential, key, and token actions",
-                    "content": "Track password resets, token revocations, secret rotation, access key rotation, and certificate or credential replacement."
-                },
-                {
-                    "title": "Configuration and sharing fixes",
-                    "content": "Document misconfiguration corrections, sharing restriction changes, public access removal, and application governance changes."
-                },
-                {
-                    "title": "Validation of remediation",
-                    "content": "Summarize how remediation was validated and how ongoing unauthorized access was ruled out or monitored."
-                }
-            ]
-        },
-        {
-            "title": "Communications and Compliance",
-            "notes": [
-                {
-                    "title": "Legal and privacy coordination",
-                    "content": "Track discussions, guidance, and decisions involving legal, privacy, and compliance stakeholders."
-                },
-                {
-                    "title": "Provider coordination",
-                    "content": "Document provider or vendor support cases, findings, escalations, and response activities."
-                },
-                {
-                    "title": "Notification decisions",
-                    "content": "Record notification obligations, decisions, timelines, recipients, and rationale."
-                },
-                {
-                    "title": "Executive updates",
-                    "content": "Document status updates, decision points, and escalations communicated to leadership."
-                }
-            ]
-        },
-        {
-            "title": "Post-Incident",
-            "notes": [
-                {
-                    "title": "Findings summary",
-                    "content": "Provide a concise summary of the incident, confirmed impact, root cause, and investigative conclusions."
-                },
-                {
-                    "title": "Control improvements",
-                    "content": "Document recommended improvements to IAM, application governance, monitoring, logging, and cloud security posture."
-                },
-                {
-                    "title": "Lessons learned",
-                    "content": "Capture lessons learned, process gaps, detection gaps, and follow-up recommendations."
-                }
-            ]
+          "title": "Third-party applications and integrations",
+          "content": "Document connected apps, service principals, OAuth grants, integrations, and vendor access relevant to the case."
         }
-    ],
-    "classification": "intrusion:application-compromise"
+      ]
+    },
+    {
+      "title": "Data and Exposure",
+      "notes": [
+        {
+          "title": "Affected data sets",
+          "content": "List the data stores, repositories, mailboxes, documents, records, objects, or databases involved in the incident."
+        },
+        {
+          "title": "Data sensitivity",
+          "content": "Document the sensitivity and classification of the affected data, including regulated, confidential, customer, employee, or operational data."
+        },
+        {
+          "title": "Exposure versus confirmed access",
+          "content": "Distinguish whether data was only exposed, or whether access, download, modification, deletion, or sharing was confirmed."
+        },
+        {
+          "title": "Exfiltration findings",
+          "content": "Summarize evidence of downloads, exports, sharing, synchronization, data movement, or suspected exfiltration."
+        }
+      ]
+    },
+    {
+      "title": "Technical Investigation",
+      "notes": [
+        {
+          "title": "Timeline of events",
+          "content": "Build a defensible timeline of relevant cloud, identity, application, and data-access activity."
+        },
+        {
+          "title": "Authentication and session activity",
+          "content": "Document sign-ins, session behavior, token activity, MFA events, conditional access results, and suspicious login patterns."
+        },
+        {
+          "title": "Administrative and API activity",
+          "content": "Summarize administrative changes, API calls, object access, permission changes, configuration changes, and related telemetry."
+        },
+        {
+          "title": "IAM and permission findings",
+          "content": "Document excessive permissions, role changes, public exposure, app consent issues, or other identity and access management weaknesses."
+        },
+        {
+          "title": "Root cause",
+          "content": "Summarize the suspected or confirmed access path and root cause of the cloud data breach or exposure."
+        }
+      ]
+    },
+    {
+      "title": "Containment and Remediation",
+      "notes": [
+        {
+          "title": "Access restriction actions",
+          "content": "Document session revocations, account disablement, access restriction changes, emergency controls, and tenant-level containment actions."
+        },
+        {
+          "title": "Credential, key, and token actions",
+          "content": "Track password resets, token revocations, secret rotation, access key rotation, and certificate or credential replacement."
+        },
+        {
+          "title": "Configuration and sharing fixes",
+          "content": "Document misconfiguration corrections, sharing restriction changes, public access removal, and application governance changes."
+        },
+        {
+          "title": "Validation of remediation",
+          "content": "Summarize how remediation was validated and how ongoing unauthorized access was ruled out or monitored."
+        }
+      ]
+    },
+    {
+      "title": "Communications and Compliance",
+      "notes": [
+        {
+          "title": "Legal and privacy coordination",
+          "content": "Track discussions, guidance, and decisions involving legal, privacy, and compliance stakeholders."
+        },
+        {
+          "title": "Provider coordination",
+          "content": "Document provider or vendor support cases, findings, escalations, and response activities."
+        },
+        {
+          "title": "Notification decisions",
+          "content": "Record notification obligations, decisions, timelines, recipients, and rationale."
+        },
+        {
+          "title": "Executive updates",
+          "content": "Document status updates, decision points, and escalations communicated to leadership."
+        }
+      ]
+    },
+    {
+      "title": "Post-Incident",
+      "notes": [
+        {
+          "title": "Findings summary",
+          "content": "Provide a concise summary of the incident, confirmed impact, root cause, and investigative conclusions."
+        },
+        {
+          "title": "Control improvements",
+          "content": "Document recommended improvements to IAM, application governance, monitoring, logging, and cloud security posture."
+        },
+        {
+          "title": "Lessons learned",
+          "content": "Capture lessons learned, process gaps, detection gaps, and follow-up recommendations."
+        }
+      ]
+    }
+  ],
+  "classification": "intrusion:application-compromise"
 }
