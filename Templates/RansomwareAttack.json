@@ -1,0 +1,319 @@
+{
+    "name": "RansomwareAttack",
+    "display_name": "Ransomware Attack",
+    "description": "A case template for handling suspected or confirmed ransomware incidents, including triage, containment, investigation, eradication, recovery, communications, and post-incident activities.",
+    "author": "Zachary Carter",
+    "title_prefix": "[RANSOMWARE]",
+    "summary": "Suspected or confirmed ransomware incident affecting [business unit / systems]. Initial activity identified on [date/time]. Current scope includes [hosts/accounts/data]. Suspected initial access vector: [unknown/phishing/VPN/RDP/etc.]. Current status: [triage/contained/eradication/recovery]. Business impact: [summary].",
+    "tags": [
+        "ransomware",
+        "malware",
+        "extortion",
+        "encryption",
+        "incident-response"
+    ],
+    "tasks": [
+        {
+            "title": "Validate ransomware activity",
+            "description": "Confirm whether ransomware activity is present by identifying file encryption, ransom notes, destructive actions, service disruption, extortion messaging, or other supporting evidence. Determine whether the case is confirmed ransomware, attempted ransomware, suspicious activity, or a false positive.",
+            "tags": [
+                "triage",
+                "validation",
+                "ransomware"
+            ]
+        },
+        {
+            "title": "Initiate incident communications and escalation",
+            "description": "Notify required internal stakeholders and activate the appropriate incident response, management, legal, privacy, communications, and executive escalation paths based on case severity and business impact.",
+            "tags": [
+                "communications",
+                "escalation",
+                "management"
+            ]
+        },
+        {
+            "title": "Identify affected systems, accounts, and business impact",
+            "description": "Determine the scope of the incident by identifying affected hosts, user accounts, servers, shares, applications, backup systems, and business functions. Document confirmed and suspected impact.",
+            "tags": [
+                "scope",
+                "impact",
+                "assets"
+            ]
+        },
+        {
+            "title": "Preserve forensic evidence",
+            "description": "Collect and preserve volatile and non-volatile evidence from affected and suspected systems, including memory, disk artifacts, ransom notes, binaries, scripts, event logs, authentication logs, EDR telemetry, network telemetry, scheduled tasks, services, and persistence artifacts.",
+            "tags": [
+                "forensics",
+                "evidence",
+                "collection"
+            ]
+        },
+        {
+            "title": "Contain hosts, accounts, and network access",
+            "description": "Isolate affected or suspected systems, disable or restrict compromised accounts, revoke sessions, disable remote access paths as needed, and block malicious or suspicious infrastructure to prevent further spread.",
+            "tags": [
+                "containment",
+                "network",
+                "identity"
+            ]
+        },
+        {
+            "title": "Identify initial access vector",
+            "description": "Investigate how the threat actor gained access, such as phishing, exposed VPN, RDP, credential compromise, software vulnerability exploitation, malicious downloads, or third-party access.",
+            "tags": [
+                "investigation",
+                "initial-access",
+                "root-cause"
+            ]
+        },
+        {
+            "title": "Investigate privilege escalation and lateral movement",
+            "description": "Determine how the threat actor elevated privileges, moved through the environment, accessed additional systems, and expanded control across users, hosts, shares, or management infrastructure.",
+            "tags": [
+                "investigation",
+                "lateral-movement",
+                "privilege-escalation"
+            ]
+        },
+        {
+            "title": "Assess data exfiltration and extortion risk",
+            "description": "Determine whether data was staged, compressed, transferred, or exposed prior to encryption. Identify sensitive data types, possible destinations, extortion indicators, and any leak-site or ransom communication references.",
+            "tags": [
+                "exfiltration",
+                "extortion",
+                "data-loss"
+            ]
+        },
+        {
+            "title": "Analyze ransomware artifacts and behavior",
+            "description": "Analyze ransomware binaries, scripts, ransom notes, file extensions, process execution, command lines, persistence mechanisms, and related artifacts. Identify the ransomware family or variant if possible.",
+            "tags": [
+                "analysis",
+                "malware",
+                "ransomware-family"
+            ]
+        },
+        {
+            "title": "Extract, validate, and track IOCs",
+            "description": "Extract and validate indicators of compromise from malware artifacts, host evidence, network telemetry, and external intelligence sources. Add confirmed IOCs to the case, tag appropriately, and share with downstream systems as authorized.",
+            "tags": [
+                "iocs",
+                "intel",
+                "tracking"
+            ]
+        },
+        {
+            "title": "Eradicate persistence and unauthorized access",
+            "description": "Remove malicious binaries, scripts, scheduled tasks, services, persistence mechanisms, unauthorized accounts, and attacker tools. Reset compromised credentials, revoke tokens, and remediate exposed services or exploited vulnerabilities.",
+            "tags": [
+                "eradication",
+                "remediation",
+                "persistence"
+            ]
+        },
+        {
+            "title": "Validate backup integrity and recovery readiness",
+            "description": "Confirm that backups are clean, available, and uncompromised. Identify safe restore points and verify that containment, credential remediation, and persistence removal are sufficiently complete before restoration begins.",
+            "tags": [
+                "recovery",
+                "backups",
+                "validation"
+            ]
+        },
+        {
+            "title": "Restore systems and data",
+            "description": "Restore affected systems, services, and data from validated clean backups or rebuilt systems. Validate restored functionality, monitor for reinfection, and ensure recovery actions are documented.",
+            "tags": [
+                "recovery",
+                "restoration",
+                "operations"
+            ]
+        },
+        {
+            "title": "Assess external reporting and notification obligations",
+            "description": "Determine whether law enforcement, regulators, cyber insurance, customers, partners, or other external parties must be notified based on contractual, legal, regulatory, or policy requirements.",
+            "tags": [
+                "reporting",
+                "legal",
+                "compliance"
+            ]
+        },
+        {
+            "title": "Harden controls and increase monitoring",
+            "description": "Implement security improvements identified during the investigation, including MFA enforcement, segmentation, credential hygiene, logging improvements, detection coverage, patching, backup protection, and monitoring enhancements.",
+            "tags": [
+                "hardening",
+                "security",
+                "monitoring"
+            ]
+        },
+        {
+            "title": "Conduct lessons learned and close case",
+            "description": "Document root cause, response actions, business impact, key findings, and improvement opportunities. Confirm recovery is complete, no ongoing malicious activity is observed, required notifications are resolved, and closure criteria are met.",
+            "tags": [
+                "lessons-learned",
+                "closure",
+                "post-incident"
+            ]
+        }
+    ],
+    "note_directories": [
+        {
+            "title": "Incident Overview",
+            "notes": [
+                {
+                    "title": "Initial summary",
+                    "content": "High-level summary of the suspected or confirmed ransomware incident, including when it was identified and why the case was opened."
+                },
+                {
+                    "title": "Current status",
+                    "content": "Current phase of response, key blockers, and most recent operational update."
+                },
+                {
+                    "title": "Business impact",
+                    "content": "Summary of impacted business units, services, users, systems, and operational disruption."
+                },
+                {
+                    "title": "Decision log",
+                    "content": "Document key response decisions, approvals, and major turning points during the incident."
+                }
+            ]
+        },
+        {
+            "title": "Technical Investigation",
+            "notes": [
+                {
+                    "title": "Initial access",
+                    "content": "Document the suspected or confirmed initial access vector and supporting evidence."
+                },
+                {
+                    "title": "Privilege escalation and lateral movement",
+                    "content": "Track evidence of credential abuse, privilege escalation, remote execution, and lateral movement."
+                },
+                {
+                    "title": "Persistence",
+                    "content": "Document persistence mechanisms, attacker footholds, and related artifacts."
+                },
+                {
+                    "title": "Exfiltration findings",
+                    "content": "Summarize evidence of data staging, compression, transfer, extortion, and possible data exposure."
+                },
+                {
+                    "title": "Ransomware variant and behavior",
+                    "content": "Document ransomware family identification, execution behavior, ransom note details, file extensions, and related TTPs."
+                },
+                {
+                    "title": "IOC summary",
+                    "content": "Summarize validated indicators of compromise and relevant intelligence context."
+                }
+            ]
+        },
+        {
+            "title": "Affected Environment",
+            "notes": [
+                {
+                    "title": "Affected hosts",
+                    "content": "List confirmed and suspected affected workstations, servers, VMs, and infrastructure."
+                },
+                {
+                    "title": "Affected accounts",
+                    "content": "Document impacted user, service, admin, and privileged accounts."
+                },
+                {
+                    "title": "Affected data and shares",
+                    "content": "Track impacted file shares, storage locations, sensitive data, and affected repositories."
+                },
+                {
+                    "title": "Backup systems status",
+                    "content": "Document the status of backup systems, backup integrity, and restore-point availability."
+                }
+            ]
+        },
+        {
+            "title": "Containment and Eradication",
+            "notes": [
+                {
+                    "title": "Containment actions",
+                    "content": "Record host isolation, network blocks, account disablement, session revocation, and other containment steps."
+                },
+                {
+                    "title": "Credential remediation",
+                    "content": "Track password resets, token revocations, MFA changes, and privileged access remediation."
+                },
+                {
+                    "title": "Blocking and prevention actions",
+                    "content": "Document firewall blocks, EDR blocks, deny lists, segmentation changes, and control improvements implemented during response."
+                },
+                {
+                    "title": "Eradication actions",
+                    "content": "Summarize malware removal, persistence removal, tooling cleanup, and vulnerability remediation."
+                }
+            ]
+        },
+        {
+            "title": "Recovery",
+            "notes": [
+                {
+                    "title": "Backup validation",
+                    "content": "Document how backups were assessed for integrity and selected for recovery."
+                },
+                {
+                    "title": "Restore actions",
+                    "content": "Track systems restored, recovery sequence, exceptions, and issues encountered during restoration."
+                },
+                {
+                    "title": "Validation testing",
+                    "content": "Summarize post-restore validation, monitoring results, and checks for re-encryption or ongoing malicious activity."
+                },
+                {
+                    "title": "Residual risk",
+                    "content": "Document any remaining risk, unresolved findings, compensating controls, or follow-up actions."
+                }
+            ]
+        },
+        {
+            "title": "Communications",
+            "notes": [
+                {
+                    "title": "Internal stakeholder communications",
+                    "content": "Summarize communications with incident responders, IT, leadership, and other internal stakeholders."
+                },
+                {
+                    "title": "Executive updates",
+                    "content": "Track executive-facing summaries, decisions, approvals, and reporting cadence."
+                },
+                {
+                    "title": "Legal, privacy, and compliance coordination",
+                    "content": "Document discussions related to legal review, privacy impact, contractual obligations, and compliance considerations."
+                },
+                {
+                    "title": "External communications",
+                    "content": "Record communications with law enforcement, regulators, insurance, customers, vendors, or partners as applicable."
+                },
+                {
+                    "title": "Threat actor communication log",
+                    "content": "Document ransom notes, email messages, portal communications, or any interaction with the threat actor, if applicable."
+                }
+            ]
+        },
+        {
+            "title": "Post-Incident",
+            "notes": [
+                {
+                    "title": "Root cause",
+                    "content": "Summarize the suspected or confirmed root cause of the incident and supporting evidence."
+                },
+                {
+                    "title": "Lessons learned",
+                    "content": "Document lessons learned, process gaps, technical findings, and recommended improvements."
+                },
+                {
+                    "title": "Control improvement plan",
+                    "content": "Track recommended security improvements, ownership, and follow-up actions after case closure."
+                }
+            ]
+        }
+    ],
+    "classification": "malicious-code:ransomware"
+}
