@@ -1,0 +1,265 @@
+{
+    "name": "DataBreach",
+    "display_name": "Data Breach",
+    "description": "A case template for handling suspected or confirmed data breach incidents, including validation, evidence preservation, scoping, containment, legal and privacy coordination, notification, remediation, and post-incident follow-up.",
+    "author": "Zachary Carter",
+    "title_prefix": "[DATABREACH]",
+    "summary": "Investigation of a suspected or confirmed data breach involving unauthorized access, disclosure, acquisition, misuse, or exfiltration of sensitive, regulated, or confidential information. Scope, affected data, access path, and legal or regulatory impact are under investigation.",
+    "tags": [
+        "data-breach",
+        "privacy",
+        "unauthorized-access",
+        "data-exposure",
+        "data-exfiltration",
+        "regulated-data",
+        "compliance"
+    ],
+    "tasks": [
+        {
+            "title": "Validate and classify breach event",
+            "description": "Determine whether the incident involves confirmed unauthorized access, accidental disclosure, misdelivery, system compromise, insider misuse, third-party exposure, lost media, or a false positive. Distinguish suspected exposure from a confirmed breach event.",
+            "tags": [
+                "triage",
+                "validation",
+                "classification"
+            ]
+        },
+        {
+            "title": "Initiate legal, privacy, compliance, and management coordination",
+            "description": "Notify and coordinate with the appropriate internal stakeholders, including legal, privacy, compliance, management, security leadership, and affected business owners, to align investigative actions, retention, communications, and decision-making.",
+            "tags": [
+                "coordination",
+                "legal",
+                "privacy"
+            ]
+        },
+        {
+            "title": "Identify affected systems, applications, accounts, and data",
+            "description": "Determine the affected systems, applications, identities, data stores, repositories, and data sets. Document confirmed and suspected scope, including related business functions and third-party dependencies.",
+            "tags": [
+                "scope",
+                "assets",
+                "data"
+            ]
+        },
+        {
+            "title": "Preserve evidence and relevant records",
+            "description": "Preserve relevant logs, system artifacts, access records, email records, endpoint evidence, cloud logs, database logs, DLP alerts, transfer records, and other artifacts needed to establish a defensible timeline and support investigation, legal review, and notification decisions.",
+            "tags": [
+                "evidence",
+                "preservation",
+                "retention"
+            ]
+        },
+        {
+            "title": "Determine exposure, access, modification, and exfiltration scope",
+            "description": "Assess whether data was merely exposed, actually accessed, copied, downloaded, shared, modified, deleted, or exfiltrated. Identify affected data types, sensitivity, likely time range, and any suspected access sources or recipients.",
+            "tags": [
+                "exposure",
+                "access",
+                "exfiltration"
+            ]
+        },
+        {
+            "title": "Identify access path and root cause",
+            "description": "Investigate how the incident occurred, including compromised credentials, exploited systems, misconfiguration, insecure sharing, insider misuse, third-party access, lost devices, or other access paths. Document the suspected or confirmed root cause.",
+            "tags": [
+                "root-cause",
+                "investigation",
+                "access-path"
+            ]
+        },
+        {
+            "title": "Contain affected systems, identities, and data access paths",
+            "description": "Restrict unauthorized access, disable or limit affected accounts, revoke sessions, rotate credentials and keys, close exposed services or sharing paths, isolate affected systems where appropriate, and implement emergency controls to prevent further unauthorized activity.",
+            "tags": [
+                "containment",
+                "access-control",
+                "emergency-response"
+            ]
+        },
+        {
+            "title": "Assess business, legal, privacy, and regulatory impact",
+            "description": "Evaluate the impact to business operations, affected individuals, data confidentiality, data integrity, contractual obligations, regulatory exposure, and organizational risk based on the nature and sensitivity of the affected data.",
+            "tags": [
+                "impact",
+                "compliance",
+                "risk"
+            ]
+        },
+        {
+            "title": "Remediate vulnerabilities, access issues, and control gaps",
+            "description": "Correct the underlying technical and procedural weaknesses that enabled the incident, including credential resets, permission changes, system patching, configuration fixes, data handling controls, and third-party access remediation.",
+            "tags": [
+                "remediation",
+                "hardening",
+                "security-controls"
+            ]
+        },
+        {
+            "title": "Assess and execute notification obligations",
+            "description": "Determine whether affected individuals, regulators, customers, partners, law enforcement, cyber insurance, or other parties must be notified based on legal, regulatory, contractual, privacy, or policy requirements, and document all decisions and communications.",
+            "tags": [
+                "notification",
+                "reporting",
+                "compliance"
+            ]
+        },
+        {
+            "title": "Increase monitoring and validate containment",
+            "description": "Increase monitoring on affected systems, identities, applications, and data access points. Validate that containment actions are effective and confirm that no continued unauthorized access, disclosure, or exfiltration is occurring.",
+            "tags": [
+                "monitoring",
+                "validation",
+                "detection"
+            ]
+        },
+        {
+            "title": "Implement security improvements and close identified gaps",
+            "description": "Improve controls related to access management, logging, retention, data handling, monitoring, segmentation, DLP, vulnerability management, and detection coverage based on the findings of the investigation.",
+            "tags": [
+                "improvements",
+                "prevention",
+                "control-gaps"
+            ]
+        },
+        {
+            "title": "Document findings and close case",
+            "description": "Document the affected data, systems, access path, confirmed impact, containment actions, remediation steps, notification outcomes, and lessons learned. Confirm required actions are complete before case closure.",
+            "tags": [
+                "closure",
+                "findings",
+                "post-incident"
+            ]
+        }
+    ],
+    "note_directories": [
+        {
+            "title": "Incident Overview",
+            "notes": [
+                {
+                    "title": "Initial report",
+                    "content": "Document how the possible data breach was identified, when it was discovered, and why the case was opened."
+                },
+                {
+                    "title": "Current status",
+                    "content": "Track the current phase of the investigation, key updates, blockers, and next steps."
+                },
+                {
+                    "title": "Decision log",
+                    "content": "Record major decisions, approvals, escalations, and significant events during the investigation."
+                },
+                {
+                    "title": "Stakeholders",
+                    "content": "List involved stakeholders, including legal, privacy, compliance, business owners, management, and technical teams."
+                }
+            ]
+        },
+        {
+            "title": "Systems and Data Scope",
+            "notes": [
+                {
+                    "title": "Affected systems and applications",
+                    "content": "Document the systems, applications, platforms, storage locations, and repositories involved in the incident."
+                },
+                {
+                    "title": "Affected accounts and roles",
+                    "content": "Track user accounts, service accounts, privileged identities, third-party accounts, and access roles relevant to the case."
+                },
+                {
+                    "title": "Affected data sets",
+                    "content": "List the data sets, files, records, databases, mailboxes, or repositories believed to be involved."
+                },
+                {
+                    "title": "Data sensitivity and classification",
+                    "content": "Document the sensitivity and classification of the affected data, including regulated, confidential, customer, employee, financial, health, or operational data."
+                }
+            ]
+        },
+        {
+            "title": "Technical Investigation",
+            "notes": [
+                {
+                    "title": "Timeline of events",
+                    "content": "Build a defensible timeline of relevant system, identity, application, and data-access activity."
+                },
+                {
+                    "title": "Access path and root cause",
+                    "content": "Summarize how the incident occurred and document the suspected or confirmed root cause."
+                },
+                {
+                    "title": "Authentication and access findings",
+                    "content": "Document login activity, permission changes, session behavior, remote access, sharing events, and other relevant access artifacts."
+                },
+                {
+                    "title": "Exfiltration and disclosure findings",
+                    "content": "Summarize evidence of downloads, copying, exports, transfers, sharing, modification, deletion, or disclosure of affected data."
+                }
+            ]
+        },
+        {
+            "title": "Containment and Remediation",
+            "notes": [
+                {
+                    "title": "Containment actions",
+                    "content": "Document emergency controls, access restrictions, account actions, isolation steps, and other measures taken to stop ongoing impact."
+                },
+                {
+                    "title": "Credential and access changes",
+                    "content": "Track password resets, key rotation, token revocation, permission changes, session invalidation, and third-party access restrictions."
+                },
+                {
+                    "title": "Remediation actions",
+                    "content": "Summarize fixes applied to systems, applications, sharing settings, configurations, and security controls."
+                },
+                {
+                    "title": "Validation of containment",
+                    "content": "Document how containment and remediation were validated and how continued unauthorized activity was ruled out or monitored."
+                }
+            ]
+        },
+        {
+            "title": "Legal, Privacy, and Compliance",
+            "notes": [
+                {
+                    "title": "Legal and privacy coordination",
+                    "content": "Track discussions, guidance, decisions, and hold requirements involving legal and privacy stakeholders."
+                },
+                {
+                    "title": "Notification decisions",
+                    "content": "Record notification obligations, rationale, timelines, recipients, and approval decisions."
+                },
+                {
+                    "title": "Regulatory and contractual considerations",
+                    "content": "Document applicable legal, contractual, regulatory, or policy requirements related to the incident."
+                },
+                {
+                    "title": "External communications",
+                    "content": "Summarize communications with affected individuals, regulators, partners, customers, law enforcement, insurers, or other external parties."
+                }
+            ]
+        },
+        {
+            "title": "Post-Incident",
+            "notes": [
+                {
+                    "title": "Findings summary",
+                    "content": "Provide a concise summary of the incident, affected data, root cause, confirmed impact, and investigative conclusions."
+                },
+                {
+                    "title": "Business impact",
+                    "content": "Document operational, legal, financial, privacy, customer, and reputational impact associated with the incident."
+                },
+                {
+                    "title": "Control improvements",
+                    "content": "Document recommended improvements to access management, monitoring, logging, DLP, retention, segmentation, and incident response processes."
+                },
+                {
+                    "title": "Lessons learned",
+                    "content": "Capture lessons learned, process gaps, detection gaps, and follow-up recommendations."
+                }
+            ]
+        }
+    ],
+    "classification": "information-content-security:Unauthorised-information-access"
+}
