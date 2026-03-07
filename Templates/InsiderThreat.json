@@ -7,7 +7,6 @@
   "summary": "Investigation of suspected insider activity involving potential misuse of access, unauthorized data handling, policy violations, or other actions by an internal user, contractor, or trusted third party. Scope, intent, impact, and supporting evidence remain under investigation.",
   "tags": [
     "tlp:amber",
-    "workflow:state=\"draft\"",
     "CERT-XLM:information-content-security=\"Unauthorised-information-access\"",
     "CERT-XLM:conformity=\"security-policy\""
   ],
