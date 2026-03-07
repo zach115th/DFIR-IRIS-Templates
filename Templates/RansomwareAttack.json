@@ -7,8 +7,7 @@
   "summary": "Suspected or confirmed ransomware incident affecting [business unit / systems]. Initial activity identified on [date/time]. Current scope includes [hosts/accounts/data]. Suspected initial access vector: [unknown/phishing/VPN/RDP/etc.]. Current status: [triage/contained/eradication/recovery]. Business impact: [summary].",
   "tags": [
     "tlp:amber",
-    "workflow:state=\"draft\"",
-    "CERT-XLM:malicious-code=\"malware\"",
+    "CERT-XLM:malicious-code=\"ransomware\"",
     "CERT-XLM:information-content-security=\"Unauthorised-information-access\""
   ],
   "tasks": [
