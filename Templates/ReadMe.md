@@ -6,7 +6,7 @@ These templates are intended to provide a structured starting point for common i
 
 ## Included Templates
 
-This repository currently includes the following templates in the `Templates/` directory: :contentReference[oaicite:1]{index=1}
+This repository currently includes the following templates in the `Templates/` directory:
 
 - `BEC.json`
 - `CloudDataBreach.json`
@@ -16,7 +16,33 @@ This repository currently includes the following templates in the `Templates/` d
 - `PhishingAttack.json`
 - `RansomwareAttack.json`
 - `UnauthorizedAccessIntrusion.json`
-- `WebApplicationCompromise.json` :contentReference[oaicite:2]{index=2}
+- `WebApplicationCompromise.json`
+
+## MISP / CERT-XLM Compatibility
+
+These templates are designed to be **MISP-friendly** and can be used with **MISP machine tags**, including **CERT-XLM** taxonomy values.
+
+This means the templates can be aligned with tagging schemes such as:
+
+- `tlp:amber`
+- `CERT-XLM:intrusion="application-compromise"`
+- `CERT-XLM:information-content-security="Unauthorised-information-access"`
+- `CERT-XLM:availability="ddos"`
+- `CERT-XLM:malicious-code="ransomware"`
+- `CERT-XLM:fraud="phishing"`
+
+This is especially useful if you are integrating:
+
+- **DFIR-IRIS**
+- **MISP**
+- **n8n**
+- or other automation workflows that sync case context, classifications, and tags into MISP events
+
+### Important Note
+
+Some templates are intentionally written so they can be mapped to **default MISP taxonomies**, especially **CERT-XLM**, **TLP**, and **workflow** tags.
+
+However, successful tagging in MISP depends on your instance having the relevant taxonomies enabled and available. If a machine tag does not already exist in your MISP instance, automated tag assignment may fail until that taxonomy is enabled or refreshed.
 
 ## What These Templates Provide
 
