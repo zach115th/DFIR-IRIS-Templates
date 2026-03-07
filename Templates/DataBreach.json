@@ -7,9 +7,7 @@
   "summary": "Investigation of a suspected or confirmed data breach involving unauthorized access, disclosure, acquisition, misuse, or exfiltration of sensitive, regulated, or confidential information. Scope, affected data, access path, and legal or regulatory impact are under investigation.",
   "tags": [
     "tlp:amber",
-    "workflow:state=\"draft\"",
-    "CERT-XLM:information-content-security=\"Unauthorised-information-access\"",
-    "CERT-XLM:conformity=\"regulator\""
+    "CERT-XLM:information-content-security=\"Unauthorised-information-access\""
   ],
   "tasks": [
     {
