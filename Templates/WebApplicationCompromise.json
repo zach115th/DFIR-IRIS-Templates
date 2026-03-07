@@ -7,7 +7,6 @@
   "summary": "Investigation of a suspected or confirmed web application compromise involving exploitation of a public-facing application, API, web server, middleware component, plugin, CMS, or related service. Scope, access path, persistence, affected data, and business impact are under investigation.",
   "tags": [
     "tlp:amber",
-    "workflow:state=\"draft\"",
     "CERT-XLM:intrusion=\"application-compromise\"",
     "CERT-XLM:information-content-security=\"Unauthorised-information-access\""
   ],
