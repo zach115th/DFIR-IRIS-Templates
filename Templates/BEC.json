@@ -7,8 +7,7 @@
   "summary": "Investigation of a suspected or confirmed business email compromise incident involving impersonation, account takeover, message thread hijacking, fraudulent payment or banking change requests, or other email-enabled financial or operational fraud. Scope, affected accounts, fraud exposure, and business impact are under investigation.",
   "tags": [
     "tlp:amber",
-    "phishing:techniques=\"business email compromise\"",
-    "phishing:distribution=\"spear-phishing\""
+    "CERT-XLM:fraud=\"phishing\""
   ],
   "tasks": [
     {
