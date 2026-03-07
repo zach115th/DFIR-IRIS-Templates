@@ -7,7 +7,6 @@
   "summary": "Investigation of a suspected or confirmed unauthorized access or intrusion incident involving compromise of systems, accounts, applications, services, or infrastructure. Scope, access path, attacker activity, affected assets, and business impact are under investigation.",
   "tags": [
     "tlp:amber",
-    "workflow:state=\"draft\"",
     "CERT-XLM:intrusion=\"unprivileged-account-compromise\"",
     "CERT-XLM:information-content-security=\"Unauthorised-information-access\""
   ],
