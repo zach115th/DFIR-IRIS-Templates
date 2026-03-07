@@ -7,9 +7,7 @@
   "summary": "Investigation of a suspected or confirmed phishing campaign involving malicious email, embedded links, attachments, impersonation, business email compromise, or credential-harvesting content. Scope, user interaction, compromise status, and business impact are under investigation.",
   "tags": [
     "tlp:amber",
-    "workflow:state=\"draft\"",
-    "phishing:phishing=\"phishing\"",
-    "phishing:method=\"e-mail\""
+    "CERT-XLM:fraud=\"phishing\""
   ],
   "tasks": [
     {
