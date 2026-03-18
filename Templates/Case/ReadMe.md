@@ -4,19 +4,90 @@ A collection of **DFIR-IRIS case templates** designed to accelerate incident int
 
 These templates are intended to provide a structured starting point for common incident types and can be customized to fit your environment, workflows, legal requirements, reporting requirements, and case-management style.
 
+---
+
 ## Included Templates
 
-This repository currently includes the following templates in the `Templates/` directory:
+### 💼 Business Email Compromise
+**File:** `BEC.json`
 
-- `BEC.json`
-- `CloudDataBreach.json`
-- `DDoSAttack.json`
-- `DataBreach.json`
-- `InsiderThreat.json`
-- `PhishingAttack.json`
-- `RansomwareAttack.json`
-- `UnauthorizedAccessIntrusion.json`
-- `WebApplicationCompromise.json`
+A template for suspected or confirmed business email compromise incidents involving account takeover, email impersonation, fraudulent payment requests, payroll diversion, or vendor fraud. Covers BEC validation and classification, account compromise assessment, malicious inbox rule identification, email thread and communication analysis, financial fraud risk assessment, identity remediation, and fraud notification decisions.
+
+---
+
+### ☁️ Cloud Data Breach
+**File:** `CloudDataBreach.json`
+
+A template for suspected or confirmed cloud data exposure or breach incidents across cloud-hosted services, platforms, tenants, or storage environments. Covers breach validation and classification, stakeholder and provider coordination, affected tenant and service scoping, cloud evidence preservation, exposure versus confirmed access assessment, identity and IAM investigation, root cause analysis, containment of sessions and resources, credential and secret remediation, configuration and sharing fixes, notification obligations, and post-incident cloud security improvements.
+
+**Note directories:** Incident Overview · Cloud Environment · Data and Exposure · Technical Investigation · Containment and Remediation · Communications and Compliance · Post-Incident
+
+---
+
+### 🌊 DDoS Attack
+**File:** `DDoSAttack.json`
+
+A template for investigating and mitigating distributed denial-of-service events affecting network, application, or service availability. Covers incident validation and classification, attack type and traffic profile characterisation (volumetric, protocol, application-layer), targeted service and source distribution analysis, reflection and amplification assessment, provider and NOC coordination, layered mitigation actions, service restoration validation, extortion and diversion threat assessment, and defense improvement recommendations.
+
+**Note directories:** Incident Overview · Attack Characterization · Impact and Scope · Mitigation and Recovery · Investigation and Post-Incident
+
+---
+
+### 🗃️ Data Breach
+**File:** `DataBreach.json`
+
+A template for suspected or confirmed data breach incidents involving unauthorized access, accidental disclosure, acquisition, misuse, or exfiltration of sensitive, regulated, or confidential information. Covers breach classification, legal and privacy coordination, affected system and data scoping, data sensitivity and individual impact assessment, exposure versus confirmed access determination, exfiltration and disclosure findings, containment, credential remediation, regulatory framework applicability (GDPR, HIPAA, PCI-DSS, CCPA), individual and regulator notification decisions, and post-incident control improvements.
+
+**Note directories:** Incident Overview · Systems and Data Scope · Technical Investigation · Containment and Remediation · Legal, Privacy, and Compliance · Post-Incident
+
+---
+
+### 🕵️ Insider Threat
+**File:** `InsiderThreat.json`
+
+A template for investigating suspected insider activity involving misuse of access, unauthorized data handling, policy violations, or other actions by an internal user, contractor, or trusted third party. Covers allegation validation, stakeholder coordination (HR, legal, management), subject profiling and trigger event assessment, account and physical access review, technical evidence collection across file activity, email, web and cloud transfer, authentication, and removable media, evidence chain of custody, intent assessment, witness and subject interviews, and recommended corrective and control improvement actions.
+
+> **Note:** This template contains sensitive personnel information. Access should be restricted to authorized investigators, HR, legal, and management on a need-to-know basis.
+
+**Note directories:** Incident Overview · Subject and Access · Technical Findings · Evidence · Interviews and Coordination · Findings and Outcome
+
+---
+
+### 🎣 Phishing Attack
+**File:** `PhishingAttack.json`
+
+A template for suspected or confirmed phishing incidents involving malicious email, credential harvesting, malware delivery, business email compromise (BEC), callback phishing, QR phishing, or other social engineering. Covers email validation and campaign classification, header and authentication analysis (SPF/DKIM/DMARC), sender and domain infrastructure analysis, lure theme documentation, URL and landing page analysis, attachment and payload analysis, IOC extraction, recipient scoping, user interaction tracking, account compromise assessment, BEC and fraud risk evaluation, message removal and blocking, account and endpoint remediation, and awareness improvement recommendations.
+
+**Note directories:** Incident Overview · Email and Delivery Analysis · Payload and Infrastructure · Scope and Impact · Containment and Remediation · Communications and Closure
+
+---
+
+### 🔒 Ransomware Attack
+**File:** `RansomwareAttack.json`
+
+A comprehensive template for suspected or confirmed ransomware incidents. Covers triage and validation, incident communications, scope assessment, evidence preservation, containment, initial access investigation, privilege escalation and lateral movement, data exfiltration and extortion risk, ransomware artifact analysis, IOC extraction, eradication, backup validation, recovery, external notification obligations, control hardening, and lessons learned.
+
+**Note directories:** Incident Overview · Technical Investigation · Affected Environment · Response Actions · Communications and Reporting · Post-Incident
+
+---
+
+### 🔑 Unauthorized Access / Intrusion
+**File:** `UnauthorizedAccessIntrusion.json`
+
+A template for suspected or confirmed unauthorized access or intrusion incidents involving compromise of systems, accounts, applications, services, or infrastructure. Covers intrusion validation, affected system and identity scoping, attacker external infrastructure tracking, initial access investigation, persistence and privilege escalation analysis, lateral movement and execution findings, data access and exfiltration assessment, host isolation and containment, credential remediation, eradication of malicious artifacts and footholds, recovery validation with enhanced monitoring, legal and notification obligations, and post-incident hardening prioritised by observed attacker techniques.
+
+**Note directories:** Incident Overview · Affected Environment · Technical Investigation · Evidence · Containment and Remediation · Impact and Reporting · Post-Incident
+
+---
+
+### 🌐 Web Application Compromise
+**File:** `WebApplicationCompromise.json`
+
+A template for suspected or confirmed web application compromise incidents involving exploitation of public-facing applications, APIs, web servers, middleware, plugins, CMS platforms, or related services. Covers incident validation and classification, application and component scoping (including CI/CD pipeline involvement), exploitation path analysis with raw request documentation, CVE and vulnerability referencing, web shell and malicious artifact identification, authentication and admin activity review, data and downstream system impact assessment, WAF and containment actions, application integrity validation, dependency and plugin update tracking, responsible disclosure considerations, and secure development improvement recommendations.
+
+**Note directories:** Incident Overview · Application and Environment Scope · Technical Investigation · Containment and Remediation · Impact and Communications · Post-Incident
+
+---
 
 ## MISP / CERT-XLM Compatibility
 
@@ -44,6 +115,47 @@ Some templates are intentionally written so they can be mapped to **default MISP
 
 However, successful tagging in MISP depends on your instance having the relevant taxonomies enabled and available. If a machine tag does not already exist in your MISP instance, automated tag assignment may fail until that taxonomy is enabled or refreshed.
 
+---
+
+## Template Structure
+
+Each template follows a consistent JSON structure compatible with DFIR-IRIS case template import:
+
+```json
+{
+  "name": "TemplateName",
+  "display_name": "Human-readable Name",
+  "description": "...",
+  "author": "Zachary Carter",
+  "title_prefix": "[PREFIX]",
+  "summary": "Pre-filled case summary with placeholder fields.",
+  "tags": ["tlp:amber", "..."],
+  "tasks": [ { "title": "...", "description": "...", "tags": [] } ],
+  "note_directories": [
+    {
+      "title": "Directory Name",
+      "notes": [
+        { "title": "Note title", "content": "## Markdown content..." }
+      ]
+    }
+  ],
+  "classification": "..."
+}
+```
+
+### Note Conventions
+
+All notes follow a consistent markdown framework:
+
+- `##` section headers with `---` horizontal rule separators
+- `<!-- HTML comment placeholders -->` for analyst-populated fields
+- Bold metadata fields at the top of each note (`**Last updated:**`, `**Status:**`, etc.)
+- Structured tables with context-appropriate columns for all inventory, log, and tracking data
+- `- [ ]` checklist items in status and closure notes
+- Open Questions sections at the end of investigation notes to track unresolved items
+
+---
+
 ## What These Templates Provide
 
 Each template is designed to give you a repeatable case structure with:
@@ -51,20 +163,10 @@ Each template is designed to give you a repeatable case structure with:
 - A case name, display name, summary, and classification
 - Recommended default tags
 - A task list aligned to the incident type
-- Note directories to support investigation and reporting
-- A more structured and defensible response workflow
+- Fully structured note directories with markdown frameworks to support investigation and reporting
+- A consistent and defensible response workflow
 
-The current template set covers:
-
-- Business Email Compromise
-- Cloud Data Breach
-- DDoS Attack
-- General Data Breach
-- Insider Threat
-- Phishing Attack
-- Ransomware Attack
-- Unauthorized Access / Intrusion
-- Web Application Compromise
+---
 
 ## Why Use These Templates
 
@@ -76,6 +178,8 @@ Using case templates in DFIR-IRIS helps:
 - make scoping and containment tasks easier to track
 - support better executive summaries and final reporting
 - align response actions to the type of incident being investigated
+
+---
 
 ## Recommended Use
 
@@ -90,6 +194,8 @@ You should review and adapt them for your environment, including:
 - cloud, identity, and infrastructure specifics
 - local tagging conventions
 - integration with MISP, n8n, SIEM, EDR, ticketing, and notification workflows
+
+---
 
 ## Importing into DFIR-IRIS
 
@@ -109,6 +215,8 @@ Before production use, validate that:
 - required stakeholders are represented
 - note sections match your reporting needs
 
+---
+
 ## Suggested Workflow
 
 A practical approach is:
@@ -118,6 +226,8 @@ A practical approach is:
 - version-control changes in GitHub
 - test them in DFIR-IRIS before operational rollout
 - refine them after real incidents and lessons learned
+
+---
 
 ## Template Design Philosophy
 
@@ -139,6 +249,8 @@ In general, the templates try to separate:
 - communications and reporting
 - lessons learned and closure
 
+---
+
 ## Customization Ideas
 
 You may want to extend these templates with:
@@ -153,6 +265,8 @@ You may want to extend these templates with:
 - customer notification placeholders
 - executive summary scaffolding
 
+---
+
 ## Repository Structure
 
 ```text
@@ -166,3 +280,10 @@ Templates/
 ├── RansomwareAttack.json
 ├── UnauthorizedAccessIntrusion.json
 └── WebApplicationCompromise.json
+```
+
+---
+
+## Author
+
+**Zachary Carter**
