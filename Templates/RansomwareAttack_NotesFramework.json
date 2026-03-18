@@ -1,6 +1,6 @@
 {
   "name": "RansomwareAttack",
-  "display_name": "Ransomware Attack",
+  "display_name": "Ransomware Attack With Notes",
   "description": "A case template for handling suspected or confirmed ransomware incidents, including triage, containment, investigation, eradication, recovery, communications, and post-incident activities.",
   "author": "Zachary Carter",
   "title_prefix": "[RANSOMWARE]",
@@ -216,4 +216,13 @@
         },
         {
           "title": "Affected accounts",
-          "content": "## Affected Accounts\n\n**Last updated:** <!-- date / t
+          "content": "## Affected Accounts\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Account Inventory\n\n| Account | Domain / Local | Privilege Level | Status | Disabled / Reset? | Evidence Source |\n|---------|----------------|-----------------|--------|-------------------|-----------------|\n| | | Standard / Admin / Service / Domain Admin | Confirmed / Suspected | Yes / No | |\n\n---\n\n## High-Risk / Privileged Accounts\n\n<!-- Identify any privileged, service, break-glass, backup, or administrative accounts that were compromised, used, or suspected of misuse. -->\n\n| Account | Type | Scope | Activity Observed | Contained? |\n|--------|------|-------|-------------------|------------|\n| | User / Service / Admin | Local / Domain / Cloud | | Yes / No |\n\n---\n\n## Credential Exposure Assessment\n\n| Exposure Type | Observed? | Notes |\n|---------------|-----------|-------|\n| Password reuse suspected | Yes / No | |\n| LSASS / credential dump activity | Yes / No | |\n| Browser credential theft | Yes / No | |\n| MFA bypass / session hijack | Yes / No | |\n\n---\n\n## Remediation Tracking\n\n- [ ] Disable compromised accounts\n- [ ] Reset passwords for impacted users\n- [ ] Rotate privileged / service account credentials\n- [ ] Revoke active sessions / tokens\n- [ ] Review MFA enrollment and enforcement\n\n---\n\n## Notes\n\n<!-- Document compromised, suspicious, privileged, service, and disabled accounts relevant to the incident. -->\n"
+        },
+        {
+          "title": "Business impact",
+          "content": "## Business Impact\n\n**Impact status:** <!-- Active / Stabilized / Recovered -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Operational Impact Summary\n\n<!-- Summarize service outages, degraded operations, unavailable applications, and major mission or business disruptions. -->\n\n---\n\n## Impacted Services / Functions\n\n| Service / Function | Severity | Start Time | Current Status | Notes |\n|--------------------|----------|------------|----------------|-------|\n| | Critical / High / Moderate / Low | | Down / Degraded / Restored | |\n\n---\n\n## Regulatory / Legal / Privacy Considerations\n\n| Consideration | Applies? | Notes |\n|---------------|----------|-------|\n| PII exposure | Yes / No / Unknown | |\n| PHI exposure | Yes / No / Unknown | |\n| CJIS / PCI / other regulated data | Yes / No / Unknown | |\n| Breach notification review required | Yes / No / Unknown | |\n\n---\n\n## Financial / Recovery Considerations\n\n| Category | Estimate / Status | Notes |\n|----------|-------------------|-------|\n| Downtime impact | | |\n| Recovery cost | | |\n| Third-party support engaged | Yes / No | |\n| Backup restoration required | Yes / No | |\n\n---\n\n## Executive Summary Notes\n\n<!-- Capture the business-level impact in plain language suitable for leadership briefings. -->\n"
+        }
+      ]
+    }
+  ]
+}
