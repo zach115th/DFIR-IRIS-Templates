@@ -1,6 +1,6 @@
 {
   "name": "RansomwareAttack",
-  "display_name": "Ransomware Attack With Notes",
+  "display_name": "Ransomware Attack",
   "description": "A case template for handling suspected or confirmed ransomware incidents, including triage, containment, investigation, eradication, recovery, communications, and post-incident activities.",
   "author": "Zachary Carter",
   "title_prefix": "[RANSOMWARE]",
