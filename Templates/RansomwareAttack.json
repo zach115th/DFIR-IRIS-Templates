@@ -1,6 +1,6 @@
 {
   "name": "RansomwareAttack",
-  "display_name": "Ransomware Attack",
+  "display_name": "Ransomware Attack With Notes",
   "description": "A case template for handling suspected or confirmed ransomware incidents, including triage, containment, investigation, eradication, recovery, communications, and post-incident activities.",
   "author": "Zachary Carter",
   "title_prefix": "[RANSOMWARE]",
@@ -162,19 +162,19 @@
       "notes": [
         {
           "title": "Initial summary",
-          "content": "High-level summary of the suspected or confirmed ransomware incident, including when it was identified and why the case was opened."
+          "content": "## Incident Summary\n\n**Case opened:** <!-- date / time -->\n**Opened by:** <!-- analyst name -->\n**Severity:** <!-- Critical / High / Medium / Low -->\n**Classification:** <!-- Confirmed Ransomware / Suspected Ransomware / Under Investigation -->\n\n---\n\n## How the Incident Was Identified\n\n<!-- Describe how this incident was first detected or reported. Include the source (EDR alert, user report, SOC detection, third-party notification, etc.) and the date/time of first awareness. -->\n\n---\n\n## Initial Indicators\n\n<!-- List the first observable indicators that prompted this case to be opened. Ransom note discovered, encrypted file extensions observed, EDR alert, etc. -->\n\n| Indicator | Type | First Observed | Source |\n|-----------|------|---------------|--------|\n| | | | |\n\n---\n\n## Narrative\n\n<!-- Write a brief factual narrative (3-6 sentences) summarising the known facts at the time of case creation. Avoid inference. Update as the investigation progresses. -->\n"
         },
         {
           "title": "Current status",
-          "content": "Current phase of response, key blockers, and most recent operational update."
+          "content": "## Current Response Status\n\n**Last updated:** <!-- date / time / analyst -->\n**Current phase:** <!-- Triage / Containment / Investigation / Eradication / Recovery / Closed -->\n\n---\n\n## Phase Checklist\n\n- [ ] Ransomware activity validated\n- [ ] Key stakeholders notified\n- [ ] Scope assessment underway / complete\n- [ ] Evidence preservation started / complete\n- [ ] Containment actioned\n- [ ] Root cause identified\n- [ ] Persistence removed\n- [ ] Credentials remediated\n- [ ] Recovery approved and in progress / complete\n- [ ] External notifications assessed\n\n---\n\n## Active Blockers\n\n<!-- Document anything currently blocking progress. Be specific about what is needed and who owns resolution. -->\n\n| Blocker | Owner | Raised | Status |\n|---------|-------|--------|--------|\n| | | | |\n\n---\n\n## Latest Operational Update\n\n<!-- Free-text summary of the most recent significant development. Update this section each time the case status changes materially. -->\n\n**[DATE/TIME]** -\n"
         },
         {
           "title": "Business impact",
-          "content": "Summary of impacted business units, services, users, systems, and operational disruption."
+          "content": "## Business Impact Summary\n\n**Last updated:** <!-- date / time -->\n**Overall impact rating:** <!-- Critical / High / Medium / Low / Unknown -->\n\n---\n\n## Affected Business Units and Functions\n\n| Business Unit / Function | Impact Description | Status |\n|--------------------------|--------------------|--------|\n| | | |\n\n---\n\n## Operational Disruption\n\n<!-- Describe what is not working or degraded. Include specific services, applications, workflows, or customer-facing capabilities affected. -->\n\n---\n\n## Financial and Regulatory Exposure\n\n<!-- Note any known or estimated financial impact (ransom demand, recovery costs, SLA breach, revenue loss) and any triggered regulatory or contractual obligations. Leave blank if not yet assessed. -->\n\n---\n\n## Communication to Leadership\n\n<!-- Note when leadership was briefed, what was communicated, and any decisions or approvals obtained. -->\n\n| Date/Time | Audience | Key Message | Decision / Action |\n|-----------|----------|-------------|-------------------|\n| | | | |\n"
         },
         {
           "title": "Decision log",
-          "content": "Document key response decisions, approvals, and major turning points during the incident."
+          "content": "## Decision Log\n\n> Record key response decisions here as they are made. Include the context that drove the decision, who approved it, and any dissenting views or risks accepted.\n\n---\n\n| # | Date/Time | Decision | Rationale | Approved By | Risk Accepted |\n|---|-----------|----------|-----------|-------------|---------------|\n| 1 | | | | | |\n| 2 | | | | | |\n| 3 | | | | | |\n\n---\n\n## Notes on Major Turning Points\n\n<!-- Use this section to annotate significant moments that changed the direction of the investigation or response - e.g. scope expansion, discovery of exfiltration, decision to pay or not pay ransom, legal hold triggered. -->\n"
         }
       ]
     },
@@ -183,27 +183,27 @@
       "notes": [
         {
           "title": "Initial access",
-          "content": "Document the suspected or confirmed initial access vector and supporting evidence."
+          "content": "## Initial Access\n\n**Assessment status:** <!-- Confirmed / Suspected / Unknown -->\n**ATT&CK Technique(s):** <!-- e.g. T1566.001 Phishing: Spearphishing Attachment -->\n\n---\n\n## Hypothesis\n\n<!-- State the current working hypothesis for initial access. Be explicit about what is confirmed vs inferred. -->\n\n---\n\n## Supporting Evidence\n\n| Evidence Item | Source | Date/Time | Analyst | Confidence |\n|---------------|--------|-----------|---------|------------|\n| | | | | |\n\n---\n\n## Initial Access Timeline\n\n<!-- Reconstruct the earliest known attacker activity leading to the point of compromise. -->\n\n| Date/Time (UTC) | Host | Account | Activity | Source |\n|-----------------|------|---------|----------|--------|\n| | | | | |\n\n---\n\n## Gaps and Open Questions\n\n<!-- What evidence is missing? What cannot yet be ruled in or out? -->\n\n- [ ]\n- [ ]\n"
         },
         {
           "title": "Privilege escalation and lateral movement",
-          "content": "Track evidence of credential abuse, privilege escalation, remote execution, and lateral movement."
+          "content": "## Privilege Escalation and Lateral Movement\n\n**ATT&CK Techniques observed:**\n<!-- e.g. T1078 Valid Accounts, T1021.001 RDP, T1570 Lateral Tool Transfer -->\n\n---\n\n## Privilege Escalation Findings\n\n| Date/Time (UTC) | Host | Account | Technique | Evidence Source | Confidence |\n|-----------------|------|---------|-----------|-----------------|------------|\n| | | | | | |\n\n---\n\n## Lateral Movement Findings\n\n| Date/Time (UTC) | Source Host | Destination Host | Account Used | Method | Evidence Source |\n|-----------------|-------------|-----------------|--------------|--------|-----------------|\n| | | | | | |\n\n---\n\n## Highest Privilege Reached\n\n<!-- Document the highest-privilege account the threat actor obtained access to and how. -->\n\n---\n\n## Management Plane Access\n\n<!-- Note any access to domain controllers, hypervisors, backup infrastructure, or management consoles. This is critical for scoping containment. -->\n\n---\n\n## Open Questions\n\n- [ ]\n- [ ]\n"
         },
         {
           "title": "Persistence",
-          "content": "Document persistence mechanisms, attacker footholds, and related artifacts."
+          "content": "## Persistence Mechanisms\n\n**ATT&CK Techniques observed:**\n<!-- e.g. T1053.005 Scheduled Task, T1543.003 Windows Service, T1136 Create Account -->\n\n---\n\n## Identified Persistence Artifacts\n\n| Host | Mechanism Type | Detail (path / name / value) | Date Created | Status |\n|------|---------------|------------------------------|--------------|--------|\n| | | | | Confirmed / Removed / Pending |\n\n---\n\n## Backdoors and Remote Access Tools\n\n| Host | Tool / Binary | Path | C2 / Callback | First Seen | Removed? |\n|------|--------------|------|---------------|------------|----------|\n| | | | | | |\n\n---\n\n## Unauthorized Accounts\n\n| Account Name | Type | Host / Domain | Created | Removed? |\n|-------------|------|---------------|---------|----------|\n| | | | | |\n\n---\n\n## Notes\n\n<!-- Any additional context on how persistence was established, maintained, or discovered. -->\n"
         },
         {
           "title": "Exfiltration findings",
-          "content": "Summarize evidence of data staging, compression, transfer, extortion, and possible data exposure."
+          "content": "## Data Exfiltration Assessment\n\n**Exfiltration confirmed:** <!-- Yes / No / Under Investigation -->\n**Extortion threat active:** <!-- Yes / No / Unknown -->\n\n---\n\n## Staging and Compression Activity\n\n| Date/Time (UTC) | Host | Path | Tool / Method | Volume | Evidence Source |\n|-----------------|------|------|---------------|--------|-----------------|\n| | | | | | |\n\n---\n\n## Transfer Activity\n\n| Date/Time (UTC) | Source Host | Destination IP/Domain | Protocol/Port | Volume | Evidence Source |\n|-----------------|-------------|----------------------|---------------|--------|-----------------|\n| | | | | | |\n\n---\n\n## Data Types at Risk\n\n<!-- Identify what categories of data may have been exposed. Be specific about regulatory sensitivity where relevant. -->\n\n| Data Type | Location | Estimated Volume | Regulatory Classification |\n|-----------|----------|-----------------|--------------------------|\n| | | | |\n\n---\n\n## Threat Actor Extortion Activity\n\n<!-- Document any leak site references, ransom notes mentioning data theft, or direct communications related to exfiltration. -->\n\n---\n\n## Open Questions\n\n- [ ] Is the full transfer volume accounted for?\n- [ ] Have all staging locations been identified?\n- [ ]\n"
         },
         {
           "title": "Ransomware variant and behavior",
-          "content": "Document ransomware family identification, execution behavior, ransom note details, file extensions, and related TTPs."
+          "content": "## Ransomware Variant and Behavior\n\n**Identified family / variant:** <!-- e.g. LockBit 3.0, BlackCat/ALPHV, Akira, Unknown -->\n**Identification confidence:** <!-- Confirmed / Likely / Unknown -->\n**ATT&CK Group (if attributed):** <!-- e.g. G0092 -->\n\n---\n\n## Identification Basis\n\n<!-- How was the variant identified? Ransom note text, file extension, binary analysis, threat intel match, etc. -->\n\n---\n\n## Ransom Note Details\n\n**Note filename(s):**\n**Note location(s):**\n**Ransom amount / demand:**\n**Payment address / portal:**\n**Deadline:**\n\n> <!-- Paste the ransom note text below or reference the attached evidence item. Do not follow any links or visit any portals without legal/leadership approval. -->\n\n---\n\n## Encryption Behavior\n\n| Detail | Value |\n|--------|-------|\n| File extension appended | |\n| Encryption scope (local / network / backup) | |\n| Shadow copy deletion observed | |\n| MBR/boot sector impacted | |\n| Known decryptor available | |\n\n---\n\n## Malware Artifacts\n\n| Artifact | Path | SHA-256 | First Seen | Notes |\n|----------|------|---------|------------|-------|\n| | | | | |\n\n---\n\n## Execution Behavior Summary\n\n<!-- Describe observed process execution, command-line arguments, defense evasion, and any notable behavioral patterns. Reference timeline events or evidence items. -->\n\n---\n\n## External Intelligence References\n\n<!-- Link to any public reporting, sandbox reports, or threat intel sources relevant to this variant. -->\n"
         },
         {
           "title": "IOC summary",
-          "content": "Summarize validated indicators of compromise and relevant intelligence context."
+          "content": "## IOC Summary\n\n> Authoritative IOC records are tracked in the case IOC objects. This note summarises validated indicators with context and documents the confidence and sourcing rationale for each.\n\n---\n\n## File-Based Indicators\n\n| Filename | SHA-256 | Type | Context | Confidence | Added to Case |\n|----------|---------|------|---------|------------|---------------|\n| | | | | | |\n\n---\n\n## Network Indicators\n\n| Indicator | Type | Context | First Seen | Confidence | Added to Case |\n|-----------|------|---------|------------|------------|---------------|\n| | | | | | |\n\n---\n\n## Account / Credential Indicators\n\n| Account | Domain | Context | Confidence | Remediated |\n|---------|--------|---------|------------|------------|\n| | | | | |\n\n---\n\n## IOC Sharing\n\n| Platform / System | Shared? | Date | Approved By |\n|-------------------|---------|------|-------------|\n| | | | |\n\n---\n\n## Intelligence Context\n\n<!-- Summarise any threat intelligence that contextualises these IOCs - known campaigns, tooling, actor TTPs, or public reporting. -->\n"
         }
       ]
     },
@@ -212,86 +212,41 @@
       "notes": [
         {
           "title": "Affected hosts",
-          "content": "List confirmed and suspected affected workstations, servers, VMs, and infrastructure."
+          "content": "## Affected Hosts\n\n**Total confirmed affected:** <!-- number -->\n**Total suspected / under investigation:** <!-- number -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Host Inventory\n\n| Hostname | IP Address | Type | OS | Role | Status | Contained? | Evidence Collected? |\n|----------|-----------|------|----|------|--------|------------|---------------------|\n| | | Workstation / Server / VM / DC / Infra | | | Confirmed / Suspected | Yes / No | Yes / No |\n\n---\n\n## Critical Asset Exposure\n\n<!-- Call out any particularly sensitive systems: domain controllers, backup servers, hypervisors, financial systems, PII stores, etc. -->\n\n| Asset | Sensitivity | Exposure Level | Notes |\n|-------|------------|---------------|-------|\n| | | Confirmed impacted / Accessed / Not impacted | |\n\n---\n\n## Scope Confidence\n\n<!-- Note what has and has not been ruled out. Are there segments of the environment that have not been assessed? -->\n"
         },
         {
           "title": "Affected accounts",
-          "content": "Document impacted user, service, admin, and privileged accounts."
-        },
-        {
-          "title": "Affected data and shares",
-          "content": "Track impacted file shares, storage locations, sensitive data, and affected repositories."
-        },
-        {
-          "title": "Backup systems status",
-          "content": "Document the status of backup systems, backup integrity, and restore-point availability."
+          "content": "## Affected Accounts\n\n**Last updated:** <!-- date / time -->\n**Total confirmed affected:** <!-- number -->\n\n---\n\n## Account Inventory\n\n| Account Name | Type | Domain / Host | Privileges | Compromise Confirmed | Remediated? |\n|-------------|------|---------------|------------|---------------------|-------------|\n| | | | | Yes / Suspected / No | Yes / No |\n\n---\n\n## Credential Exposure Assessment\n\n<!-- Describe the extent of credential compromise. Were hashes dumped? Were plaintext credentials exposed? Were service accounts affected? -->\n\n---\n\n## Remediation Status\n\n| Action | Status | Completed By | Date |\n|--------|--------|-------------|------|\n| Password resets - standard users | | | |\n| Password resets - privileged accounts | | | |\n| Service account rotation | | | |\n| Token / session revocation | | | |\n| MFA enforcement review | | | |\n"
         }
       ]
     },
     {
-      "title": "Containment and Eradication",
+      "title": "Response Actions",
       "notes": [
         {
           "title": "Containment actions",
-          "content": "Record host isolation, network blocks, account disablement, session revocation, and other containment steps."
-        },
-        {
-          "title": "Credential remediation",
-          "content": "Track password resets, token revocations, MFA changes, and privileged access remediation."
-        },
-        {
-          "title": "Blocking and prevention actions",
-          "content": "Document firewall blocks, EDR blocks, deny lists, segmentation changes, and control improvements implemented during response."
+          "content": "## Containment Actions Log\n\n**Containment status:** <!-- Not started / In progress / Contained / Partially contained -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Host Isolation\n\n| Hostname | Isolated? | Method | Actioned By | Date/Time | Notes |\n|----------|-----------|--------|-------------|-----------|-------|\n| | Yes / No / Pending | | | | |\n\n---\n\n## Network Blocks\n\n| Indicator Blocked | Type | Blocked On | Actioned By | Date/Time |\n|-------------------|------|------------|-------------|----------|\n| | IP / Domain / Range | Firewall / EDR / DNS | | |\n\n---\n\n## Remote Access Controls\n\n<!-- Document any VPN, RDP, or remote access paths that were disabled or restricted. -->\n\n| Access Path | Action Taken | Actioned By | Date/Time |\n|-------------|-------------|-------------|----------|\n| | | | |\n\n---\n\n## Containment Gaps\n\n<!-- Document any known gaps in containment - systems not yet isolated, paths not yet blocked, accounts not yet disabled. -->\n"
         },
         {
           "title": "Eradication actions",
-          "content": "Summarize malware removal, persistence removal, tooling cleanup, and vulnerability remediation."
+          "content": "## Eradication Actions Log\n\n**Eradication status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Malicious Artifacts Removed\n\n| Host | Artifact | Path | Removed By | Date/Time | Confirmed? |\n|------|----------|------|-----------|-----------|------------|\n| | | | | | Yes / No |\n\n---\n\n## Persistence Mechanisms Removed\n\n| Host | Mechanism | Detail | Removed By | Date/Time | Confirmed? |\n|------|-----------|--------|-----------|-----------|------------|\n| | | | | | Yes / No |\n\n---\n\n## Vulnerability Remediation\n\n| System | Vulnerability / Gap | Remediation Applied | Status |\n|--------|--------------------|--------------------|--------|\n| | | | |\n\n---\n\n## Eradication Validation\n\n<!-- How was eradication confirmed? EDR clean scan, manual review, re-imaging, etc. -->\n"
+        },
+        {
+          "title": "Recovery actions",
+          "content": "## Recovery Actions Log\n\n**Recovery status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Backup Validation\n\n| System | Backup Source | Backup Date | Validated Clean? | Validated By |\n|--------|--------------|-------------|-----------------|-------------|\n| | | | Yes / No | |\n\n---\n\n## Restoration Log\n\n| System | Restore Method | Restore Point Date | Restored By | Date/Time | Validated? |\n|--------|---------------|-------------------|-------------|-----------|------------|\n| | Clean backup / Rebuild / Decryptor | | | | Yes / No |\n\n---\n\n## Post-Recovery Monitoring\n\n<!-- Document any enhanced monitoring applied to recovered systems. -->\n\n| System | Monitoring Applied | Duration | Owner |\n|--------|-------------------|----------|-------|\n| | | | |\n\n---\n\n## Recovery Blockers\n\n<!-- Note anything preventing full recovery. -->\n"
         }
       ]
     },
     {
-      "title": "Recovery",
+      "title": "Communications and Reporting",
       "notes": [
         {
-          "title": "Backup validation",
-          "content": "Document how backups were assessed for integrity and selected for recovery."
+          "title": "Stakeholder communications",
+          "content": "## Stakeholder Communications Log\n\n<!-- Record all significant internal communications related to this incident. -->\n\n| Date/Time | From | To / Audience | Channel | Summary | Action Required |\n|-----------|------|--------------|---------|---------|----------------|\n| | | | | | |\n\n---\n\n## Escalation Path\n\n| Role | Name | Contact | Notified? | Date/Time |\n|------|------|---------|-----------|----------|\n| Incident Commander | | | | |\n| CISO / Security Leadership | | | | |\n| Legal Counsel | | | | |\n| Privacy Officer | | | | |\n| Executive / C-Suite | | | | |\n| PR / Communications | | | | |\n| HR (if insider threat) | | | | |\n\n---\n\n## Pending Communications\n\n<!-- Track any communications that are drafted, pending approval, or scheduled. -->\n\n| Communication | Target Audience | Owner | Status | Due By |\n|---------------|----------------|-------|--------|--------|\n| | | | Draft / Pending / Sent | |\n"
         },
         {
-          "title": "Restore actions",
-          "content": "Track systems restored, recovery sequence, exceptions, and issues encountered during restoration."
-        },
-        {
-          "title": "Validation testing",
-          "content": "Summarize post-restore validation, monitoring results, and checks for re-encryption or ongoing malicious activity."
-        },
-        {
-          "title": "Residual risk",
-          "content": "Document any remaining risk, unresolved findings, compensating controls, or follow-up actions."
-        }
-      ]
-    },
-    {
-      "title": "Communications",
-      "notes": [
-        {
-          "title": "Internal stakeholder communications",
-          "content": "Summarize communications with incident responders, IT, leadership, and other internal stakeholders."
-        },
-        {
-          "title": "Executive updates",
-          "content": "Track executive-facing summaries, decisions, approvals, and reporting cadence."
-        },
-        {
-          "title": "Legal, privacy, and compliance coordination",
-          "content": "Document discussions related to legal review, privacy impact, contractual obligations, and compliance considerations."
-        },
-        {
-          "title": "External communications",
-          "content": "Record communications with law enforcement, regulators, insurance, customers, vendors, or partners as applicable."
-        },
-        {
-          "title": "Threat actor communication log",
-          "content": "Document ransom notes, email messages, portal communications, or any interaction with the threat actor, if applicable."
+          "title": "External notifications",
+          "content": "## External Notification Assessment\n\n**Assessment status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Regulatory Obligations\n\n| Regulator / Framework | Obligation Triggered? | Notification Deadline | Status | Notified Date |\n|----------------------|----------------------|--------------------|--------|---------------|\n| | Yes / No / Under Review | | | |\n\n---\n\n## Law Enforcement\n\n| Agency | Reported? | Date | Reference / Case Number | Notes |\n|--------|-----------|------|------------------------|-------|\n| | | | | |\n\n---\n\n## Cyber Insurance\n\n| Insurer | Policy Number | Notified? | Date | Notes |\n|---------|--------------|-----------|------|-------|\n| | | | | |\n\n---\n\n## Customer / Partner Notifications\n\n| Party | Notification Required? | Method | Status | Date |\n|-------|----------------------|--------|--------|------|\n| | | | | |\n\n---\n\n## Legal Hold\n\n<!-- Document whether a legal hold has been triggered and what evidence is subject to preservation. -->\n"
         }
       ]
     },
@@ -299,19 +254,10 @@
       "title": "Post-Incident",
       "notes": [
         {
-          "title": "Root cause",
-          "content": "Summarize the suspected or confirmed root cause of the incident and supporting evidence."
-        },
-        {
           "title": "Lessons learned",
-          "content": "Document lessons learned, process gaps, technical findings, and recommended improvements."
-        },
-        {
-          "title": "Control improvement plan",
-          "content": "Track recommended security improvements, ownership, and follow-up actions after case closure."
+          "content": "## Lessons Learned\n\n**Review date:** <!-- date -->\n**Facilitator:** <!-- name -->\n**Attendees:** <!-- list -->\n\n---\n\n## Incident Summary (Final)\n\n<!-- A concise final summary of what happened, how it was detected, and how it was resolved. Suitable for executive or board reporting. -->\n\n---\n\n## Root Cause\n\n<!-- Final confirmed root cause(s) of the incident. -->\n\n---\n\n## What Went Well\n\n| Observation | Category |\n|-------------|----------|\n| | Detection / Containment / Communications / Tools / Process |\n\n---\n\n## What Could Be Improved\n\n| Observation | Category | Priority |\n|-------------|----------|----------|\n| | | High / Medium / Low |\n\n---\n\n## Action Items\n\n| # | Action | Owner | Due Date | Status |\n|---|--------|-------|----------|--------|\n| 1 | | | | |\n| 2 | | | | |\n| 3 | | | | |\n\n---\n\n## Closure Confirmation\n\n- [ ] Recovery complete and validated\n- [ ] No ongoing malicious activity observed\n- [ ] All required notifications sent\n- [ ] Evidence preserved per retention policy\n- [ ] Lessons learned documented\n- [ ] Case formally closed\n"
         }
       ]
     }
-  ],
-  "classification": "malicious-code:ransomware"
+  ]
 }
