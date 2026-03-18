@@ -107,19 +107,19 @@
       "notes": [
         {
           "title": "Initial alert or report",
-          "content": "Document how the potential DDoS or service disruption was identified, when it began, and why the case was opened."
+          "content": "## Incident Summary\n\n**Case opened:** <!-- date / time -->\n**Opened by:** <!-- analyst name -->\n**Severity:** <!-- Critical / High / Medium / Low -->\n**Classification:** <!-- Confirmed DDoS / Suspected DDoS / Traffic Surge / Under Investigation -->\n\n---\n\n## How the Incident Was Identified\n\n<!-- Describe how this incident was first detected or reported. Include the source (NOC alert, monitoring tool, provider notification, user report, etc.) and the date/time of first awareness. -->\n\n---\n\n## Initial Indicators\n\n<!-- List the first observable indicators that prompted this case to be opened. High traffic volume, service degradation, monitoring alert, provider notification, etc. -->\n\n| Indicator | Type | First Observed | Source |\n|-----------|------|---------------|--------|\n| | | | |\n\n---\n\n## Narrative\n\n<!-- Write a brief factual narrative (3-6 sentences) summarising the known facts at the time of case creation. Avoid inference. Update as the investigation progresses. -->\n"
         },
         {
           "title": "Current status",
-          "content": "Track the current status of the incident, mitigation progress, blockers, and next steps."
+          "content": "## Current Response Status\n\n**Last updated:** <!-- date / time / analyst -->\n**Current phase:** <!-- Triage / Active Mitigation / Monitoring / Recovery / Closed -->\n**Service status:** <!-- Degraded / Down / Partially Restored / Restored -->\n\n---\n\n## Phase Checklist\n\n- [ ] Service disruption validated and classified\n- [ ] Affected services and business impact identified\n- [ ] Attack type and traffic profile characterised\n- [ ] Providers and infrastructure teams engaged\n- [ ] Mitigation actions implemented\n- [ ] Service restoration validated\n- [ ] Attack patterns and related activity investigated\n- [ ] Stakeholder and customer communications sent\n- [ ] Improvement actions identified\n\n---\n\n## Active Blockers\n\n<!-- Document anything currently blocking progress. Be specific about what is needed and who owns resolution. -->\n\n| Blocker | Owner | Raised | Status |\n|---------|-------|--------|--------|\n| | | | |\n\n---\n\n## Latest Operational Update\n\n<!-- Free-text summary of the most recent significant development. Update this section each time the case status changes materially. -->\n\n**[DATE/TIME]** -\n"
         },
         {
           "title": "Decision log",
-          "content": "Record major decisions, approvals, escalations, and significant events during the incident."
+          "content": "## Decision Log\n\n> Record key response decisions here as they are made. Include the context that drove the decision, who approved it, and any dissenting views or risks accepted.\n\n---\n\n| # | Date/Time | Decision | Rationale | Approved By | Risk Accepted |\n|---|-----------|----------|-----------|-------------|---------------|\n| 1 | | | | | |\n| 2 | | | | | |\n| 3 | | | | | |\n\n---\n\n## Notes on Major Turning Points\n\n<!-- Use this section to annotate significant moments that changed the direction of the response - e.g. escalation to provider scrubbing, decision to geoblock, failover activated, extortion communication received. -->\n"
         },
         {
           "title": "Stakeholders and providers",
-          "content": "List internal stakeholders, service owners, infrastructure teams, providers, and mitigation contacts involved in the response."
+          "content": "## Stakeholder and Provider Contacts\n\n---\n\n## Internal Escalation Path\n\n| Role | Name | Contact | Notified? | Date/Time |\n|------|------|---------|-----------|----------|\n| Incident Commander | | | | |\n| CISO / Security Leadership | | | | |\n| Network / Infrastructure Team | | | | |\n| Platform / Cloud Team | | | | |\n| Service Owner(s) | | | | |\n| Help Desk / NOC | | | | |\n| Legal Counsel | | | | |\n| Executive / C-Suite | | | | |\n| PR / Communications | | | | |\n\n---\n\n## External Provider Contacts\n\n| Provider / Vendor | Service | Contact Name | Contact Method | Support Case # | Engaged? |\n|-------------------|---------|-------------|----------------|----------------|----------|\n| | ISP / CDN / WAF / Scrubbing / Hosting / Cloud | | | | Yes / No |\n\n---\n\n## Notes\n\n<!-- Additional context on escalation paths, provider SLAs, or coordination constraints. -->\n"
         }
       ]
     },
@@ -128,23 +128,23 @@
       "notes": [
         {
           "title": "Targeted services",
-          "content": "Document the targeted IPs, domains, hostnames, applications, APIs, or network services affected by the attack."
+          "content": "## Targeted Services\n\n**Last updated:** <!-- date / time -->\n**Total confirmed targeted services:** <!-- number -->\n\n---\n\n## Target Inventory\n\n| Target | Type | IP / Hostname / URL | Port(s) | Protocol(s) | Status |\n|--------|------|--------------------|---------|-----------|---------|\n| | Web App / API / DNS / Network / VPN / Other | | | | Under Attack / Degraded / Restored |\n\n---\n\n## Attack Type Classification\n\n**Primary attack type:** <!-- Volumetric / Protocol / Application-Layer / Multi-vector -->\n**ATT&CK Technique(s):** <!-- e.g. T1498 Network Denial of Service, T1499 Endpoint Denial of Service -->\n\n---\n\n## Notes\n\n<!-- Additional context on targeting patterns, shifts in targeting over time, or multi-vector combinations observed. -->\n"
         },
         {
           "title": "Traffic profile",
-          "content": "Summarize bandwidth, packets per second, request patterns, protocol mix, duration, and wave or burst characteristics."
+          "content": "## Traffic Profile\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Peak Metrics\n\n| Metric | Value | Time of Peak | Source |\n|--------|-------|-------------|--------|\n| Bandwidth (Gbps) | | | |\n| Packets per second (Mpps) | | | |\n| Requests per second | | | |\n| Concurrent connections | | | |\n\n---\n\n## Traffic Characteristics\n\n| Characteristic | Detail |\n|----------------|--------|\n| Dominant protocol(s) | |\n| Packet size distribution | |\n| TTL characteristics | |\n| Fragmentation observed | Yes / No |\n| Spoofed source IPs observed | Yes / No / Unknown |\n| Burst or wave pattern | Yes / No — describe |\n| Duration (total) | |\n\n---\n\n## Wave and Burst Log\n\n<!-- Document distinct attack waves, surges, or pauses to build a picture of attack rhythm. -->\n\n| Wave # | Start Time (UTC) | End Time (UTC) | Peak Volume | Notes |\n|--------|-----------------|---------------|-------------|-------|\n| 1 | | | | |\n| 2 | | | | |\n\n---\n\n## Notes\n\n<!-- Additional context on traffic profile evolution or tool-specific observations. -->\n"
         },
         {
           "title": "Protocols and ports",
-          "content": "Record relevant protocols, ports, and service-specific observations associated with the attack traffic."
+          "content": "## Protocols and Ports\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Protocol and Port Observations\n\n| Protocol | Port(s) | Traffic Share | Notes |\n|----------|---------|--------------|-------|\n| | | % of total | |\n\n---\n\n## Application-Layer Observations\n\n<!-- For layer 7 attacks, document HTTP methods, URIs, headers, user agents, or request patterns observed. -->\n\n| Pattern | Detail | Volume | First Seen |\n|---------|--------|--------|------------|\n| HTTP Method | | | |\n| Target URI / Path | | | |\n| User-Agent | | | |\n| Cookie / Header Abuse | | | |\n\n---\n\n## Notes\n\n<!-- Additional context on protocol mix, unusual packet characteristics, or service-specific observations. -->\n"
         },
         {
           "title": "Source distribution and infrastructure",
-          "content": "Document source IP distribution, ASNs, geographies, botnet patterns, reflection sources, or amplification infrastructure where relevant."
+          "content": "## Source Distribution and Infrastructure\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Source IP Summary\n\n**Total unique source IPs observed:** <!-- number -->\n**Spoofed sources suspected:** <!-- Yes / No / Unknown -->\n\n---\n\n## Geographic Distribution\n\n| Country / Region | Approximate Traffic Share | Notes |\n|-----------------|--------------------------|-------|\n| | % | |\n\n---\n\n## ASN and Network Distribution\n\n| ASN | Network Name | Approximate Traffic Share | Notes |\n|-----|-------------|--------------------------|-------|\n| | | % | |\n\n---\n\n## Botnet and Infrastructure Indicators\n\n<!-- Document any patterns suggesting coordinated botnet infrastructure, hosting provider clusters, residential proxy networks, or known attack platforms. -->\n\n| Indicator | Type | Detail | Source |\n|-----------|------|--------|--------|\n| | Botnet / Hosting cluster / Residential proxy / VPS | | |\n\n---\n\n## Notes\n\n<!-- Additional context on source patterns, geoblocking decisions, or threat intelligence correlation. -->\n"
         },
         {
           "title": "Reflection or amplification findings",
-          "content": "Record whether reflection or amplification techniques appear to be involved and document supporting evidence."
+          "content": "## Reflection and Amplification Analysis\n\n**Reflection / amplification observed:** <!-- Yes / No / Under Investigation -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Amplification Protocol Findings\n\n| Protocol | Amplification Factor | Reflector Count | Traffic Volume | Notes |\n|----------|---------------------|----------------|----------------|-------|\n| DNS / NTP / SSDP / Memcached / CLDAP / Other | | | | |\n\n---\n\n## Reflector Infrastructure\n\n<!-- Document known or suspected reflector IPs, networks, or services being abused. -->\n\n| Reflector IP / Range | ASN / Provider | Protocol | Volume | Blocked? |\n|---------------------|---------------|----------|--------|----------|\n| | | | | Yes / No |\n\n---\n\n## Notes\n\n<!-- Additional context on amplification method, reflector abuse, or any provider notifications made regarding reflector infrastructure. -->\n"
         }
       ]
     },
@@ -153,19 +153,19 @@
       "notes": [
         {
           "title": "Service impact",
-          "content": "Describe the impact to service availability, performance, latency, error rates, or user access."
+          "content": "## Service Impact Summary\n\n**Last updated:** <!-- date / time -->\n**Overall service status:** <!-- Down / Severely Degraded / Degraded / Partially Restored / Restored -->\n\n---\n\n## Affected Service Inventory\n\n| Service / Application | Impact Type | Availability % | Error Rate | Latency Impact | Status |\n|-----------------------|------------|---------------|------------|----------------|--------|\n| | Unavailable / Degraded / Intermittent | | | | Down / Degraded / Restored |\n\n---\n\n## Monitoring and Synthetic Check Data\n\n<!-- Summarise availability and performance monitoring data that supports the service impact assessment. -->\n\n| Check / Monitor | Baseline | During Attack | Current | Source |\n|----------------|---------|--------------|---------|--------|\n| | | | | |\n\n---\n\n## Notes\n\n<!-- Additional context on service dependencies, cascading failures, or collateral impact to non-targeted systems. -->\n"
         },
         {
           "title": "Business impact",
-          "content": "Document operational impact, affected business units, revenue or mission impact, customer-facing effects, and internal disruption."
+          "content": "## Business Impact Summary\n\n**Last updated:** <!-- date / time -->\n**Overall impact rating:** <!-- Critical / High / Medium / Low / Unknown -->\n\n---\n\n## Affected Business Units and Functions\n\n| Business Unit / Function | Impact Description | Status |\n|--------------------------|--------------------|--------|\n| | | |\n\n---\n\n## Operational and Customer-Facing Disruption\n\n<!-- Describe what is not working or degraded. Include specific services, revenue-generating functions, SLAs, or customer-facing capabilities affected. -->\n\n---\n\n## Financial and Regulatory Exposure\n\n<!-- Note any known or estimated financial impact (revenue loss, SLA breach, contractual penalty) and any triggered regulatory or notification obligations. Leave blank if not yet assessed. -->\n\n---\n\n## Communication to Leadership\n\n| Date/Time | Audience | Key Message | Decision / Action |\n|-----------|----------|-------------|-------------------|\n| | | | |\n"
         },
         {
           "title": "Affected customers or users",
-          "content": "Track which customer groups, user populations, or internal users were impacted."
+          "content": "## Affected Customers and Users\n\n**Last updated:** <!-- date / time -->\n**Total estimated affected users:** <!-- number or range -->\n\n---\n\n## Affected Population\n\n| Group | Type | Estimated Count | Impact Description | Notified? |\n|-------|------|-----------------|--------------------|----------|\n| | External customers / Internal users / Partners / API consumers | | | Yes / No / Pending |\n\n---\n\n## Customer Communication Status\n\n| Channel | Message Sent? | Date/Time | Owner | Notes |\n|---------|--------------|-----------|-------|-------|\n| Status page | | | | |\n| Email notification | | | | |\n| In-app notification | | | | |\n| Social media | | | | |\n| Direct account communication | | | | |\n\n---\n\n## Notes\n\n<!-- Additional context on user impact, support ticket volumes, or customer escalations received. -->\n"
         },
         {
           "title": "Time window and duration",
-          "content": "Document the start time, major phases, peaks, recovery milestones, and total duration of the event."
+          "content": "## Incident Timeline and Duration\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Key Milestones\n\n| Milestone | Date/Time (UTC) | Notes |\n|-----------|----------------|-------|\n| Attack first observed | | |\n| Internal detection / alert | | |\n| Case opened | | |\n| Providers engaged | | |\n| First mitigation applied | | |\n| Attack peak | | |\n| Service partially restored | | |\n| Attack subsided | | |\n| Service fully restored | | |\n| Case closed | | |\n\n---\n\n## Total Duration\n\n| Phase | Start | End | Duration |\n|-------|-------|-----|----------|\n| Active attack | | | |\n| Service degradation | | | |\n| Mitigation active | | | |\n| Full service disruption | | | |\n\n---\n\n## Notes\n\n<!-- Additional context on timeline gaps, uncertainty in start/end times, or recurring attack waves that complicate duration assessment. -->\n"
         }
       ]
     },
@@ -174,19 +174,19 @@
       "notes": [
         {
           "title": "Mitigation actions taken",
-          "content": "Document all traffic filtering, rate limiting, WAF, CDN, provider, routing, scaling, or scrubbing actions taken during response."
+          "content": "## Mitigation Actions Log\n\n**Mitigation status:** <!-- Not started / In progress / Partially mitigated / Mitigated -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Actions Log\n\n| Action | Type | Target | Actioned By | Date/Time | Effective? | Notes |\n|--------|------|--------|-------------|-----------|------------|-------|\n| | ACL / Rate limit / WAF rule / CDN config / Geoblock / Scrubbing / Routing change / Autoscale / Failover | | | | Yes / Partial / No | |\n\n---\n\n## Mitigation Layers Active\n\n| Layer | Control Applied | Provider / Tool | Status |\n|-------|----------------|----------------|--------|\n| Network / Upstream | | | Active / Inactive |\n| CDN / Proxy | | | Active / Inactive |\n| WAF | | | Active / Inactive |\n| Rate Limiting | | | Active / Inactive |\n| Scrubbing / DDoS Platform | | | Active / Inactive |\n| Application / Infrastructure | | | Active / Inactive |\n\n---\n\n## Mitigation Gaps\n\n<!-- Document any known gaps in mitigation - traffic not yet filtered, controls not yet applied, provider escalations not yet active. -->\n"
         },
         {
           "title": "Provider coordination",
-          "content": "Summarize support cases, escalation paths, provider actions, and key communications with external mitigation partners."
+          "content": "## Provider Coordination Log\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Provider Support Cases\n\n| Provider | Service | Support Case # | Opened | Contact | Status | Summary |\n|----------|---------|---------------|--------|---------|--------|---------|\n| | ISP / CDN / WAF / Scrubbing / Hosting | | | | Open / Closed | |\n\n---\n\n## Provider Actions Taken\n\n| Date/Time | Provider | Action | Impact | Notes |\n|-----------|----------|--------|--------|-------|\n| | | | | |\n\n---\n\n## Escalations\n\n<!-- Document any escalations to provider security, NOC, or abuse teams beyond standard support channels. -->\n\n---\n\n## Notes\n\n<!-- Additional context on provider SLA performance, coordination delays, or limitations encountered. -->\n"
         },
         {
           "title": "Recovery validation",
-          "content": "Record how service restoration and mitigation effectiveness were validated, including any recurring attack waves or collateral issues."
+          "content": "## Recovery Validation\n\n**Recovery status:** <!-- Not started / In progress / Partially recovered / Fully recovered -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Service Restoration Log\n\n| Service | Restoration Method | Restored At (UTC) | Validated By | Notes |\n|---------|--------------------|------------------|-------------|-------|\n| | Mitigation / Failover / Autoscale / Provider action | | | |\n\n---\n\n## Validation Checks\n\n| Check | Method | Result | Checked By | Date/Time |\n|-------|--------|--------|------------|----------|\n| Service availability | Synthetic monitor / Manual check | Pass / Fail | | |\n| Error rates normal | APM / Logs | Pass / Fail | | |\n| Latency normal | APM / Monitoring | Pass / Fail | | |\n| No recurring attack waves | Traffic analysis | Pass / Fail | | |\n| Mitigation controls still active | Configuration review | Pass / Fail | | |\n\n---\n\n## Notes\n\n<!-- Additional context on recovery validation methodology, partial restoration states, or post-recovery observations. -->\n"
         },
         {
           "title": "Residual issues",
-          "content": "Document remaining instability, degraded performance, tuning gaps, or unresolved follow-up actions after the main event."
+          "content": "## Residual Issues and Follow-Up\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Outstanding Issues\n\n| Issue | Description | Owner | Priority | Status |\n|-------|-------------|-------|----------|--------|\n| | | | High / Medium / Low | Open / In Progress / Resolved |\n\n---\n\n## Mitigation Tuning Required\n\n<!-- Document any mitigation controls that need adjustment, refinement, or removal after the active attack phase. -->\n\n| Control | Issue | Required Action | Owner | Status |\n|---------|-------|----------------|-------|--------|\n| | | | | |\n\n---\n\n## Notes\n\n<!-- Additional context on residual instability, collateral impact still being resolved, or follow-up monitoring in place. -->\n"
         }
       ]
     },
@@ -195,23 +195,23 @@
       "notes": [
         {
           "title": "Attack patterns and recurrence",
-          "content": "Summarize recurring traffic patterns, historical similarities, campaign context, or repeat targeting observations."
+          "content": "## Attack Patterns and Recurrence\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Recurrence History\n\n| Date/Time (UTC) | Duration | Peak Volume | Target | Attack Type | Notes |\n|-----------------|----------|-------------|--------|------------|-------|\n| | | | | | |\n\n---\n\n## Pattern Observations\n\n<!-- Document timing patterns, infrastructure reuse, targeting consistency, or campaign-level observations that suggest coordinated or repeat activity. -->\n\n---\n\n## Threat Intelligence Correlation\n\n| Intelligence Source | Relevant Finding | Confidence | Notes |\n|--------------------|-----------------|------------|-------|\n| | | High / Medium / Low | |\n\n---\n\n## Notes\n\n<!-- Additional context on campaign attribution, actor motivation hypotheses, or intelligence gaps. -->\n"
         },
         {
           "title": "Related threats or extortion",
-          "content": "Document any extortion communications, diversion indicators, related intrusion concerns, or correlated threat intelligence."
+          "content": "## Related Threats and Extortion Assessment\n\n**Extortion communication received:** <!-- Yes / No / Unknown -->\n**Diversion/distraction concern:** <!-- Yes / No / Under Investigation -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Extortion Communications\n\n<!-- Document any ransom demands, threats, or extortion messaging received in connection with this event. Do not follow any payment links without legal/leadership approval. -->\n\n**Communication method:**\n**First received:**\n**Demand:**\n**Deadline:**\n\n> <!-- Paste or summarise extortion message content here. -->\n\n---\n\n## Diversion and Related Intrusion Indicators\n\n<!-- Document any concurrent security alerts, anomalous authentication activity, lateral movement, or other indicators that suggest the DDoS is being used to mask a parallel intrusion. -->\n\n| Alert / Indicator | Source | Date/Time | Assessed as Related? | Notes |\n|-------------------|--------|-----------|---------------------|-------|\n| | | | Yes / No / Unknown | |\n\n---\n\n## Notes\n\n<!-- Additional context on threat actor motivation, legal guidance received on extortion, or parallel investigations opened. -->\n"
         },
         {
           "title": "Findings summary",
-          "content": "Provide a concise summary of the attack, affected services, mitigation actions, recovery timeline, and investigative conclusions."
+          "content": "## Incident Findings Summary (Final)\n\n**Review date:** <!-- date -->\n**Prepared by:** <!-- analyst name -->\n\n---\n\n## Incident Summary\n\n<!-- A concise final summary of the attack, how it was detected, how it was mitigated, and the outcome. Suitable for executive or board reporting. -->\n\n---\n\n## Attack Profile Summary\n\n| Attribute | Detail |\n|-----------|--------|\n| Attack type | |\n| Primary target(s) | |\n| Peak volume | |\n| Total duration | |\n| Mitigation method | |\n| Service restoration time | |\n| Extortion involved | Yes / No |\n| Diversion activity identified | Yes / No |\n\n---\n\n## Business Impact Summary\n\n| Category | Detail |\n|----------|--------|\n| Services affected | |\n| Users impacted | |\n| Estimated downtime | |\n| Financial exposure | |\n| Regulatory exposure | |\n\n---\n\n## Closure Confirmation\n\n- [ ] Attack subsided or successfully mitigated\n- [ ] Service availability fully restored and validated\n- [ ] No ongoing or recurring attack waves observed\n- [ ] Mitigation controls reviewed and tuned\n- [ ] Extortion and diversion concerns assessed\n- [ ] Stakeholder and customer communications complete\n- [ ] Improvement actions identified and assigned\n- [ ] Lessons learned documented\n- [ ] Case formally closed\n"
         },
         {
           "title": "Improvement actions",
-          "content": "Document recommended improvements to defenses, thresholds, provider coordination, architecture, and response procedures."
+          "content": "## Defense and Process Improvement Actions\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Recommended Improvements\n\n| # | Improvement | Category | Priority | Owner | Due Date | Status |\n|---|-------------|----------|----------|-------|----------|--------|\n| 1 | | DDoS Protection / WAF / CDN / Architecture / Alerting / Playbook / Provider / Capacity | High / Medium / Low | | | |\n| 2 | | | | | | |\n| 3 | | | | | | |\n\n---\n\n## Detection and Alerting Gaps\n\n<!-- Document any gaps in detection or alerting coverage identified during the event. -->\n\n| Gap | Proposed Improvement | Owner | Status |\n|-----|---------------------|-------|--------|\n| | | | |\n\n---\n\n## Provider and Escalation Path Improvements\n\n<!-- Document changes needed to provider contacts, escalation procedures, SLAs, or contractual protections. -->\n\n---\n\n## Notes\n\n<!-- Additional context on prioritisation, architecture constraints, or dependencies affecting improvement delivery. -->\n"
         },
         {
           "title": "Lessons learned",
-          "content": "Capture lessons learned, control gaps, process gaps, and follow-up recommendations."
+          "content": "## Lessons Learned\n\n**Review date:** <!-- date -->\n**Facilitator:** <!-- name -->\n**Attendees:** <!-- list -->\n\n---\n\n## What Went Well\n\n| Observation | Category |\n|-------------|----------|\n| | Detection / Mitigation / Communications / Provider Coordination / Tools / Process |\n\n---\n\n## What Could Be Improved\n\n| Observation | Category | Priority |\n|-------------|----------|----------|\n| | | High / Medium / Low |\n\n---\n\n## Action Items\n\n| # | Action | Owner | Due Date | Status |\n|---|--------|-------|----------|--------|\n| 1 | | | | |\n| 2 | | | | |\n| 3 | | | | |\n\n---\n\n## Process and Detection Gaps\n\n<!-- Capture any specific gaps in process, tooling, detection thresholds, provider readiness, or response playbooks that this incident exposed. -->\n"
         }
       ]
     }
