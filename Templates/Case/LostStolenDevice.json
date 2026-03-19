@@ -1,0 +1,138 @@
+{
+  "name": "LostStolenDevice",
+  "display_name": "Lost or Stolen Device",
+  "description": "A case template for investigating and managing incidents involving lost or stolen endpoints, including laptops, mobile devices, tablets, removable media, or other hardware containing or providing access to organizational data. Covers device classification, encryption and MDM status verification, remote wipe, data exposure assessment, regulatory notification obligations under HIPAA and applicable US state laws, and recovery or replacement.",
+  "author": "Zachary Carter",
+  "title_prefix": "[LOST/STOLEN DEVICE]",
+  "summary": "## Incident Report — [CASE TITLE]\n\n## Executive Summary\n\n**[Provide a high-level, non-technical summary suitable for senior leadership and stakeholders. Describe the device type, the circumstances of loss or theft, the encryption and MDM status of the device, the estimated scope of data exposure, key findings, and current response status. Typically one to three paragraphs.]**\n\n## Scope of Investigation\n\n**[Define the boundaries of this investigation. Identify the device, the user, the data that may have been accessible on or through the device, and any limitations on the investigation — such as inability to confirm encryption status or absence of MDM enrollment.]**\n\n## Data Exposure Assessment\n\n**[Summarise the data exposure assessment. Document what data was stored on the device, accessible through the device, or potentially exposed as a result of the loss or theft. Distinguish between confirmed encryption (data likely protected), unconfirmed encryption (data potentially exposed), and confirmed lack of encryption (data exposed). Identify regulatory classification of data at risk.]**\n\n**Data exposure risk:** <!-- High — unencrypted / Medium — encryption status unknown / Low — encryption confirmed -->\n\n**Regulatory notification triggered:** <!-- Yes / No / Under assessment -->\n\n| Data Type | Storage Location | Regulatory Classification | Exposure Risk |\n|-----------|-----------------|--------------------------|---------------|\n| | On-device / Cloud / VPN-accessible | HIPAA / CCPA / PCI-DSS / Other / None | High / Medium / Low |\n\n---\n\n## Remediation & Recommendations\n\n**[Prioritised remediation actions.]**\n\n### Immediate Actions\n\n| # | Action | Owner | Priority | Due |\n|---|--------|-------|----------|-----|\n| 1 | Initiate remote wipe or lock via MDM if device is enrolled and reachable | | Critical | |\n| 2 | Revoke device certificates, VPN credentials, and SSO sessions associated with the device | | Critical | |\n| 3 | Reset the user account password and enforce MFA re-enrollment | | Critical | |\n| 4 | Confirm device encryption status through MDM, Intune, JAMF, or configuration records | | Critical | |\n| 5 | Assess data stored on or accessible through the device and determine notification obligations | | High | |\n| 6 | Report theft to law enforcement if applicable and obtain a police report number | | High | |\n| 7 | Notify cyber insurer if device value or data exposure triggers policy obligations | | Medium | |\n\n### Strategic Improvements\n\n| # | Recommendation | Category | Priority |\n|---|---------------|----------|----------|\n| 1 | Enforce full-disk encryption on all managed endpoints — validate compliance via MDM | Endpoint | High |\n| 2 | Ensure all endpoints are enrolled in MDM with remote wipe capability before deployment | Endpoint | High |\n| 3 | Enforce MFA on all accounts accessible from managed devices | Identity | High |\n| 4 | Implement DLP controls to restrict sensitive data storage on endpoints | Data | Medium |\n| 5 | Enforce screen lock with PIN / biometric and automatic lock timeout on all mobile devices | Endpoint | Medium |\n| 6 | Conduct periodic device inventory audits to identify unenrolled or unencrypted assets | Governance | Medium |\n\n---\n\n## Conclusion\n\n**[Closing summary reinforcing key findings, data exposure determination, notification obligations triggered, and the path forward.]**\n",
+  "tags": [
+    "tlp:amber",
+    "CERT-XLM:information-content-security=\"data-loss\"",
+    "CERT-XLM:other=\"lost-stolen-device\""
+  ],
+  "tasks": [
+    {
+      "title": "Validate and classify the device loss or theft",
+      "description": "Confirm that a device has been lost or stolen. Classify the incident — lost (misplaced, no evidence of theft), stolen (confirmed or suspected intentional theft), or recovered. Document the device type, make, model, serial number, asset tag, and assigned user. Determine whether the device was a managed organizational asset, a personal device with organizational access (BYOD), or removable media.",
+      "tags": ["triage", "validation", "device"]
+    },
+    {
+      "title": "Confirm device encryption and MDM enrollment status",
+      "description": "Determine whether the device has full-disk encryption enabled. Confirm MDM enrollment status and retrieve device configuration records. Check MDM compliance history for encryption policy compliance. Document last known encryption status, OS version, and patch level. This is the single most important technical determination for assessing data exposure risk and regulatory notification obligations.",
+      "tags": ["assessment", "encryption", "mdm"]
+    },
+    {
+      "title": "Initiate remote wipe or lock",
+      "description": "If the device is enrolled in MDM and reachable, immediately initiate a remote wipe or lock. Document the wipe command issued, the time issued, and whether the wipe was confirmed as completed. If the device is not MDM-enrolled or is unreachable, document the inability to remote wipe and escalate the data exposure risk accordingly.",
+      "tags": ["containment", "remote-wipe", "mdm"]
+    },
+    {
+      "title": "Revoke device access and credentials",
+      "description": "Revoke all access associated with the device — VPN certificates, device certificates, MDM enrollment, SSO sessions, and any application sessions initiated from the device. Reset the user account password. Enforce MFA re-enrollment. Disable or revoke any API keys, tokens, or SSH keys stored on or accessible through the device.",
+      "tags": ["containment", "credentials", "access"]
+    },
+    {
+      "title": "Assess data stored on and accessible through the device",
+      "description": "Determine what data was stored locally on the device, what data was accessible via applications, cloud sync, or VPN from the device, and whether any sensitive data was cached or downloaded. Review device configuration, installed applications, cloud sync settings, and user role to estimate data exposure scope. Identify regulatory classification of data at risk.",
+      "tags": ["assessment", "data", "exposure"]
+    },
+    {
+      "title": "Determine HIPAA and US state privacy law notification obligations",
+      "description": "Based on the device encryption status and the data accessible on or through the device, determine whether HIPAA breach notification or US state privacy law notification obligations are triggered. If encryption is confirmed and the encryption key was not also compromised, HIPAA Safe Harbor may apply. Document the legal analysis and engage legal counsel.",
+      "tags": ["compliance", "hipaa", "notification"]
+    },
+    {
+      "title": "Report theft to law enforcement if applicable",
+      "description": "If the device was stolen, report the theft to local law enforcement. Obtain a police report number for insurance, legal, and regulatory purposes. Provide the device serial number, asset tag, and relevant details. Document all law enforcement interactions.",
+      "tags": ["law-enforcement", "reporting", "theft"]
+    },
+    {
+      "title": "Notify cyber insurer and assess financial impact",
+      "description": "Determine whether the device loss or theft triggers cyber insurance notification obligations. Assess financial impact — device replacement cost, potential regulatory fine exposure, and breach notification costs. Notify the insurer if required.",
+      "tags": ["insurance", "financial", "notification"]
+    },
+    {
+      "title": "Assess external reporting and notification obligations",
+      "description": "Based on the data exposure assessment, determine whether and to whom notifications must be sent — HHS OCR (HIPAA), state attorneys general, affected individuals, customers, or partners. Document notification decisions, obligations, and timelines.",
+      "tags": ["reporting", "legal", "compliance"]
+    },
+    {
+      "title": "Provision replacement device and restore access",
+      "description": "Issue a replacement device to the affected user with full encryption, MDM enrollment, and security controls applied before use. Restore appropriate application access and credentials. Confirm the user has received awareness guidance on device security.",
+      "tags": ["recovery", "device", "provisioning"]
+    },
+    {
+      "title": "Conduct lessons learned and close case",
+      "description": "Document the circumstances of loss or theft, encryption and MDM status at time of incident, data exposure determination, notification decisions, and improvement opportunities. Confirm all required notifications are resolved and closure criteria are met.",
+      "tags": ["lessons-learned", "closure", "post-incident"]
+    }
+  ],
+  "note_directories": [
+    {
+      "title": "Incident Overview",
+      "notes": [
+        {
+          "title": "Initial summary",
+          "content": "## Incident Summary\n\n**Case opened:** <!-- date / time -->\n**Opened by:** <!-- analyst name -->\n**Severity:** <!-- High / Medium / Low -->\n**Classification:** <!-- Lost / Stolen / Recovered / Under Investigation -->\n\n---\n\n## Device Details\n\n| Field | Value |\n|-------|-------|\n| Device type | <!-- Laptop / Mobile phone / Tablet / Removable media / Other --> |\n| Make / Model | |\n| Serial number | |\n| Asset tag / ID | |\n| Operating system | |\n| OS version | |\n| Assigned user | |\n| Assigned user department | |\n| Device ownership | <!-- Organizational / BYOD --> |\n| Last known location | |\n| Date / time of loss or theft | |\n| Date / time reported | |\n| Reported by | |\n\n---\n\n## Circumstances of Loss or Theft\n\n<!-- Describe how and where the device was lost or stolen. Include relevant context — travel, public location, vehicle break-in, office, etc. -->\n\n---\n\n## Narrative\n\n<!-- Write a brief factual narrative (3-6 sentences) summarising known facts at the time of case creation. -->\n"
+        },
+        {
+          "title": "Current status",
+          "content": "## Current Response Status\n\n**Last updated:** <!-- date / time / analyst -->\n**Current phase:** <!-- Triage / Containment / Assessment / Notification / Closed -->\n\n---\n\n## Phase Checklist\n\n- [ ] Device loss or theft validated and classified\n- [ ] Key stakeholders notified\n- [ ] Encryption status confirmed\n- [ ] MDM enrollment status confirmed\n- [ ] Remote wipe or lock initiated / confirmed / unable to execute\n- [ ] Device access and credentials revoked\n- [ ] Data exposure assessment complete\n- [ ] Notification obligations assessed\n- [ ] Law enforcement report filed (if stolen)\n- [ ] Cyber insurer notified (if applicable)\n- [ ] Regulatory and individual notifications sent (if required)\n- [ ] Replacement device provisioned\n- [ ] Case closed\n\n---\n\n## Active Blockers\n\n| Blocker | Owner | Raised | Status |\n|---------|-------|--------|--------|\n| | | | |\n\n---\n\n## Latest Operational Update\n\n**[DATE/TIME]** -\n"
+        },
+        {
+          "title": "Decision log",
+          "content": "## Decision Log\n\n> Record key response decisions here. Include context, approver, and any risks accepted. Notification decisions in particular must be documented clearly for regulatory purposes.\n\n| # | Date/Time | Decision | Rationale | Approved By | Risk Accepted |\n|---|-----------|----------|-----------|-------------|---------------|\n| 1 | | | | | |\n| 2 | | | | | |\n| 3 | | | | | |\n\n---\n\n## Notes on Major Turning Points\n\n<!-- Annotate significant moments — e.g. remote wipe confirmed, encryption confirmed enabling Safe Harbor, device recovered, notification obligation triggered. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Device and Access Assessment",
+      "notes": [
+        {
+          "title": "Device security status",
+          "content": "## Device Security Status\n\n**Last updated:** <!-- date / time -->\n\n---\n\n## Encryption Assessment\n\n| Field | Value |\n|-------|-------|\n| Full-disk encryption enabled | Yes / No / Unknown |\n| Encryption technology | <!-- BitLocker / FileVault / Android encryption / iOS encryption / Other --> |\n| Encryption key storage | <!-- TPM / PIN / Cloud / Unknown --> |\n| Encryption compliance confirmed via | <!-- MDM policy / Intune / JAMF / Configuration record / Unknown --> |\n| HIPAA Safe Harbor applicable | Yes / No / Under assessment |\n\n---\n\n## MDM Enrollment and Remote Wipe\n\n| Field | Value |\n|-------|-------|\n| MDM platform | <!-- Microsoft Intune / JAMF / VMware Workspace ONE / Other / Not enrolled --> |\n| MDM enrollment status | <!-- Enrolled / Not enrolled / Unenrolled after loss -->\n| Last MDM check-in | <!-- date / time --> |\n| Remote wipe issued | Yes / No |\n| Remote wipe issue date/time | |\n| Remote wipe confirmed | Yes / No / Pending / Unable to confirm |\n| Remote wipe confirmation method | <!-- MDM console status / Log / Unable to confirm --> |\n\n---\n\n## Device Authentication Controls\n\n| Control | Status |\n|---------|--------|\n| Screen lock / PIN / biometric | Enabled / Disabled / Unknown |\n| Auto-lock timeout | <!-- time setting / Unknown --> |\n| Boot / BIOS password | Enabled / Disabled / Unknown |\n| Corporate SSO / certificate | Enrolled / Not enrolled |\n\n---\n\n## Installed Applications with Sensitive Access\n\n<!-- List applications installed on the device that provide access to sensitive data or organizational systems. -->\n\n| Application | Data / System Access | Offline Data Cached? | Session Revoked? |\n|-------------|---------------------|---------------------|------------------|\n| | | Yes / No / Unknown | Yes / No |\n"
+        },
+        {
+          "title": "Credential and access revocation",
+          "content": "## Credential and Access Revocation\n\n**Revocation status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Access Revocation Log\n\n| Access Type | Detail | Revoked? | Actioned By | Date/Time |\n|-------------|--------|----------|-------------|----------|\n| VPN certificate / credential | | Yes / No / Pending | | |\n| Device certificate | | Yes / No / Pending | | |\n| MDM enrollment | | Yes / No / Pending | | |\n| SSO / cloud sessions | | Yes / No / Pending | | |\n| Email access | | Yes / No / Pending | | |\n| Application sessions | | Yes / No / Pending | | |\n| API keys / tokens | | Yes / No / Pending | | |\n| SSH keys | | Yes / No / Pending | | |\n\n---\n\n## Account Remediation\n\n| Action | Account | Status | Actioned By | Date |\n|--------|---------|--------|-------------|------|\n| Password reset | | | | |\n| MFA re-enrollment | | | | |\n| Privileged access review | | | | |\n"
+        }
+      ]
+    },
+    {
+      "title": "Data Exposure Assessment",
+      "notes": [
+        {
+          "title": "Data exposure findings",
+          "content": "## Data Exposure Assessment\n\n**Exposure risk:** <!-- High — unencrypted or encryption unconfirmed / Low — encryption confirmed -->\n**Assessment status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## On-Device Data\n\n<!-- Document data stored locally on the device. Consider: documents, email cache, browser data, application data, databases, credentials, configuration files. -->\n\n| Data Type | Location on Device | Sensitivity | Volume (est.) | Regulatory Classification |\n|-----------|-------------------|-------------|---------------|---------------------------|\n| | | High / Medium / Low | | HIPAA / CCPA / PCI-DSS / Other / None |\n\n---\n\n## Cloud-Synced Data\n\n<!-- Document data accessible through cloud sync services configured on the device — OneDrive, SharePoint, Google Drive, iCloud, Dropbox, etc. Note that cloud data is not directly exposed by device loss if encryption is confirmed, but access via saved credentials may be a risk. -->\n\n| Service | Data Accessible | Offline / Cached? | Sensitivity | Notes |\n|---------|----------------|------------------|-------------|-------|\n| | | Yes / No | High / Medium / Low | |\n\n---\n\n## VPN / Network Access Data\n\n<!-- Document what organizational systems, shares, or resources were accessible via VPN or direct network connection from the device. -->\n\n| System / Resource | Data Accessible | Access Revoked? |\n|------------------|----------------|----------------|\n| | | Yes / No |\n\n---\n\n## HIPAA Applicability\n\n<!-- Document the HIPAA analysis. Determine whether PHI was stored on or accessible through the device and whether the encryption Safe Harbor applies. -->\n\n| Question | Assessment |\n|----------|------------|\n| PHI stored on or accessible through device | Yes / No / Unknown |\n| Encryption confirmed (Safe Harbor eligible) | Yes / No / Unknown |\n| Number of individuals affected (est.) | |\n| HIPAA breach notification required | Yes / No / Under assessment |\n| Rationale | |\n\n---\n\n## US State Privacy Law Applicability\n\n| State Law | Personal Data Involved? | Notification Required? | Threshold Met? | Deadline |\n|-----------|------------------------|----------------------|---------------|----------|\n| CCPA / CPRA (California) | Yes / No / Unknown | Yes / No / Under review | | |\n| Applicable state law (by affected individuals' state) | Yes / No / Unknown | Yes / No / Under review | | Varies by state |\n"
+        }
+      ]
+    },
+    {
+      "title": "Communications and Reporting",
+      "notes": [
+        {
+          "title": "Stakeholder communications",
+          "content": "## Stakeholder Communications Log\n\n| Date/Time | From | To / Audience | Channel | Summary | Action Required |\n|-----------|------|--------------|---------|---------|----------------|\n| | | | | | |\n\n---\n\n## Escalation Path\n\n| Role | Name | Contact | Notified? | Date/Time |\n|------|------|---------|-----------|----------|\n| Incident Commander / Security Lead | | | | |\n| Legal Counsel | | | | |\n| Privacy Officer | | | | |\n| HR | | | | |\n| Assigned User's Manager | | | | |\n| IT / Device Management | | | | |\n| Executive (if high-severity data exposure) | | | | |\n\n---\n\n## Pending Communications\n\n| Communication | Target Audience | Owner | Status | Due By |\n|---------------|----------------|-------|--------|--------|\n| | | | Draft / Pending / Sent | |\n"
+        },
+        {
+          "title": "External notifications",
+          "content": "## External Notification Assessment\n\n**Assessment status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Regulatory Obligations\n\n| Regulator / Framework | Obligation Triggered? | Notification Deadline | Status | Notified Date |\n|----------------------|----------------------|--------------------|--------|---------------|\n| HIPAA — HHS OCR | Yes / No / Under Review | 60 days from discovery of breach | | |\n| HIPAA — Media notice (500+ individuals per state) | Yes / No / Under Review | 60 days from discovery | | |\n| HIPAA — Annual media report (fewer than 500) | Yes / No / Under Review | Within 60 days of calendar year end | | |\n| HIPAA — Individual notification | Yes / No / Under Review | 60 days from discovery | | |\n| CCPA / CPRA (California) | Yes / No / Under Review | Expedient / No later than 30 days if AG notified | | |\n| Applicable US state breach law | Yes / No / Under Review | Varies by state | | |\n\n---\n\n## HIPAA Safe Harbor Assessment\n\n<!-- Document the Safe Harbor analysis. Under 45 CFR 164.402, a breach is presumed to not have occurred if the data was encrypted in accordance with HHS guidance AND the encryption key was not compromised. Both conditions must be met. -->\n\n| Condition | Met? | Evidence / Notes |\n|-----------|------|------------------|\n| Data encrypted per HHS guidance (NIST-compliant) | Yes / No / Unknown | |\n| Encryption key not also compromised or acquired | Yes / No / Unknown | |\n| Safe Harbor applicable | Yes / No / Under assessment | |\n\n---\n\n## Law Enforcement\n\n| Agency | Reported? | Date | Police Report Number | Notes |\n|--------|-----------|------|---------------------|-------|\n| Local police | | | | |\n| Other | | | | |\n\n---\n\n## Cyber Insurance\n\n| Insurer | Policy Number | Notified? | Date | Notes |\n|---------|--------------|-----------|------|-------|\n| | | | | |\n\n---\n\n## Individual Notification (if required)\n\n| Notification Method | Sent? | Date | Number of Individuals | Notes |\n|--------------------|-------|------|-----------------------|-------|\n| Written notification | | | | |\n| Email notification | | | | |\n| Substitute notice (media / website) | | | | |\n\n---\n\n## Legal Hold\n\n<!-- Document whether a legal hold has been triggered. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Recovery and Closure",
+      "notes": [
+        {
+          "title": "Device recovery and replacement",
+          "content": "## Device Recovery and Replacement\n\n**Device status:** <!-- Lost / Stolen / Recovered / Recovered — returned to service / Replaced -->\n\n---\n\n## Device Recovery (if applicable)\n\n| Field | Value |\n|-------|-------|\n| Device recovered | Yes / No |\n| Recovery date | |\n| Recovery circumstances | |\n| Device returned to service | Yes / No / Pending forensic review |\n| Forensic review required | Yes / No |\n| Evidence of unauthorized access | Yes / No / Unknown |\n\n---\n\n## Replacement Device\n\n| Field | Value |\n|-------|-------|\n| Replacement device issued | Yes / No / Pending |\n| Make / Model | |\n| Serial number | |\n| Asset tag | |\n| Full-disk encryption enabled | Yes / No |\n| MDM enrolled | Yes / No |\n| Security baseline applied | Yes / No |\n| Issued date | |\n| Issued by | |\n\n---\n\n## User Awareness\n\n<!-- Document whether the affected user received guidance on device security following the incident. -->\n\n| Action | Completed? | Date |\n|--------|------------|------|\n| Security awareness briefing | Yes / No | |\n| Device security policy acknowledgment | Yes / No | |\n"
+        },
+        {
+          "title": "Lessons learned",
+          "content": "## Lessons Learned\n\n**Review date:** <!-- date -->\n**Facilitator:** <!-- name -->\n**Attendees:** <!-- list -->\n\n---\n\n## Incident Summary (Final)\n\n<!-- A concise final summary of the device loss or theft, the encryption and MDM status, the data exposure determination, notification obligations, and how the incident was resolved. -->\n\n---\n\n## Root Cause\n\n<!-- Final confirmed root cause(s). Include the circumstances of loss or theft and any security control gaps that increased data exposure risk. -->\n\n---\n\n## What Went Well\n\n| Observation | Category |\n|-------------|----------|\n| | Detection / Containment / Communications / MDM / Process |\n\n---\n\n## What Could Be Improved\n\n| Observation | Category | Priority |\n|-------------|----------|----------|\n| | | High / Medium / Low |\n\n---\n\n## Action Items\n\n| # | Action | Owner | Due Date | Status |\n|---|--------|-------|----------|--------|\n| 1 | | | | |\n| 2 | | | | |\n| 3 | | | | |\n\n---\n\n## Closure Confirmation\n\n- [ ] Remote wipe issued and confirmed (or documented as unable to execute)\n- [ ] Device access and credentials revoked\n- [ ] Encryption status confirmed and documented\n- [ ] Data exposure assessment complete\n- [ ] HIPAA Safe Harbor applicability determined and documented\n- [ ] Notification obligations assessed\n- [ ] All required regulatory and individual notifications sent\n- [ ] Law enforcement report filed (if stolen)\n- [ ] Cyber insurer notified (if applicable)\n- [ ] Replacement device issued\n- [ ] Evidence preserved per retention policy\n- [ ] Lessons learned documented\n- [ ] Case formally closed\n"
+        }
+      ]
+    }
+  ],
+  "classification": "lost-stolen-device"
+}
