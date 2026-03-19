@@ -24,6 +24,15 @@ A template for suspected or confirmed cloud data exposure or breach incidents ac
 
 ---
 
+### 🗃️ Data Breach
+**File:** `DataBreach.json`
+
+A template for suspected or confirmed data breach incidents involving unauthorized access, accidental disclosure, acquisition, misuse, or exfiltration of sensitive, regulated, or confidential information. Covers breach classification, legal and privacy coordination, affected system and data scoping, data sensitivity and individual impact assessment, exposure versus confirmed access determination, exfiltration and disclosure findings, containment, credential remediation, regulatory framework applicability (GDPR, HIPAA, PCI-DSS, CCPA), individual and regulator notification decisions, and post-incident control improvements.
+
+**Note directories:** Incident Overview · Systems and Data Scope · Technical Investigation · Containment and Remediation · Legal, Privacy, and Compliance · Post-Incident
+
+---
+
 ### 🌊 DDoS Attack
 **File:** `DDoSAttack.json`
 
@@ -33,12 +42,12 @@ A template for investigating and mitigating distributed denial-of-service events
 
 ---
 
-### 🗃️ Data Breach
-**File:** `DataBreach.json`
+### 🔑 Identity Provider / SSO Compromise
+**File:** `IdentityProviderCompromise.json`
 
-A template for suspected or confirmed data breach incidents involving unauthorized access, accidental disclosure, acquisition, misuse, or exfiltration of sensitive, regulated, or confidential information. Covers breach classification, legal and privacy coordination, affected system and data scoping, data sensitivity and individual impact assessment, exposure versus confirmed access determination, exfiltration and disclosure findings, containment, credential remediation, regulatory framework applicability (GDPR, HIPAA, PCI-DSS, CCPA), individual and regulator notification decisions, and post-incident control improvements.
+A template for suspected or confirmed compromise of an identity provider, SSO platform, or federated identity infrastructure, including Okta, Microsoft Entra ID, Ping, Duo, ADFS, or similar. Covers AiTM phishing outcomes, token theft, OAuth application abuse, MFA bypass, conditional access policy manipulation, IdP administrative access assessment, downstream application blast radius analysis, session and token revocation, credential remediation, and identity platform configuration restoration.
 
-**Note directories:** Incident Overview · Systems and Data Scope · Technical Investigation · Containment and Remediation · Legal, Privacy, and Compliance · Post-Incident
+**Note directories:** Incident Overview · Identity Platform · Affected Accounts and Applications · Technical Investigation · Response Actions · Communications and Reporting · Post-Incident
 
 ---
 
@@ -50,6 +59,24 @@ A template for investigating suspected insider activity involving misuse of acce
 > **Note:** This template contains sensitive personnel information. Access should be restricted to authorized investigators, HR, legal, and management on a need-to-know basis.
 
 **Note directories:** Incident Overview · Subject and Access · Technical Findings · Evidence · Interviews and Coordination · Findings and Outcome
+
+---
+
+### 📱 Lost or Stolen Device
+**File:** `LostStolenDevice.json`
+
+A template for investigating and managing incidents involving lost or stolen endpoints, including laptops, mobile devices, tablets, removable media, or other hardware containing or providing access to organizational data. Covers device classification, encryption and MDM status verification, remote wipe execution and confirmation, credential and session revocation, data exposure assessment across on-device, cloud-synced, and VPN-accessible data, HIPAA Safe Harbor analysis, US state privacy law notification obligations, law enforcement reporting, and replacement device provisioning.
+
+**Note directories:** Incident Overview · Device and Access Assessment · Data Exposure Assessment · Communications and Reporting · Recovery and Closure
+
+---
+
+### 🦠 Malware Infection (Non-Ransomware)
+**File:** `MalwareInfection.json`
+
+A template for investigating suspected or confirmed malware infections that are not ransomware, including infostealers, remote access trojans (RATs), banking trojans, cryptominers, rootkits, and wipers. Covers malware identification and variant analysis, execution chain documentation, C2 communication profiling, credential store targeting assessment, stealer log content analysis, downstream account compromise investigation, operator versus automated activity assessment, IOC extraction, persistence eradication, and remediation.
+
+**Note directories:** Incident Overview · Malware Analysis · Credential and Data Theft · Affected Environment · Response Actions · Communications and Reporting · Post-Incident
 
 ---
 
@@ -68,6 +95,17 @@ A template for suspected or confirmed phishing incidents involving malicious ema
 A comprehensive template for suspected or confirmed ransomware incidents. Covers triage and validation, incident communications, scope assessment, evidence preservation, containment, initial access investigation, privilege escalation and lateral movement, data exfiltration and extortion risk, ransomware artifact analysis, IOC extraction, eradication, backup validation, recovery, external notification obligations, control hardening, and lessons learned.
 
 **Note directories:** Incident Overview · Technical Investigation · Affected Environment · Response Actions · Communications and Reporting · Post-Incident
+
+---
+
+### 🔗 Supply Chain / Third-Party Compromise
+**File:** `SupplyChainCompromise.json`
+
+A template for investigating suspected or confirmed supply chain or third-party compromise incidents, including compromised software, updates, build pipelines, managed service providers, or trusted third-party access paths. Covers compromise validation and classification, affected software version and deployment scoping, vendor engagement and advisory tracking, software integrity verification, investigation of malicious activity within your environment, downstream propagation risk assessment, credential and token remediation, and both upstream regulatory and downstream customer notification obligations.
+
+> **Note:** Supply chain cases involve a dependency on vendor-provided information. This template explicitly tracks the distinction between activity confirmed in your environment and activity reported only by the vendor or external advisories.
+
+**Note directories:** Incident Overview · Vendor and Software · Technical Investigation · Downstream Impact · Affected Environment · Response Actions · Communications and Reporting · Post-Incident
 
 ---
 
@@ -97,9 +135,13 @@ This means the templates can be aligned with tagging schemes such as:
 
 - `tlp:amber`
 - `CERT-XLM:intrusion="application-compromise"`
+- `CERT-XLM:intrusion="identity-compromise"`
+- `CERT-XLM:intrusion="supply-chain"`
 - `CERT-XLM:information-content-security="Unauthorised-information-access"`
+- `CERT-XLM:information-content-security="data-loss"`
 - `CERT-XLM:availability="ddos"`
 - `CERT-XLM:malicious-code="ransomware"`
+- `CERT-XLM:malicious-code="malware"`
 - `CERT-XLM:fraud="phishing"`
 
 This is especially useful if you are integrating:
@@ -275,9 +317,13 @@ Templates/
 ├── CloudDataBreach.json
 ├── DDoSAttack.json
 ├── DataBreach.json
+├── IdentityProviderCompromise.json
 ├── InsiderThreat.json
+├── LostStolenDevice.json
+├── MalwareInfection.json
 ├── PhishingAttack.json
 ├── RansomwareAttack.json
+├── SupplyChainCompromise.json
 ├── UnauthorizedAccessIntrusion.json
 └── WebApplicationCompromise.json
 ```
