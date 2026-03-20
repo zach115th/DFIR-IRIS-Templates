@@ -1,0 +1,263 @@
+{
+  "name": "RansomwareAttack",
+  "display_name": "Ransomware Attack LLM",
+  "description": "A case template for handling suspected or confirmed ransomware incidents, including triage, containment, investigation, eradication, recovery, communications, and post-incident activities.",
+  "author": "Zachary Carter",
+  "title_prefix": "[RANSOMWARE]",
+  "summary": "## Incident Report — [CASE TITLE]\n\n## Executive Summary\n\n{{AI_PROMPT: Using the case data provided, write a high-level, non-technical executive summary suitable for senior leadership and stakeholders. Cover: (1) the nature of the incident and ransomware variant if identified, (2) how and when it was detected and by whom, (3) the estimated scope of impact including affected systems, accounts, and business functions, (4) key investigation findings to date, and (5) the current response status and phase. Write in clear prose across two to four paragraphs. Do not use technical jargon without explanation. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n## Scope of Investigation\n\n{{AI_PROMPT: Using the case data provided, write a concise narrative defining the boundaries of this investigation. Address: (1) what systems, accounts, time periods, and network segments were in scope, (2) what was explicitly excluded from scope and why, and (3) any limitations on access, log availability, evidence integrity, or tool coverage that constrained investigative findings. If scope limitations affected confidence in any findings, state this explicitly. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n## Analysis — MITRE ATT&CK® Framework\n\n{{AI_PROMPT: Using the case data provided, write a brief introductory paragraph summarising the overall attack chain as mapped to the MITRE ATT&CK framework (https://attack.mitre.org). Identify which tactic categories had confirmed activity and which had no observed activity. This paragraph should orient the reader before they review each tactic subsection below. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n{{AI_PROMPT: Review all tactic subsections below. For any tactic where no activity was observed in the case data, replace the subsection content with a single sentence explicitly stating that no activity was observed for this tactic during the investigation. Do not leave any subsection blank or populated with placeholder text.}}\n\n### TA0001 — Initial Access\n\n**Techniques observed:** \n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Initial Access (e.g. T1566.001 Spearphishing Attachment, T1190 Exploit Public-Facing Application). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph describing how the threat actor first gained entry to the environment. Include: the delivery method or vulnerability exploited, the targeted user or system, the date and time of first observed access, and the key evidence supporting this finding. If initial access is unconfirmed or under investigation, state the current hypothesis and confidence level. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Host / Account | Description | Evidence Source |\n|-----------------|-----------|---------------|-------------|----------------|\n| | | | | |\n\n### TA0002 — Execution\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Execution (e.g. T1059.001 PowerShell, T1047 WMI). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph documenting how the threat actor executed malicious code on compromised systems. Include: tools and interpreters used, observed command lines or binaries, the hosts on which execution occurred, and key evidence. If execution details are partially known, clearly distinguish confirmed from suspected activity. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Host | Command / Binary | Evidence Source |\n|-----------------|-----------|------|-----------------|----------------|\n| | | | | |\n\n### TA0003 — Persistence\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Persistence (e.g. T1053.005 Scheduled Task, T1547.001 Registry Run Keys). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph describing the persistence mechanisms used by the threat actor to maintain access across reboots or credential changes. Include: artifact types, specific paths or registry keys, hosts affected, and the current remediation status of each mechanism. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Host | Artifact / Path | Status |\n|-----------------|-----------|------|----------------|--------|\n| | | | | Confirmed / Removed / Pending |\n\n### TA0004 — Privilege Escalation\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Privilege Escalation (e.g. T1068 Exploitation for Privilege Escalation, T1078 Valid Accounts). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph detailing how the threat actor elevated privileges within the environment. Include: the technique used, the account(s) targeted or abused, the hosts involved, the highest privilege level ultimately achieved, and the evidence supporting these findings. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Host | Account | Privilege Reached | Evidence Source |\n|-----------------|-----------|------|---------|-----------------|----------------|\n| | | | | | |\n\n### TA0005 — Defense Evasion\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Defense Evasion (e.g. T1070.001 Clear Windows Event Logs, T1027 Obfuscated Files, T1562.001 Disable Security Tools). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph describing the techniques the threat actor used to avoid detection and impair defensive controls. Include: specific evasion actions taken, tools or methods used, affected hosts, and the impact on log coverage or security tool visibility. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Host | Description | Evidence Source |\n|-----------------|-----------|------|-------------|----------------|\n| | | | | |\n\n### TA0006 — Credential Access\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Credential Access (e.g. T1003.001 LSASS Memory, T1558.003 Kerberoasting). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph documenting the methods used by the threat actor to harvest credentials and the scope of accounts exposed. Include: tools or techniques used for credential access, the types of credentials obtained (hashes, plaintext, tokens), and the accounts or account categories affected. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Host | Accounts Compromised | Evidence Source |\n|-----------------|-----------|------|---------------------|----------------|\n| | | | | |\n\n### TA0007 — Discovery\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Discovery (e.g. T1087.002 Domain Account Enumeration, T1046 Network Scanning, T1135 Network Share Discovery). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph describing the internal reconnaissance conducted by the threat actor after initial access. Include: tools or commands used, the scope of enumeration (hosts, accounts, shares, network), and the hosts from which discovery activity originated. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Host | Tool / Method | Scope |\n|-----------------|-----------|------|--------------|-------|\n| | | | | |\n\n### TA0008 — Lateral Movement\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Lateral Movement (e.g. T1021.001 RDP, T1021.002 SMB/Windows Admin Shares, T1570 Lateral Tool Transfer). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph detailing how the threat actor moved between systems and expanded access across the environment. Include: source and destination hosts, accounts used, movement methods or protocols, and the sequence of lateral movement as best reconstructed from available evidence. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Source Host | Destination Host | Account Used | Evidence Source |\n|-----------------|-----------|------------|-----------------|--------------|----------------|\n| | | | | | |\n\n### TA0011 — Command and Control\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Command and Control (e.g. T1071.001 Web Protocols, T1071.004 DNS, T1573 Encrypted Channel). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph documenting the C2 infrastructure, protocols, and beaconing behaviour observed during the incident. Include: IP addresses, domains, or URLs used for C2, protocols and ports, observed beacon intervals or patterns, and any infrastructure overlaps with known threat actor tooling. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Indicator | Type | Protocol / Port | First Seen (UTC) | Last Seen (UTC) |\n|-----------|------|----------------|-----------------|----------------|\n| | IP / Domain / URL | | | |\n\n### TA0010 — Exfiltration\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Exfiltration (e.g. T1074.001 Local Data Staging, T1048.002 Exfiltration Over HTTPS). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n**Exfiltration confirmed:** <!-- Yes / No / Under investigation -->\n\n**Estimated volume:** <!-- e.g. ~4.2 GB / Unknown -->\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph describing data staging, compression, and transfer activity observed during the incident. Include: staging locations and tools used, compression or archiving methods, destination IPs or domains, estimated data volume transferred, and the data types and regulatory classifications at risk. If exfiltration is unconfirmed, state the current assessment and evidence basis. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Source Host | Destination | Volume | Evidence Source |\n|-----------------|-----------|------------|-------------|--------|-----------------|\n| | | | | | |\n\n**Data types at risk:**\n\n| Data Type | Location | Estimated Volume | Regulatory Classification |\n|-----------|----------|-----------------|--------------------------|\n| | | | |\n\n### TA0040 — Impact to Entity\n\n**Techniques observed:**\n\n{{AI_PROMPT: Using the case data provided, identify and list the specific MITRE ATT&CK technique IDs and names observed for Impact (e.g. T1486 Data Encrypted for Impact, T1490 Inhibit System Recovery). If no techniques were confirmed, state this explicitly. Base all statements strictly on case data.}}\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph documenting the final-stage actions taken by the threat actor to disrupt, destroy, or manipulate the environment. Include: the ransomware deployment method, the scope of encryption (local drives, network shares, backups), shadow copy or recovery inhibition activity, and the operational impact on business functions. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Date/Time (UTC) | Technique | Scope | Description | Evidence Source |\n|-----------------|-----------|-------|-------------|----------------|\n| | | | | |\n\n---\n\n## Cyber Threat Intelligence (CTI) Findings\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph summarising CTI findings that provide context for this incident. Include: any threat actor attribution or suspected group associations, malware family identification, links to known campaigns or public reporting, and the confidence level of any attribution assessments. If attribution is unknown or unconfirmed, state this explicitly. Reference any intelligence sources cited in the case data. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n### Threat Actor Profile\n\n**Suspected group / alias:** <!-- e.g. Wizard Spider / UNC1878 / Unknown -->\n\n**Attribution confidence:** <!-- High / Moderate / Low / Unattributed -->\n\n**Assessed motivation:** <!-- Financial / Espionage / Hacktivism / Unknown -->\n\n**ATT&CK Group:** <!-- e.g. G0102 -->\n\n{{AI_PROMPT: Using the case data provided, write a narrative paragraph profiling the suspected or confirmed threat actor. Include: known aliases or group names, assessed affiliation or criminal ecosystem, primary motivation, observed TTPs and how they align with this incident, and links to prior campaigns or public threat intelligence reporting. If the actor is unattributed, describe the observable characteristics of the intrusion and note what attribution evidence is absent. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n| Intelligence Source | Reference | Relevance |\n|--------------------|-----------|----------|\n| | | |\n\n---\n\n## Remediation & Recommendations\n\n{{AI_PROMPT: Using the case data provided, write a brief introductory paragraph summarising the remediation posture for this incident. Describe the current state of containment, eradication, and recovery, and frame the priority of actions listed below in the context of the specific gaps and weaknesses identified during this investigation. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n\n### Immediate Actions\n\n| # | Action | Owner | Priority | Due |\n|---|--------|-------|----------|-----|\n| 1 | Isolate compromised systems and block confirmed IOCs at all network boundaries | | Critical | |\n| 2 | Reset credentials for all affected and privileged accounts; enforce domain-wide reset if domain compromise confirmed | | Critical | |\n| 3 | Preserve forensic evidence and engage legal counsel for regulatory notification obligations | | Critical | |\n| 4 | Reimage compromised systems from trusted baselines and patch all exploited vulnerabilities | | High | |\n| 5 | Deploy enhanced SIEM/EDR detection rules based on observed TTPs and IOCs | | High | |\n\n### Strategic Improvements\n\n| # | Recommendation | Category | Priority |\n|---|---------------|----------|----------|\n| 1 | Enforce phishing-resistant MFA across all remote access, email, and privileged accounts | Identity | High |\n| 2 | Extend log retention to 12+ months with centralised, immutable storage | Logging | High |\n| 3 | Conduct network segmentation review to limit lateral movement paths | Architecture | High |\n| 4 | Implement offline / immutable backup strategy with regular restore validation | Resilience | High |\n| 5 | Conduct tabletop exercises and red team assessments based on observed TTPs | Preparedness | Medium |\n\n---\n\n## Conclusion\n\n{{AI_PROMPT: Using the case data provided, write a closing narrative paragraph suitable for sharing with executive leadership. Address: (1) the complete attack chain from initial access through to impact, (2) the assessed sophistication of the threat actor, (3) the estimated dwell time between first access and detection, (4) whether attribution is possible and at what confidence level, and (5) the current confidence in containment completeness and the path to full recovery. The tone should be clear, authoritative, and forward-looking. Base all statements strictly on case data — do not infer or fabricate details not present in the source material.}}\n",
+  "tags": [
+    "tlp:amber",
+    "CERT-XLM:malicious-code=\"ransomware\"",
+    "CERT-XLM:information-content-security=\"Unauthorised-information-access\""
+  ],
+  "tasks": [
+    {
+      "title": "Validate ransomware activity",
+      "description": "Confirm whether ransomware activity is present by identifying file encryption, ransom notes, destructive actions, service disruption, extortion messaging, or other supporting evidence. Determine whether the case is confirmed ransomware, attempted ransomware, suspicious activity, or a false positive.",
+      "tags": [
+        "triage",
+        "validation",
+        "ransomware"
+      ]
+    },
+    {
+      "title": "Initiate incident communications and escalation",
+      "description": "Notify required internal stakeholders and activate the appropriate incident response, management, legal, privacy, communications, and executive escalation paths based on case severity and business impact.",
+      "tags": [
+        "communications",
+        "escalation",
+        "management"
+      ]
+    },
+    {
+      "title": "Identify affected systems, accounts, and business impact",
+      "description": "Determine the scope of the incident by identifying affected hosts, user accounts, servers, shares, applications, backup systems, and business functions. Document confirmed and suspected impact.",
+      "tags": [
+        "scope",
+        "impact",
+        "assets"
+      ]
+    },
+    {
+      "title": "Preserve forensic evidence",
+      "description": "Collect and preserve volatile and non-volatile evidence from affected and suspected systems, including memory, disk artifacts, ransom notes, binaries, scripts, event logs, authentication logs, EDR telemetry, network telemetry, scheduled tasks, services, and persistence artifacts.",
+      "tags": [
+        "forensics",
+        "evidence",
+        "collection"
+      ]
+    },
+    {
+      "title": "Contain hosts, accounts, and network access",
+      "description": "Isolate affected or suspected systems, disable or restrict compromised accounts, revoke sessions, disable remote access paths as needed, and block malicious or suspicious infrastructure to prevent further spread.",
+      "tags": [
+        "containment",
+        "network",
+        "identity"
+      ]
+    },
+    {
+      "title": "Identify initial access vector",
+      "description": "Investigate how the threat actor gained access, such as phishing, exposed VPN, RDP, credential compromise, software vulnerability exploitation, malicious downloads, or third-party access.",
+      "tags": [
+        "investigation",
+        "initial-access",
+        "root-cause"
+      ]
+    },
+    {
+      "title": "Investigate privilege escalation and lateral movement",
+      "description": "Determine how the threat actor elevated privileges, moved through the environment, accessed additional systems, and expanded control across users, hosts, shares, or management infrastructure.",
+      "tags": [
+        "investigation",
+        "lateral-movement",
+        "privilege-escalation"
+      ]
+    },
+    {
+      "title": "Assess data exfiltration and extortion risk",
+      "description": "Determine whether data was staged, compressed, transferred, or exposed prior to encryption. Identify sensitive data types, possible destinations, extortion indicators, and any leak-site or ransom communication references.",
+      "tags": [
+        "exfiltration",
+        "extortion",
+        "data-loss"
+      ]
+    },
+    {
+      "title": "Analyze ransomware artifacts and behavior",
+      "description": "Analyze ransomware binaries, scripts, ransom notes, file extensions, process execution, command lines, persistence mechanisms, and related artifacts. Identify the ransomware family or variant if possible.",
+      "tags": [
+        "analysis",
+        "malware",
+        "ransomware-family"
+      ]
+    },
+    {
+      "title": "Extract, validate, and track IOCs",
+      "description": "Extract and validate indicators of compromise from malware artifacts, host evidence, network telemetry, and external intelligence sources. Add confirmed IOCs to the case, tag appropriately, and share with downstream systems as authorized.",
+      "tags": [
+        "iocs",
+        "intel",
+        "tracking"
+      ]
+    },
+    {
+      "title": "Eradicate persistence and unauthorized access",
+      "description": "Remove malicious binaries, scripts, scheduled tasks, services, persistence mechanisms, unauthorized accounts, and attacker tools. Reset compromised credentials, revoke tokens, and remediate exposed services or exploited vulnerabilities.",
+      "tags": [
+        "eradication",
+        "remediation",
+        "persistence"
+      ]
+    },
+    {
+      "title": "Validate backup integrity and recovery readiness",
+      "description": "Confirm that backups are clean, available, and uncompromised. Identify safe restore points and verify that containment, credential remediation, and persistence removal are sufficiently complete before restoration begins.",
+      "tags": [
+        "recovery",
+        "backups",
+        "validation"
+      ]
+    },
+    {
+      "title": "Restore systems and data",
+      "description": "Restore affected systems, services, and data from validated clean backups or rebuilt systems. Validate restored functionality, monitor for reinfection, and ensure recovery actions are documented.",
+      "tags": [
+        "recovery",
+        "restoration",
+        "operations"
+      ]
+    },
+    {
+      "title": "Assess external reporting and notification obligations",
+      "description": "Determine whether law enforcement, regulators, cyber insurance, customers, partners, or other external parties must be notified based on contractual, legal, regulatory, or policy requirements.",
+      "tags": [
+        "reporting",
+        "legal",
+        "compliance"
+      ]
+    },
+    {
+      "title": "Harden controls and increase monitoring",
+      "description": "Implement security improvements identified during the investigation, including MFA enforcement, segmentation, credential hygiene, logging improvements, detection coverage, patching, backup protection, and monitoring enhancements.",
+      "tags": [
+        "hardening",
+        "security",
+        "monitoring"
+      ]
+    },
+    {
+      "title": "Conduct lessons learned and close case",
+      "description": "Document root cause, response actions, business impact, key findings, and improvement opportunities. Confirm recovery is complete, no ongoing malicious activity is observed, required notifications are resolved, and closure criteria are met.",
+      "tags": [
+        "lessons-learned",
+        "closure",
+        "post-incident"
+      ]
+    }
+  ],
+  "note_directories": [
+    {
+      "title": "Incident Overview",
+      "notes": [
+        {
+          "title": "Initial summary",
+          "content": "## Incident Summary\n\n**Case opened:** <!-- date / time -->\n**Opened by:** <!-- analyst name -->\n**Severity:** <!-- Critical / High / Medium / Low -->\n**Classification:** <!-- Confirmed Ransomware / Suspected Ransomware / Under Investigation -->\n\n---\n\n## How the Incident Was Identified\n\n<!-- Describe how this incident was first detected or reported. Include the source (EDR alert, user report, SOC detection, third-party notification, etc.) and the date/time of first awareness. -->\n\n---\n\n## Initial Indicators\n\n<!-- List the first observable indicators that prompted this case to be opened. Ransom note discovered, encrypted file extensions observed, EDR alert, etc. -->\n\n| Indicator | Type | First Observed | Source |\n|-----------|------|---------------|--------|\n| | | | |\n\n---\n\n## Narrative\n\n<!-- Write a brief factual narrative (3-6 sentences) summarising the known facts at the time of case creation. Avoid inference. Update as the investigation progresses. -->\n"
+        },
+        {
+          "title": "Current status",
+          "content": "## Current Response Status\n\n**Last updated:** <!-- date / time / analyst -->\n**Current phase:** <!-- Triage / Containment / Investigation / Eradication / Recovery / Closed -->\n\n---\n\n## Phase Checklist\n\n- [ ] Ransomware activity validated\n- [ ] Key stakeholders notified\n- [ ] Scope assessment underway / complete\n- [ ] Evidence preservation started / complete\n- [ ] Containment actioned\n- [ ] Root cause identified\n- [ ] Persistence removed\n- [ ] Credentials remediated\n- [ ] Recovery approved and in progress / complete\n- [ ] External notifications assessed\n\n---\n\n## Active Blockers\n\n<!-- Document anything currently blocking progress. Be specific about what is needed and who owns resolution. -->\n\n| Blocker | Owner | Raised | Status |\n|---------|-------|--------|--------|\n| | | | |\n\n---\n\n## Latest Operational Update\n\n<!-- Free-text summary of the most recent significant development. Update this section each time the case status changes materially. -->\n\n**[DATE/TIME]** -\n"
+        },
+        {
+          "title": "Business impact",
+          "content": "## Business Impact Summary\n\n**Last updated:** <!-- date / time -->\n**Overall impact rating:** <!-- Critical / High / Medium / Low / Unknown -->\n\n---\n\n## Affected Business Units and Functions\n\n| Business Unit / Function | Impact Description | Status |\n|--------------------------|--------------------|--------|\n| | | |\n\n---\n\n## Operational Disruption\n\n<!-- Describe what is not working or degraded. Include specific services, applications, workflows, or customer-facing capabilities affected. -->\n\n---\n\n## Financial and Regulatory Exposure\n\n<!-- Note any known or estimated financial impact (ransom demand, recovery costs, SLA breach, revenue loss) and any triggered regulatory or contractual obligations. Leave blank if not yet assessed. -->\n\n---\n\n## Communication to Leadership\n\n<!-- Note when leadership was briefed, what was communicated, and any decisions or approvals obtained. -->\n\n| Date/Time | Audience | Key Message | Decision / Action |\n|-----------|----------|-------------|-------------------|\n| | | | |\n"
+        },
+        {
+          "title": "Decision log",
+          "content": "## Decision Log\n\n> Record key response decisions here as they are made. Include the context that drove the decision, who approved it, and any dissenting views or risks accepted.\n\n---\n\n| # | Date/Time | Decision | Rationale | Approved By | Risk Accepted |\n|---|-----------|----------|-----------|-------------|---------------|\n| 1 | | | | | |\n| 2 | | | | | |\n| 3 | | | | | |\n\n---\n\n## Notes on Major Turning Points\n\n<!-- Use this section to annotate significant moments that changed the direction of the investigation or response - e.g. scope expansion, discovery of exfiltration, decision to pay or not pay ransom, legal hold triggered. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Technical Investigation",
+      "notes": [
+        {
+          "title": "Initial access",
+          "content": "## Initial Access\n\n**Assessment status:** <!-- Confirmed / Suspected / Unknown -->\n**ATT&CK Technique(s):** <!-- e.g. T1566.001 Phishing: Spearphishing Attachment -->\n\n---\n\n## Hypothesis\n\n<!-- State the current working hypothesis for initial access. Be explicit about what is confirmed vs inferred. -->\n\n---\n\n## Supporting Evidence\n\n| Evidence Item | Source | Date/Time | Analyst | Confidence |\n|---------------|--------|-----------|---------|------------|\n| | | | | |\n\n---\n\n## Initial Access Timeline\n\n<!-- Reconstruct the earliest known attacker activity leading to the point of compromise. -->\n\n| Date/Time (UTC) | Host | Account | Activity | Source |\n|-----------------|------|---------|----------|--------|\n| | | | | |\n\n---\n\n## Gaps and Open Questions\n\n<!-- What evidence is missing? What cannot yet be ruled in or out? -->\n\n- [ ]\n- [ ]\n"
+        },
+        {
+          "title": "Privilege escalation and lateral movement",
+          "content": "## Privilege Escalation and Lateral Movement\n\n**ATT&CK Techniques observed:**\n<!-- e.g. T1078 Valid Accounts, T1021.001 RDP, T1570 Lateral Tool Transfer -->\n\n---\n\n## Privilege Escalation Findings\n\n| Date/Time (UTC) | Host | Account | Technique | Evidence Source | Confidence |\n|-----------------|------|---------|-----------|-----------------|------------|\n| | | | | | |\n\n---\n\n## Lateral Movement Findings\n\n| Date/Time (UTC) | Source Host | Destination Host | Account Used | Method | Evidence Source |\n|-----------------|-------------|-----------------|--------------|--------|-----------------|\n| | | | | | |\n\n---\n\n## Highest Privilege Reached\n\n<!-- Document the highest-privilege account the threat actor obtained access to and how. -->\n\n---\n\n## Management Plane Access\n\n<!-- Note any access to domain controllers, hypervisors, backup infrastructure, or management consoles. This is critical for scoping containment. -->\n\n---\n\n## Open Questions\n\n- [ ]\n- [ ]\n"
+        },
+        {
+          "title": "Persistence",
+          "content": "## Persistence Mechanisms\n\n**ATT&CK Techniques observed:**\n<!-- e.g. T1053.005 Scheduled Task, T1543.003 Windows Service, T1136 Create Account -->\n\n---\n\n## Identified Persistence Artifacts\n\n| Host | Mechanism Type | Detail (path / name / value) | Date Created | Status |\n|------|---------------|------------------------------|--------------|--------|\n| | | | | Confirmed / Removed / Pending |\n\n---\n\n## Backdoors and Remote Access Tools\n\n| Host | Tool / Binary | Path | C2 / Callback | First Seen | Removed? |\n|------|--------------|------|---------------|------------|----------|\n| | | | | | |\n\n---\n\n## Unauthorized Accounts\n\n| Account Name | Type | Host / Domain | Created | Removed? |\n|-------------|------|---------------|---------|----------|\n| | | | | |\n\n---\n\n## Notes\n\n<!-- Any additional context on how persistence was established, maintained, or discovered. -->\n"
+        },
+        {
+          "title": "Exfiltration findings",
+          "content": "## Data Exfiltration Assessment\n\n**Exfiltration confirmed:** <!-- Yes / No / Under Investigation -->\n**Extortion threat active:** <!-- Yes / No / Unknown -->\n\n---\n\n## Staging and Compression Activity\n\n| Date/Time (UTC) | Host | Path | Tool / Method | Volume | Evidence Source |\n|-----------------|------|------|---------------|--------|-----------------|\n| | | | | | |\n\n---\n\n## Transfer Activity\n\n| Date/Time (UTC) | Source Host | Destination IP/Domain | Protocol/Port | Volume | Evidence Source |\n|-----------------|-------------|----------------------|---------------|--------|-----------------|\n| | | | | | |\n\n---\n\n## Data Types at Risk\n\n<!-- Identify what categories of data may have been exposed. Be specific about regulatory sensitivity where relevant. -->\n\n| Data Type | Location | Estimated Volume | Regulatory Classification |\n|-----------|----------|-----------------|--------------------------|\n| | | | |\n\n---\n\n## Threat Actor Extortion Activity\n\n<!-- Document any leak site references, ransom notes mentioning data theft, or direct communications related to exfiltration. -->\n\n---\n\n## Open Questions\n\n- [ ] Is the full transfer volume accounted for?\n- [ ] Have all staging locations been identified?\n- [ ]\n"
+        },
+        {
+          "title": "Ransomware variant and behavior",
+          "content": "## Ransomware Variant and Behavior\n\n**Identified family / variant:** <!-- e.g. LockBit 3.0, BlackCat/ALPHV, Akira, Unknown -->\n**Identification confidence:** <!-- Confirmed / Likely / Unknown -->\n**ATT&CK Group (if attributed):** <!-- e.g. G0092 -->\n\n---\n\n## Identification Basis\n\n<!-- How was the variant identified? Ransom note text, file extension, binary analysis, threat intel match, etc. -->\n\n---\n\n## Ransom Note Details\n\n**Note filename(s):**\n**Note location(s):**\n**Ransom amount / demand:**\n**Payment address / portal:**\n**Deadline:**\n\n> <!-- Paste the ransom note text below or reference the attached evidence item. Do not follow any links or visit any portals without legal/leadership approval. -->\n\n---\n\n## Encryption Behavior\n\n| Detail | Value |\n|--------|-------|\n| File extension appended | |\n| Encryption scope (local / network / backup) | |\n| Shadow copy deletion observed | |\n| MBR/boot sector impacted | |\n| Known decryptor available | |\n\n---\n\n## Malware Artifacts\n\n| Artifact | Path | SHA-256 | First Seen | Notes |\n|----------|------|---------|------------|-------|\n| | | | | |\n\n---\n\n## Execution Behavior Summary\n\n<!-- Describe observed process execution, command-line arguments, defense evasion, and any notable behavioral patterns. Reference timeline events or evidence items. -->\n\n---\n\n## External Intelligence References\n\n<!-- Link to any public reporting, sandbox reports, or threat intel sources relevant to this variant. -->\n"
+        },
+        {
+          "title": "IOC summary",
+          "content": "## IOC Summary\n\n> Authoritative IOC records are tracked in the case IOC objects. This note summarises validated indicators with context and documents the confidence and sourcing rationale for each.\n\n---\n\n## File-Based Indicators\n\n| Filename | SHA-256 | Type | Context | Confidence | Added to Case |\n|----------|---------|------|---------|------------|---------------|\n| | | | | | |\n\n---\n\n## Network Indicators\n\n| Indicator | Type | Context | First Seen | Confidence | Added to Case |\n|-----------|------|---------|------------|------------|---------------|\n| | | | | | |\n\n---\n\n## Account / Credential Indicators\n\n| Account | Domain | Context | Confidence | Remediated |\n|---------|--------|---------|------------|------------|\n| | | | | |\n\n---\n\n## IOC Sharing\n\n| Platform / System | Shared? | Date | Approved By |\n|-------------------|---------|------|-------------|\n| | | | |\n\n---\n\n## Intelligence Context\n\n<!-- Summarise any threat intelligence that contextualises these IOCs - known campaigns, tooling, actor TTPs, or public reporting. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Affected Environment",
+      "notes": [
+        {
+          "title": "Affected hosts",
+          "content": "## Affected Hosts\n\n**Total confirmed affected:** <!-- number -->\n**Total suspected / under investigation:** <!-- number -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Host Inventory\n\n| Hostname | IP Address | Type | OS | Role | Status | Contained? | Evidence Collected? |\n|----------|-----------|------|----|------|--------|------------|---------------------|\n| | | Workstation / Server / VM / DC / Infra | | | Confirmed / Suspected | Yes / No | Yes / No |\n\n---\n\n## Critical Asset Exposure\n\n<!-- Call out any particularly sensitive systems: domain controllers, backup servers, hypervisors, financial systems, PII stores, etc. -->\n\n| Asset | Sensitivity | Exposure Level | Notes |\n|-------|------------|---------------|-------|\n| | | Confirmed impacted / Accessed / Not impacted | |\n\n---\n\n## Scope Confidence\n\n<!-- Note what has and has not been ruled out. Are there segments of the environment that have not been assessed? -->\n"
+        },
+        {
+          "title": "Affected accounts",
+          "content": "## Affected Accounts\n\n**Last updated:** <!-- date / time -->\n**Total confirmed affected:** <!-- number -->\n\n---\n\n## Account Inventory\n\n| Account Name | Type | Domain / Host | Privileges | Compromise Confirmed | Remediated? |\n|-------------|------|---------------|------------|---------------------|-------------|\n| | | | | Yes / Suspected / No | Yes / No |\n\n---\n\n## Credential Exposure Assessment\n\n<!-- Describe the extent of credential compromise. Were hashes dumped? Were plaintext credentials exposed? Were service accounts affected? -->\n\n---\n\n## Remediation Status\n\n| Action | Status | Completed By | Date |\n|--------|--------|-------------|------|\n| Password resets - standard users | | | |\n| Password resets - privileged accounts | | | |\n| Service account rotation | | | |\n| Token / session revocation | | | |\n| MFA enforcement review | | | |\n"
+        }
+      ]
+    },
+    {
+      "title": "Response Actions",
+      "notes": [
+        {
+          "title": "Containment actions",
+          "content": "## Containment Actions Log\n\n**Containment status:** <!-- Not started / In progress / Contained / Partially contained -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Host Isolation\n\n| Hostname | Isolated? | Method | Actioned By | Date/Time | Notes |\n|----------|-----------|--------|-------------|-----------|-------|\n| | Yes / No / Pending | | | | |\n\n---\n\n## Network Blocks\n\n| Indicator Blocked | Type | Blocked On | Actioned By | Date/Time |\n|-------------------|------|------------|-------------|----------|\n| | IP / Domain / Range | Firewall / EDR / DNS | | |\n\n---\n\n## Remote Access Controls\n\n<!-- Document any VPN, RDP, or remote access paths that were disabled or restricted. -->\n\n| Access Path | Action Taken | Actioned By | Date/Time |\n|-------------|-------------|-------------|----------|\n| | | | |\n\n---\n\n## Containment Gaps\n\n<!-- Document any known gaps in containment - systems not yet isolated, paths not yet blocked, accounts not yet disabled. -->\n"
+        },
+        {
+          "title": "Eradication actions",
+          "content": "## Eradication Actions Log\n\n**Eradication status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Malicious Artifacts Removed\n\n| Host | Artifact | Path | Removed By | Date/Time | Confirmed? |\n|------|----------|------|-----------|-----------|------------|\n| | | | | | Yes / No |\n\n---\n\n## Persistence Mechanisms Removed\n\n| Host | Mechanism | Detail | Removed By | Date/Time | Confirmed? |\n|------|-----------|--------|-----------|-----------|------------|\n| | | | | | Yes / No |\n\n---\n\n## Vulnerability Remediation\n\n| System | Vulnerability / Gap | Remediation Applied | Status |\n|--------|--------------------|--------------------|--------|\n| | | | |\n\n---\n\n## Eradication Validation\n\n<!-- How was eradication confirmed? EDR clean scan, manual review, re-imaging, etc. -->\n"
+        },
+        {
+          "title": "Recovery actions",
+          "content": "## Recovery Actions Log\n\n**Recovery status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Backup Validation\n\n| System | Backup Source | Backup Date | Validated Clean? | Validated By |\n|--------|--------------|-------------|-----------------|-------------|\n| | | | Yes / No | |\n\n---\n\n## Restoration Log\n\n| System | Restore Method | Restore Point Date | Restored By | Date/Time | Validated? |\n|--------|---------------|-------------------|-------------|-----------|------------|\n| | Clean backup / Rebuild / Decryptor | | | | Yes / No |\n\n---\n\n## Post-Recovery Monitoring\n\n<!-- Document any enhanced monitoring applied to recovered systems. -->\n\n| System | Monitoring Applied | Duration | Owner |\n|--------|-------------------|----------|-------|\n| | | | |\n\n---\n\n## Recovery Blockers\n\n<!-- Note anything preventing full recovery. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Communications and Reporting",
+      "notes": [
+        {
+          "title": "Stakeholder communications",
+          "content": "## Stakeholder Communications Log\n\n<!-- Record all significant internal communications related to this incident. -->\n\n| Date/Time | From | To / Audience | Channel | Summary | Action Required |\n|-----------|------|--------------|---------|---------|----------------|\n| | | | | | |\n\n---\n\n## Escalation Path\n\n| Role | Name | Contact | Notified? | Date/Time |\n|------|------|---------|-----------|----------|\n| Incident Commander | | | | |\n| CISO / Security Leadership | | | | |\n| Legal Counsel | | | | |\n| Privacy Officer | | | | |\n| Executive / C-Suite | | | | |\n| PR / Communications | | | | |\n| HR (if insider threat) | | | | |\n\n---\n\n## Pending Communications\n\n<!-- Track any communications that are drafted, pending approval, or scheduled. -->\n\n| Communication | Target Audience | Owner | Status | Due By |\n|---------------|----------------|-------|--------|--------|\n| | | | Draft / Pending / Sent | |\n"
+        },
+        {
+          "title": "External notifications",
+          "content": "## External Notification Assessment\n\n**Assessment status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n---\n\n## Regulatory Obligations\n\n| Regulator / Framework | Obligation Triggered? | Notification Deadline | Status | Notified Date |\n|----------------------|----------------------|--------------------|--------|---------------|\n| | Yes / No / Under Review | | | |\n\n---\n\n## Law Enforcement\n\n| Agency | Reported? | Date | Reference / Case Number | Notes |\n|--------|-----------|------|------------------------|-------|\n| | | | | |\n\n---\n\n## Cyber Insurance\n\n| Insurer | Policy Number | Notified? | Date | Notes |\n|---------|--------------|-----------|------|-------|\n| | | | | |\n\n---\n\n## Customer / Partner Notifications\n\n| Party | Notification Required? | Method | Status | Date |\n|-------|----------------------|--------|--------|------|\n| | | | | |\n\n---\n\n## Legal Hold\n\n<!-- Document whether a legal hold has been triggered and what evidence is subject to preservation. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Post-Incident",
+      "notes": [
+        {
+          "title": "Lessons learned",
+          "content": "## Lessons Learned\n\n**Review date:** <!-- date -->\n**Facilitator:** <!-- name -->\n**Attendees:** <!-- list -->\n\n---\n\n## Incident Summary (Final)\n\n<!-- A concise final summary of what happened, how it was detected, and how it was resolved. Suitable for executive or board reporting. -->\n\n---\n\n## Root Cause\n\n<!-- Final confirmed root cause(s) of the incident. -->\n\n---\n\n## What Went Well\n\n| Observation | Category |\n|-------------|----------|\n| | Detection / Containment / Communications / Tools / Process |\n\n---\n\n## What Could Be Improved\n\n| Observation | Category | Priority |\n|-------------|----------|----------|\n| | | High / Medium / Low |\n\n---\n\n## Action Items\n\n| # | Action | Owner | Due Date | Status |\n|---|--------|-------|----------|--------|\n| 1 | | | | |\n| 2 | | | | |\n| 3 | | | | |\n\n---\n\n## Closure Confirmation\n\n- [ ] Recovery complete and validated\n- [ ] No ongoing malicious activity observed\n- [ ] All required notifications sent\n- [ ] Evidence preserved per retention policy\n- [ ] Lessons learned documented\n- [ ] Case formally closed\n"
+        }
+      ]
+    }
+  ]
+}
