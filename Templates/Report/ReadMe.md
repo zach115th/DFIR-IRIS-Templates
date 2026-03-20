@@ -10,7 +10,7 @@ Templates are designed to be generic, case-type-aligned, and ready to load via *
 
 | Template | Case Type | Format | Description |
 |----------|-----------|--------|-------------|
-| [`RansomwareAttack_Report_v2.docx`](./RansomwareAttack_Report_v2.docx) | Ransomware | `.docx` | Full incident response report aligned to the Ransomware Attack case template. Covers MITRE ATT&CK analysis, CTI findings, response actions, and IOC appendices. |
+| [`RansomwareAttack_Report_v2.docx`](./RansomwareReportTemplate.docx) | Ransomware | `.docx` | Full incident response report aligned to the Ransomware Attack case template. Covers MITRE ATT&CK analysis, CTI findings, response actions, and IOC appendices. |
 
 ---
 
@@ -64,7 +64,7 @@ These report templates are designed to work alongside the case templates in [`/T
 
 | Report Template | Companion Case Template |
 |----------------|------------------------|
-| `RansomwareAttack_Report_v2.docx` | `RansomwareAttack` |
+| `RansomwareReportTemplate.docx` | `RansomwareAttack` |
 
 ---
 
@@ -162,14 +162,6 @@ Full reference: [docs.dfir-iris.org/operations/reports](https://docs.dfir-iris.o
 | Appendix B | IOCs split by type: network, file, other (conditional) |
 | Appendix C | Evidence / received files (conditional) |
 | Appendix D | Event timeline (conditional) |
-
----
-
-## 🤝 Contributing
-
-Contributions welcome — new case type templates, improvements to existing ones, or additional conditional logic.
-
-Please follow the existing naming convention: `[CaseType]_Report_v[X].[Y].docx`
 
 ---
 
