@@ -10,7 +10,7 @@ Templates are designed to be generic, case-type-aligned, and ready to load via *
 
 | Template | Case Type | Format | Description |
 |----------|-----------|--------|-------------|
-| [`RansomwareAttack_Report_v2.docx`](./RansomwareReportTemplate.docx) | Ransomware | `.docx` | Full incident response report aligned to the Ransomware Attack case template. Covers MITRE ATT&CK analysis, CTI findings, response actions, and IOC appendices. |
+| [`RansomwareReportTemplate.docx`](./RansomwareReportTemplate.docx) | Ransomware | `.docx` | Full incident response report aligned to the Ransomware Attack case template. Covers MITRE ATT&CK analysis, CTI findings, response actions, and IOC appendices. |
 
 ---
 
