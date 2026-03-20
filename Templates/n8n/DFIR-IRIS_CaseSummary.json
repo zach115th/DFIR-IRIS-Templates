@@ -1,0 +1,326 @@
+{
+  "name": "DFIR-IRIS_CaseSummary_TEMPLATE",
+  "nodes": [
+    {
+      "parameters": {},
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -592,
+        256
+      ]
+    },
+    {
+      "parameters": {
+        "url": "https://dfir-iris.example.local/manage/cases/list",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "dfirIrisApi",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "name": "Get Case List",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        -336,
+        160
+      ],
+      "alwaysOutputData": true,
+      "extendsCredential": "dfirIrisApi"
+    },
+    {
+      "parameters": {
+        "jsCode": "const payload = $input.first().json;\n\nlet cfg = {\n  iris_base_url: '',\n  llm_model: 'gpt-4o-mini',\n  max_cases: 50,\n};\n\ntry {\n  const setConfig = $('Set Config').first().json;\n  cfg = {\n    iris_base_url: setConfig.iris_base_url ?? '',\n    llm_model:     setConfig.llm_model     ?? 'gpt-4o-mini',\n    max_cases:     Number(setConfig.max_cases ?? 50),\n  };\n} catch (e) {\n  // allows manual test-run without Set Config context\n}\n\nconst cases = payload.data ?? payload.cases ?? [];\n\nfunction norm(v) {\n  return String(v ?? '').trim().toLowerCase();\n}\n\nfunction isOpenCase(c) {\n  const stateName     = norm(c.state_name ?? c.case_status_name ?? c.case_status);\n  const caseCloseDate = String(c.case_close_date ?? '').trim();\n  if (stateName === 'open' || stateName === 'reporting') return true;\n  if (stateName === 'closed') return false;\n  if (caseCloseDate) return false;\n  return true;\n}\n\nconst openCases = cases\n  .filter(c => c && c.case_id != null)\n  .filter(isOpenCase)\n  .slice(0, Math.max(1, Number(cfg.max_cases || 50)));\n\nif (!openCases.length) {\n  return [{ json: { status: 'no_open_cases_found' } }];\n}\n\nreturn openCases.map(c => ({\n  json: {\n    iris_base_url:      cfg.iris_base_url,\n    llm_model:          cfg.llm_model,\n    case_id:            c.case_id            ?? null,\n    case_name:          c.case_name          ?? `Case ${c.case_id ?? 'unknown'}`,\n    case_status:        c.state_name ?? c.case_status_name ?? c.case_status ?? 'unknown',\n    case_uuid:          c.case_uuid ?? c.uuid ?? null,\n    case_description:   c.case_description   ?? '',\n    client_name:        c.client_name        ?? null,\n    case_open_date:     c.case_open_date     ?? null,\n    case_close_date:    c.case_close_date    ?? null,\n    raw_case_list_item: c\n  }\n}));"
+      },
+      "name": "Filter Open Cases",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        160
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1,
+                4
+              ],
+              "triggerAtHour": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -592,
+        64
+      ],
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "url": "={{ 'https://dfir-iris.example.local/case/export?cid=' +  $json.case_id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "dfirIrisApi",
+        "options": {
+          "allowUnauthorizedCerts": false
+        }
+      },
+      "name": "Get Case Export",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        368,
+        64
+      ],
+      "alwaysOutputData": true,
+      "extendsCredential": "dfirIrisApi"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        48,
+        160
+      ],
+      "name": "Loop Over Items"
+    },
+    {
+      "parameters": {
+        "fromEmail": "soc@example.com",
+        "toEmail": "leadership@example.com",
+        "subject": "={{ $json.subject }}",
+        "emailFormat": "text",
+        "text": "={{ $json.body }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.emailSend",
+      "typeVersion": 2.1,
+      "position": [
+        768,
+        -160
+      ],
+      "name": "Send Summary Email"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }}",
+        "options": {
+          "systemMessage": "You are a senior incident response analyst responsible for briefing executive leadership on active security incidents. Your role is to translate technical case data into clear, concise, and actionable executive summaries that non-technical stakeholders can understand and act upon.\n\nYou will receive a JSON object containing the full export of a DFIR-IRIS incident response case, including case metadata, IoCs, affected assets, timeline events, analyst notes, tasks, and evidence.\n\n## YOUR OBJECTIVE\n\nProduce a structured executive summary suitable for a CISO, VP, or C-suite audience. The summary must be accurate, professional, and free of unnecessary technical jargon. Where technical terms are unavoidable, briefly explain them in plain language.\n\n## OUTPUT FORMAT\n\nProduce the summary in clean Markdown using exactly the following structure:\n\n---\n\n# Incident Summary — {Case Name}\n**Classification:** {TLP level of the most sensitive IoC, or TLP:AMBER if unclear}\n**Report Generated:** {today's date}\n**Prepared By:** Automated Threat Intelligence System\n\n---\n\n## Situation Overview\nTwo to four sentences. What happened? What type of incident is this? When was it detected? Keep this high-level — no IoC values, no hostnames. Use plain language (e.g. \"an attacker gained unauthorised access to internal systems\" rather than \"threat actor achieved initial access via spearphishing attachment T1566.001\").\n\n## Current Status\nOne of: 🔴 Critical — Active Threat | 🟠 High — Contained but Ongoing | 🟡 Medium — Under Investigation | 🟢 Low — Resolved / Monitoring\nFollow with one or two sentences explaining the current operational state.\n\n## Business Impact\nBullet points only. Focus on what matters to leadership: affected systems, data at risk, service disruption, customer impact, regulatory exposure. If there is no confirmed impact for a category, omit it rather than saying \"none identified\".\n\n## Affected Assets\nA brief table or short list. Include asset name, type, and whether it is confirmed compromised, suspected compromised, or under investigation. Do not include IP addresses or technical identifiers unless they are publicly known (e.g. a public-facing server).\n\n## Key Findings\nThree to six concise bullet points summarising what investigators have established so far. Write in plain language. Focus on the narrative of what the attacker did or is doing, not on the technical indicators.\n\n## Actions Taken\nWhat has the response team done so far? Brief bullet points. Frame as completed actions (e.g. \"Isolated affected endpoint from the network\", \"Revoked compromised credentials\", \"Engaged forensic review of server logs\").\n\n## Outstanding Actions\nWhat is still in progress or not yet started? Pull from open tasks in the case data. Flag any items that are overdue or unassigned.\n\n## Recommendations for Leadership\nTwo to five actionable recommendations directed at leadership or requiring leadership decisions. These may include approvals needed, resources to allocate, external parties to notify (legal, insurers, regulators, customers), or policy decisions. Do not include technical remediation steps here.\n\n## Timeline of Key Events\nA short chronological list of the most significant events only — no more than eight entries. Use plain language descriptions. Format as:\n`YYYY-MM-DD HH:MM — Description of what occurred`\nOmit low-significance events. Prioritise events that represent attacker actions, detection points, or response milestones.\n\n---\n*This summary was automatically generated from case data and should be reviewed by the lead analyst before distribution.*\n\n---\n\n## STRICT RULES\n\n- Do NOT include raw IoC values (IPs, hashes, domains, URLs) in the summary. These belong in the technical appendix, not the executive brief.\n- Do NOT speculate beyond what the case data supports. If attribution is unclear, say so. Never assert threat actor identity without evidence.\n- Do NOT include internal analyst commentary, personal opinions from notes, or unverified hypotheses as facts.\n- If the case data is sparse or incomplete, note where information is pending rather than filling gaps with assumptions.\n- If the case is marked closed, frame the summary in past tense and include a brief lessons-learned paragraph after the timeline.\n- Always flag in the Current Status section if any tasks are unassigned or if the case has had no activity in more than 48 hours.\n- TLP classification: default to TLP:AMBER unless the case data suggests otherwise. Never downgrade to TLP:GREEN or TLP:WHITE without explicit justification in the case data."
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        768,
+        64
+      ],
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "google/gemma-3-4b",
+          "mode": "list",
+          "cachedResultName": "google/gemma-3-4b"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        768,
+        288
+      ],
+      "name": "OpenAI Chat Model"
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.data;\n\nif (!raw) return [{ json: { error: 'No case data found' } }];\n\nconst assets = (raw.assets ?? []).map(a => ({\n  name: a.asset_name,\n  type: a.type,\n  ip: a.asset_ip || undefined,\n  domain: a.asset_domain || undefined,\n  compromised: a.asset_compromise_status,\n  analysis_status: a.analysis_status,\n  description: a.asset_description || undefined\n}));\n\nconst iocs = (raw.iocs ?? []).map(i => ({\n  type: i.type_name,\n  tlp: i.tlp_name,\n  description: i.ioc_description || undefined,\n  tags: i.ioc_tags || undefined\n}));\n\nconst timeline = (raw.timeline ?? []).map(e => ({\n  date: e.event_date,\n  title: e.event_title,\n  category: e.category || undefined,\n  content: e.event_content || undefined,\n  source: e.event_source || undefined,\n  flagged: e.event_is_flagged || undefined,\n  assets: e.assets,\n  ioc_count: (e.iocs ?? []).length\n}));\n\nconst tasks = (raw.tasks ?? []).map(t => ({\n  title: t.task_title,\n  status: t.task_status,\n  description: t.task_description || undefined,\n  assignees: (t.task_assignees ?? []).map(a => a.name),\n  open_date: t.task_open_date,\n  close_date: t.task_close_date || undefined\n}));\n\nconst notes = (raw.notes ?? []).map(n => ({\n  group: n.group_title,\n  title: n.note_title,\n  content: (n.note_content ?? '').substring(0, 1500)\n}));\n\nconst evidences = (raw.evidences ?? []).map(e => ({\n  filename: e.filename,\n  date_added: e.date_added,\n  added_by: e.added_by\n}));\n\nconst slimmed = {\n  case: {\n    name: raw.case?.name,\n    open_date: raw.case?.open_date,\n    description: raw.case?.description,\n    soc_id: raw.case?.soc_id,\n    opened_by: raw.case?.opened_by,\n    for_customer: raw.case?.for_customer,\n    status_name: raw.case?.status_name\n  },\n  assets,\n  iocs,\n  timeline: timeline.slice(0, 50),\n  tasks,\n  notes: notes.slice(0, 20),\n  evidences,\n  export_date: raw.export_date\n};\n\nreturn [{ json: { data: JSON.stringify(slimmed) } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        560,
+        64
+      ],
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "jsCode": "return [{\n  json: {\n    case_id: $('Get Case Export').first().json.case_id,\n    case_name: $('Get Case Export').first().json.case_name,\n    summary: $json.output ?? $json.text ?? JSON.stringify($json)\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1136,
+        224
+      ],
+      "name": "Collect Summary"
+    },
+    {
+      "parameters": {
+        "jsCode": "const items = $input.all();\n\nif (!items.length) {\n  return [{\n    json: {\n      subject: 'Open Case Summary',\n      body: 'No open cases were found.'\n    }\n  }];\n}\n\nconst body = [\n  '# Open Case Summary',\n  '',\n  `Generated: ${new Date().toISOString()}`,\n  '',\n  `Total open cases: ${items.length}`,\n  '',\n  '---',\n  '',\n  ...items.flatMap((item, i) => [\n    `## ${i + 1}. ${item.json.case_name || `Case ${item.json.case_id || 'Unknown'}`}`,\n    '',\n    item.json.summary || 'No summary generated.',\n    '',\n    '---',\n    ''\n  ])\n].join('\\n');\n\nreturn [{\n  json: {\n    subject: `Open Case Summary (${items.length} cases)`,\n    body\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        368,
+        -160
+      ],
+      "name": "Combine Summaries"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Case List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Case List": {
+      "main": [
+        [
+          {
+            "node": "Filter Open Cases",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Filter Open Cases": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Get Case List",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Combine Summaries",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Get Case Export",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Case Export": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Collect Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Summary": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Combine Summaries": {
+      "main": [
+        [
+          {
+            "node": "Send Summary Email",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "tags": []
+}
