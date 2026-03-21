@@ -1,0 +1,584 @@
+{
+  "name": "DFIR-IRIS_CaseSummaryLLM",
+  "nodes": [
+    {
+      "parameters": {},
+      "id": "a6aec210-8a7c-4de3-8615-2e9e5be1959e",
+      "name": "Manual Trigger",
+      "type": "n8n-nodes-base.manualTrigger",
+      "typeVersion": 1,
+      "position": [
+        -288,
+        208
+      ]
+    },
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {
+              "field": "weeks",
+              "triggerAtDay": [
+                1,
+                4
+              ],
+              "triggerAtHour": 5
+            }
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -288,
+        16
+      ],
+      "id": "5c8facc6-ee7e-425d-8007-3baf6345b6dd",
+      "name": "Schedule Trigger"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ⚙️  Edit these values before running\nreturn [{\n  json: {\n    case_id: '',\n  }\n}];"
+      },
+      "id": "5ea1de7a-fa83-49f1-b87f-320eb1885ba9",
+      "name": "Set Config",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        -128,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "url": "={{ 'https://YOUR_IRIS_INSTANCE/case/export?cid=' + $json.case_id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "dfirIrisApi",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "31a5b308-7063-4bde-9226-90ec83fc8414",
+      "name": "Get Case List1",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        112,
+        112
+      ],
+      "alwaysOutputData": true,
+      "extendsCredential": "dfirIrisApi",
+      "credentials": {
+        "dfirIrisApi": {
+          "id": "YOUR_DFIR_IRIS_CREDENTIAL_ID",
+          "name": "DFIR-IRIS account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json;\nconst caseData = raw.data ?? raw;\n\nconst summary =\n  caseData.case?.description ??\n  caseData.case?.case_description ??\n  caseData.case_description ??\n  caseData.summary ??\n  null;\n\nif (!summary) {\n  return [{\n    json: {\n      ...raw,\n      _summary_found:  false,\n      _summary_text:   null,\n      _prompt_count:   0,\n      _parsed_prompts: []\n    }\n  }];\n}\n\nconst hasPrompts = summary.includes('{{AI_PROMPT:');\n\nreturn [{\n  json: {\n    ...raw,\n    _summary_found:  true,\n    _summary_text:   summary,\n    _prompt_count:   hasPrompts ? (summary.match(/\\{\\{AI_PROMPT:/g) ?? []).length : 0,\n    _parsed_prompts: []\n  }\n}];"
+      },
+      "id": "e33f98fc-554d-4404-8904-133c48e7f3d5",
+      "name": "Extract Summary Field",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        352,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const item    = $input.first().json;\nconst summary = item._summary_text;\n\nif (!summary) {\n  return [{ json: { ...item, _parsed_prompts: [] } }];\n}\n\nconst lines         = summary.split('\\n');\nconst headingRe     = /^#{1,6}\\s+.+/;\nconst promptStartRe = /\\{\\{AI_PROMPT:/;\n\nconst parsedPrompts = [];\nlet currentHeading  = '(preamble)';\nlet i = 0;\n\nwhile (i < lines.length) {\n  const line = lines[i];\n\n  if (headingRe.test(line.trim())) {\n    currentHeading = line.trim();\n    i++;\n    continue;\n  }\n\n  if (promptStartRe.test(line)) {\n    const blockLines = [line];\n    let j = i + 1;\n    while (j < lines.length && !blockLines.join('').includes('}}')) {\n      blockLines.push(lines[j]);\n      j++;\n    }\n    const fullBlock  = blockLines.join('\\n');\n    const innerMatch = fullBlock.match(/\\{\\{AI_PROMPT:\\s*([\\s\\S]*?)\\}\\}/);\n    if (innerMatch) {\n      parsedPrompts.push({\n        index:       parsedPrompts.length,\n        heading:     currentHeading,\n        prompt:      innerMatch[1].trim(),\n        placeholder: fullBlock\n      });\n    }\n    i = j;\n    continue;\n  }\n  i++;\n}\n\nreturn [{\n  json: {\n    ...item,\n    _summary_found:  item._summary_found,\n    _summary_text:   summary,\n    _prompt_count:   parsedPrompts.length,\n    _parsed_prompts: parsedPrompts\n  }\n}];"
+      },
+      "id": "c7c5f090-08dd-4835-956c-ef037c4fb8d4",
+      "name": "Parse AI Prompts from Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        592,
+        112
+      ]
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json.data;\n\nif (!raw) return [{ json: { error: 'No case data found' } }];\n\nconst assets = (raw.assets ?? []).map(a => ({\n  name: a.asset_name,\n  type: a.type,\n  ip: a.asset_ip || undefined,\n  domain: a.asset_domain || undefined,\n  compromised: a.asset_compromise_status,\n  analysis_status: a.analysis_status,\n  description: a.asset_description || undefined,\n}));\n\nconst iocs = (raw.iocs ?? []).map(i => ({\n  type: i.type_name,\n  tlp: i.tlp_name,\n  description: i.ioc_description || undefined,\n  tags: i.ioc_tags || undefined,\n}));\n\nconst timeline = (raw.timeline ?? []).map(e => ({\n  date: e.event_date,\n  title: e.event_title,\n  category: e.category || undefined,\n  content: e.event_content || undefined,\n  source: e.event_source || undefined,\n  flagged: e.event_is_flagged || undefined,\n  assets: e.assets,\n  ioc_count: (e.iocs ?? []).length,\n}));\n\nconst tasks = (raw.tasks ?? []).map(t => ({\n  title: t.task_title,\n  status: t.task_status,\n  description: t.task_description || undefined,\n  assignees: (t.task_assignees ?? []).map(a => a.name),\n  open_date: t.task_open_date,\n  close_date: t.task_close_date || undefined,\n}));\n\nconst notes = (raw.notes ?? []).map(n => ({\n  group: n.group_title,\n  title: n.note_title,\n  content: (n.note_content ?? '').substring(0, 1500),\n}));\n\nconst evidences = (raw.evidences ?? []).map(e => ({\n  filename: e.filename,\n  date_added: e.date_added,\n  added_by: e.added_by,\n}));\n\nconst slimmed = {\n  case: {\n    name: raw.case?.name,\n    open_date: raw.case?.open_date,\n    description: raw.case?.description,\n    soc_id: raw.case?.soc_id,\n    opened_by: raw.case?.opened_by,\n    for_customer: raw.case?.for_customer,\n    status_name: raw.case?.status_name,\n  },\n  assets,\n  iocs,\n  timeline: timeline.slice(0, 50),\n  tasks,\n  notes: notes.slice(0, 20),\n  evidences,\n  export_date: raw.export_date,\n  _summary_found:  $input.first().json._summary_found,\n  _summary_text:   $input.first().json._summary_text,\n  _prompt_count:   $input.first().json._prompt_count,\n  _parsed_prompts: $input.first().json._parsed_prompts,\n};\n\nreturn [{ json: { data: JSON.stringify(slimmed) } }];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        832,
+        112
+      ],
+      "id": "b3697197-730e-46c6-82b6-e91ab95d0a1f",
+      "name": "Code in JavaScript"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.data }}",
+        "options": {
+          "systemMessage": "You are a senior threat intelligence analyst and incident responder.\n\nYou will receive a JSON export of a DFIR-IRIS case containing some or all of the following: case metadata, assets, IoCs, timeline events, tasks, notes, evidence, and comments.\n\nYour job is to produce a structured technical analysis for the responding DFIR team and incident commander. This is an analyst-grade working document. Be precise, technical, direct, and evidence-based. Do not pad the output with generic observations.\n\n---\n\n## PRIMARY GOAL\n\nProduce a case-specific technical analysis that explains:\n- what is evidenced to have happened\n- what is suspected but not yet confirmed\n- what the major investigative gaps are\n- what actions should be prioritised next\n- what forensic artifacts should be collected or preserved immediately\n\n---\n\n## SPARSE CASE RULE\n\nBefore producing output, assess whether the case contains meaningful investigative substance.\n\nA case is considered insufficient if:\n- fewer than 3 of these sections contain substantive data: assets, IoCs, timeline events, tasks, notes, evidence\nOR\n- neither assets nor IoCs are meaningfully populated\nOR\n- there is no combination of investigative context such as timeline, evidence, or task detail sufficient to support analysis\n\nIf insufficient, output only:\n\n> Insufficient case data for meaningful analysis.\n> Populated fields: [list them].\n> Missing or weak fields: [list them].\n> Re-run once the case has been further developed.\n\nDo not output any further analysis.\n\n---\n\n## EVIDENCE PRECEDENCE\n\nWhen information conflicts, use this precedence order:\n1. Case metadata and case status fields\n2. Timeline events with explicit timestamps\n3. Asset records and compromise status\n4. Evidence records\n5. Task records and task status\n6. IoC metadata, tags, and linked object relationships\n7. Notes and comments\n\nTreat notes and comments as lower-confidence analyst context unless corroborated elsewhere.\n\n---\n\n## DATA HANDLING RULES\n\n- Use only case-supported evidence.\n- Do not speculate beyond the data.\n- Never assert attribution, lateral movement, persistence, exfiltration, or business impact without supporting case evidence.\n- If timestamps are missing or inconsistent, state that explicitly.\n- Use explicit confidence tiers for every analytical claim:\n  - [CONFIRMED] — directly evidenced by structured case data\n  - [SUSPECTED] — indicated but not fully corroborated\n  - [HYPOTHESIS] — plausible interpretation based on limited evidence\n  - [UNKNOWN] — insufficient data to assess\n\n---\n\n## TLP CLASSIFICATION RULE\n\n1. Case-level TLP tag if explicitly present\n2. Highest TLP value across all IoCs and artifacts\n3. Default to TLP:AMBER\n\nIf any artifact carries TLP:RED the entire analysis is TLP:RED. This cannot be overridden.\n\n---\n\n## RISK SCORING\n\nSeverity: 4=Critical, 3=High, 2=Medium, 1=Low\nUrgency: 4=Immediate, 3=High, 2=Medium, 1=Low\nComposite = Severity × Urgency"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1072,
+        16
+      ],
+      "id": "4c1f3e3d-dbd4-404e-a868-c9af72a76b56",
+      "name": "AI Agent"
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1072,
+        240
+      ],
+      "id": "6c20e0e4-2ea3-43db-af54-d7481d789e79",
+      "name": "OpenAI Chat Model",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "jsCode": "// Collect Summary — unchanged from original\n// Also carries _parsed_prompts and _summary_text through\n// for the new nodes downstream.\n\nconst agentOutput = $json.output ?? $json.text ?? JSON.stringify($json);\n\n// Parse the slimmed data back out to recover the prompt metadata\nlet slimmed = {};\ntry {\n  slimmed = JSON.parse($('Code in JavaScript').item.json.data ?? '{}');\n} catch(e) {}\n\nreturn [{\n  json: {\n    case_id:         $('Get Case List1').first().json.case_id,\n    case_name:       $('Get Case List1').first().json.case_name,\n    agent_analysis:  agentOutput,\n    _summary_found:  slimmed._summary_found  ?? false,\n    _summary_text:   slimmed._summary_text   ?? null,\n    _prompt_count:   slimmed._prompt_count   ?? 0,\n    _parsed_prompts: slimmed._parsed_prompts ?? []\n  }\n}];"
+      },
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1376,
+        112
+      ],
+      "id": "051cf415-8376-420e-90c4-d161e0f4f0b3",
+      "name": "Collect Summary"
+    },
+    {
+      "parameters": {
+        "jsCode": "// ─────────────────────────────────────────────────────────────\n// SPLIT ON PROMPTS\n// Takes the single item from Collect Summary and fans it out\n// into one item per {{AI_PROMPT}} block extracted from the\n// case summary template.\n//\n// Each output item contains:\n//   - case_id / case_name        : for the write-back node\n//   - agent_analysis             : the full AI Agent output\n//                                  (used as the case context)\n//   - section_index              : order in the template\n//   - section_heading            : nearest markdown heading\n//   - section_prompt             : verbatim prompt text\n//   - prompt_placeholder         : exact block for splice-back\n//   - template_summary           : full original summary string\n//\n// If no prompts were found the item passes through as-is\n// so the workflow ends gracefully without erroring.\n// ─────────────────────────────────────────────────────────────\n\nconst item    = $input.first().json;\nconst prompts = item._parsed_prompts ?? [];\n\nif (!prompts.length) {\n  // No prompts in this case's summary — nothing to generate\n  return [{\n    json: {\n      ...item,\n      _no_prompts: true\n    }\n  }];\n}\n\nreturn prompts.map(p => ({\n  json: {\n    case_id:            item.case_id,\n    case_name:          item.case_name,\n    template_summary:   item._summary_text,\n    agent_analysis:     item.agent_analysis,  // full case context from AI Agent\n    section_index:      p.index,\n    section_heading:    p.heading,\n    section_prompt:     p.prompt,\n    prompt_placeholder: p.placeholder\n  }\n}));"
+      },
+      "id": "1a4b680c-3f50-45de-8b6c-3296a921fa66",
+      "name": "Split on Prompts",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        1536,
+        112
+      ],
+      "notes": "Fans out one item per {{AI_PROMPT}} block.\nEach item carries the section prompt, its placeholder string,\nand the full AI Agent analysis as case context.\n\nIf _parsed_prompts is empty (no prompts in summary),\npasses through with _no_prompts: true — no errors thrown."
+    },
+    {
+      "parameters": {
+        "model": {
+          "__rl": true,
+          "value": "gpt-4o",
+          "mode": "list",
+          "cachedResultName": "gpt-4o"
+        },
+        "responsesApiEnabled": false,
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatOpenAi",
+      "typeVersion": 1.3,
+      "position": [
+        1920,
+        320
+      ],
+      "id": "23072dff-78a4-44f3-a19d-575faad0b2c9",
+      "name": "OpenAI Chat Model (Sections)",
+      "credentials": {
+        "openAiApi": {
+          "id": "YOUR_OPENAI_CREDENTIAL_ID",
+          "name": "OpenAI account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "={{ $json.section_prompt + \"\\n\\n=== CASE ANALYSIS CONTEXT ===\\n\" + $json.agent_analysis }}",
+        "options": {
+          "systemMessage": "You are a senior incident response analyst and technical writer specialising in ransomware investigations and DFIR reporting.\n\nYou will receive:\n1. A writing instruction for a single section of a formal incident report.\n2. A case analysis containing the available evidence, findings, timeline, assets, IOCs, and investigative context.\n\nYour task is to write ONLY the body content for that requested section.\n\nRequirements:\n- Base all statements strictly on the supplied case analysis.\n- Do not fabricate, speculate, or introduce facts, causes, motives, impact statements, or attributions not explicitly supported by the case analysis.\n- You may synthesise and organise confirmed facts into clear prose, but do not extend beyond the evidence.\n- If the requested section calls for information that is absent, state that it is not available, not confirmed, or not established in the provided case data, as appropriate.\n- Do not omit known limitations, evidentiary gaps, or unresolved points if they are relevant to the requested section.\n- Keep the content tightly scoped to the requested section. Do not add unrelated case summary material.\n- Write in clear, professional prose suitable for both technical stakeholders and executive leadership.\n- Return only the section narrative. Do not include headings, bullets, labels, preamble, or sign-off.\n\nStyle constraints:\n- Be precise, concise, and evidence-bound.\n- Prefer definitive wording only where the evidence is definitive.\n- Where uncertainty exists, use appropriately qualified language such as “observed,” “identified,” “reported,” “not confirmed,” or “not available in the provided case data.”"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        1904,
+        112
+      ],
+      "id": "818c99c7-55d5-4bba-bf6a-654295551d71",
+      "name": "Generate Section",
+      "notes": "Called once per {{AI_PROMPT}} block in parallel.\n\nReceives:\n  - section_prompt   : the verbatim instruction from the template\n  - agent_analysis   : the full case analysis from AI Agent above\n\nReturns the narrative text for that section only.\nNo headings, no preamble — just the content to splice in."
+    },
+    {
+      "parameters": {
+        "jsCode": "const agentItem = $input.first().json;\nconst loopItem  = $('Loop Over Items').item.json;\n\nconst generatedText =\n  agentItem.output ??\n  agentItem.text ??\n  '[Section generation failed — no content returned]';\n\nreturn [{\n  json: {\n    case_id:            loopItem.case_id,\n    case_name:          loopItem.case_name,\n    template_summary:   loopItem.template_summary,\n    section_index:      loopItem.section_index,\n    section_heading:    loopItem.section_heading,\n    prompt_placeholder: loopItem.prompt_placeholder,\n    generated_text:     generatedText.trim()\n  }\n}];"
+      },
+      "id": "3c082a38-1362-4fab-bc22-833406481523",
+      "name": "Extract Section Text",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2208,
+        112
+      ],
+      "notes": "Normalises the Generate Section agent response\nand carries forward the placeholder string needed\nfor the assembler to splice the result back in."
+    },
+    {
+      "parameters": {
+        "aggregate": "aggregateAllItemData",
+        "options": {}
+      },
+      "id": "0a59575a-eda2-4f42-8af2-ede613478a17",
+      "name": "Aggregate Sections",
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        2416,
+        -48
+      ],
+      "notes": "Waits for all parallel section generations to complete\nbefore passing to the assembler."
+    },
+    {
+      "parameters": {
+        "jsCode": "const raw = $input.first().json;\n\n// Unwrap Aggregate output envelope\nlet items;\nif (Array.isArray(raw.data)) {\n  items = raw.data.map(entry => entry.json ?? entry);\n} else {\n  items = $input.all().map(i => i.json);\n}\n\nif (!items.length) throw new Error('Assembler received no items.');\n\n// No-prompts passthrough — nothing to assemble\nif (items[0]?._no_prompts) {\n  return [{\n    json: {\n      case_id:          items[0].case_id,\n      case_name:        items[0].case_name,\n      summary_markdown: null,\n      _skipped:         true,\n      _reason:          'No {{AI_PROMPT}} blocks found in case summary'\n    }\n  }];\n}\n\n// Validate template string exists\nconst templateSummary = items.find(i => i.template_summary)?.template_summary;\nif (!templateSummary) {\n  throw new Error('Assembler: no template_summary found on any item.');\n}\n\n// Sort by original order, process in reverse so earlier\n// placeholder positions are not shifted by replacements\nconst sorted  = [...items].sort((a, b) => (a.section_index ?? 0) - (b.section_index ?? 0));\nconst reverse = [...sorted].reverse();\n\nlet assembled = templateSummary;\n\nfor (const section of reverse) {\n  if (!section.prompt_placeholder) {\n    console.warn(`Assembler: section ${section.section_index} has no placeholder. Skipping.`);\n    continue;\n  }\n  if (!assembled.includes(section.prompt_placeholder)) {\n    console.warn(`Assembler: placeholder not found for section ${section.section_index} (${section.section_heading}). Skipping.`);\n    continue;\n  }\n  assembled = assembled.replace(section.prompt_placeholder, section.generated_text ?? '');\n}\n\n// Substitute [CASE TITLE] token with actual case name\nassembled = assembled.replace(/\\[CASE TITLE\\]/g, items[0].case_name ?? 'Unknown Case');\n\n// Pull case_id and case_name directly from Collect Summary\n// as the reliable source — they can be dropped by the Aggregate\nconst case_id   = $('Collect Summary').first().json.case_id;\nconst case_name = $('Collect Summary').first().json.case_name;\n\nreturn [{\n  json: {\n    case_id:          case_id,\n    case_name:        case_name,\n    summary_markdown: assembled\n  }\n}];"
+      },
+      "id": "de84f449-5b0d-4ca7-9a68-bd48dedd7868",
+      "name": "Assemble Summary",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        2640,
+        112
+      ],
+      "notes": "Splices each generated section back into the exact\nposition of its {{AI_PROMPT}} placeholder.\n\nAll headings, tables, static text, and HTML comments\nare preserved from the original template.\nOnly the {{AI_PROMPT}} blocks are replaced.\n\nAlso substitutes [CASE TITLE] with the actual case name."
+    },
+    {
+      "parameters": {
+        "method": "POST",
+        "url": "={{ 'https://YOUR_IRIS_INSTANCE/case/summary/update?cid=' + $json.case_id }}",
+        "authentication": "predefinedCredentialType",
+        "nodeCredentialType": "dfirIrisApi",
+        "sendBody": true,
+        "specifyBody": "json",
+        "jsonBody": "={{ JSON.stringify({ case_description: $json.summary_markdown }) }}",
+        "options": {
+          "allowUnauthorizedCerts": true
+        }
+      },
+      "id": "392f1aa9-9a9a-4ed3-98b0-77253be39fe0",
+      "name": "Write Summary to IRIS",
+      "type": "n8n-nodes-base.httpRequest",
+      "typeVersion": 4.4,
+      "position": [
+        3040,
+        -208
+      ],
+      "alwaysOutputData": true,
+      "extendsCredential": "dfirIrisApi",
+      "credentials": {
+        "dfirIrisApi": {
+          "id": "YOUR_DFIR_IRIS_CREDENTIAL_ID",
+          "name": "DFIR-IRIS account"
+        }
+      },
+      "notes": "Writes the assembled summary markdown back to the IRIS case.\nEndpoint: PUT /api/v2/cases/{id}/summary\n\nIf your IRIS version uses v1 change to:\n  PUT /api/v1/manage/cases/update\n  body: { case_id: N, case_description: '...' }"
+    },
+    {
+      "parameters": {
+        "jsCode": "const result   = $input.first().json;\nconst prevData = $('Assemble Summary').item.json;\n\n// Skipped — no prompts in this case's summary\nif (prevData._skipped) {\n  return [{\n    json: {\n      status:     'skipped',\n      case_id:    prevData.case_id,\n      case_name:  prevData.case_name,\n      message:    prevData._reason\n    }\n  }];\n}\n\nconst success = result.status === 1 || result.data !== undefined || result.success === true;\n\nreturn [{\n  json: {\n    status:     success ? 'success' : 'warning',\n    case_id:    prevData.case_id,\n    case_name:  prevData.case_name,\n    message:    success\n      ? `Summary written to IRIS case #${prevData.case_id} — \"${prevData.case_name}\".`\n      : `Summary generated but IRIS write response was unexpected. Verify case #${prevData.case_id} manually.`,\n    iris_response: result\n  }\n}];"
+      },
+      "id": "03104a29-7fff-4666-992c-5eacf85f98d5",
+      "name": "Final Status",
+      "type": "n8n-nodes-base.code",
+      "typeVersion": 2,
+      "position": [
+        3280,
+        -208
+      ],
+      "notes": "Returns a clean status object.\nHandles three outcomes:\n  success  — summary written to IRIS successfully\n  warning  — summary generated but IRIS write was unexpected\n  skipped  — case had no {{AI_PROMPT}} blocks in its summary"
+    },
+    {
+      "parameters": {
+        "mode": "combine",
+        "combineBy": "combineByPosition",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.merge",
+      "typeVersion": 3.2,
+      "position": [
+        2784,
+        -192
+      ],
+      "id": "b90de487-826f-46b2-b706-2c7fdc793476",
+      "name": "Merge"
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "n8n-nodes-base.splitInBatches",
+      "typeVersion": 3,
+      "position": [
+        1744,
+        -16
+      ],
+      "id": "c3329144-ed89-4ef3-8ee5-d3d926e15304",
+      "name": "Loop Over Items"
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "Manual Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Schedule Trigger": {
+      "main": [
+        [
+          {
+            "node": "Set Config",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Set Config": {
+      "main": [
+        [
+          {
+            "node": "Get Case List1",
+            "type": "main",
+            "index": 0
+          },
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get Case List1": {
+      "main": [
+        [
+          {
+            "node": "Extract Summary Field",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Summary Field": {
+      "main": [
+        [
+          {
+            "node": "Parse AI Prompts from Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Parse AI Prompts from Summary": {
+      "main": [
+        [
+          {
+            "node": "Code in JavaScript",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Code in JavaScript": {
+      "main": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI Agent",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI Agent": {
+      "main": [
+        [
+          {
+            "node": "Collect Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Collect Summary": {
+      "main": [
+        [
+          {
+            "node": "Split on Prompts",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Split on Prompts": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "OpenAI Chat Model (Sections)": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "Generate Section",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Generate Section": {
+      "main": [
+        [
+          {
+            "node": "Extract Section Text",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Extract Section Text": {
+      "main": [
+        [
+          {
+            "node": "Loop Over Items",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Aggregate Sections": {
+      "main": [
+        [
+          {
+            "node": "Assemble Summary",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Assemble Summary": {
+      "main": [
+        [
+          {
+            "node": "Merge",
+            "type": "main",
+            "index": 1
+          }
+        ]
+      ]
+    },
+    "Write Summary to IRIS": {
+      "main": [
+        [
+          {
+            "node": "Final Status",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Merge": {
+      "main": [
+        [
+          {
+            "node": "Write Summary to IRIS",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Loop Over Items": {
+      "main": [
+        [
+          {
+            "node": "Aggregate Sections",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Generate Section",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "",
+  "meta": {
+    "instanceId": "YOUR_N8N_INSTANCE_ID"
+  },
+  "id": "",
+  "tags": []
+}
