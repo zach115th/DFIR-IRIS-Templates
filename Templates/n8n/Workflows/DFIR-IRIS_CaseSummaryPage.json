@@ -1,5 +1,5 @@
 {
-  "name": "DFIR-IRIS_CaseSummaryLLM",
+  "name": "DFIR-IRIS_CaseSummaryPage",
   "nodes": [
     {
       "parameters": {},
