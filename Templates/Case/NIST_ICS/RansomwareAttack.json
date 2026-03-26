@@ -1,0 +1,380 @@
+{
+  "name": "RansomwareAttack",
+  "display_name": "Ransomware Attack With Report [NIST 800-53r5 | ICS4ICS]",
+  "description": "A case template for handling suspected or confirmed ransomware incidents, including triage, containment, investigation, eradication, recovery, communications, and post-incident activities. Aligned to NIST SP 800-53r5 Incident Response controls (IR-4, IR-5, IR-6, IR-8) and the ICS4ICS framework (ISA/IEC 62443, FEMA ICS, CISA guidance) for environments that include or may include operational technology (OT) or industrial control systems (ICS). ICS4ICS-specific guidance is annotated inline and can be disregarded where OT/ICS systems are not in scope.",
+  "author": "Zachary Carter",
+  "title_prefix": "[RANSOMWARE]",
+  "summary": "## Incident Report — [CASE TITLE]\n\n## Executive Summary\n\n**[Provide a high-level, non-technical summary suitable for senior leadership and stakeholders. Describe the nature of the incident, how and when it was detected, the estimated scope of impact, key findings, and current response status. Typically two to four paragraphs]**\n\n## Scope of Investigation\n\n**[Define the boundaries of this investigation. What was in-scope, what was explicitly excluded, and any limitations on access or evidence that constrained findings]**\n\n## Analysis — MITRE ATT&CK® Framework\n\n**[Map investigative findings to the MITRE ATT&CK framework (https://attack.mitre.org) ]** \n\n**[Complete each subsection with specific techniques, evidence, and timeline data. Remove tactics where no activity was observed and note the absence explicitly]**\n\n### TA0001 — Initial Access\n\n**Techniques observed:** \n\n**[e.g. T1566.001 Spearphishing Attachment, T1190 Exploit Public-Facing Application]**\n\n**[Describe how the threat actor first gained entry. Include the delivery method, targeted user or system, timestamp, and key evidence]**\n\n| Date/Time (UTC) | Technique | Host / Account | Description | Evidence Source |\n|-----------------|-----------|---------------|-------------|----------------|\n| | | | | |\n\n### TA0002 — Execution\n\n**Techniques observed:**\n\n**[e.g. T1059.001 PowerShell, T1047 WMI]**\n\n**[Document how the threat actor executed malicious code on compromised systems]**\n\n| Date/Time (UTC) | Technique | Host | Command / Binary | Evidence Source |\n|-----------------|-----------|------|-----------------|----------------|\n| | | | | |\n\n### TA0003 — Persistence\n\n**Techniques observed:**\n\n**[e.g. T1053.005 Scheduled Task, T1547.001 Registry Run Keys]**\n\n**[Describe mechanisms used to maintain access across reboots or credential changes]**\n\n| Date/Time (UTC) | Technique | Host | Artifact / Path | Status |\n|-----------------|-----------|------|----------------|--------|\n| | | | | Confirmed / Removed / Pending |\n\n### TA0004 — Privilege Escalation\n\n**Techniques observed:**\n\n**[e.g. T1068 Exploitation for Privilege Escalation, T1078 Valid Accounts]**\n\n**[Detail how the threat actor elevated privileges and what level of access was ultimately achieved]**\n\n| Date/Time (UTC) | Technique | Host | Account | Privilege Reached | Evidence Source |\n|-----------------|-----------|------|---------|-----------------|----------------|\n| | | | | | |\n\n### TA0005 — Defense Evasion\n\n**Techniques observed:**\n\n**[e.g. T1070.001 Clear Windows Event Logs, T1027 Obfuscated Files, T1562.001 Disable Security Tools]**\n\n**[Describe techniques used to avoid detection and impair defensive controls]**\n\n| Date/Time (UTC) | Technique | Host | Description | Evidence Source |\n|-----------------|-----------|------|-------------|----------------|\n| | | | | |\n\n### TA0006 — Credential Access\n\n**Techniques observed:**\n\n**[e.g. T1003.001 LSASS Memory, T1558.003 Kerberoasting]**\n\n**[Document methods used to harvest credentials and the scope of accounts exposed]**\n\n| Date/Time (UTC) | Technique | Host | Accounts Compromised | Evidence Source |\n|-----------------|-----------|------|---------------------|----------------|\n| | | | | |\n\n### TA0007 — Discovery\n\n**Techniques observed:**\n\n**[e.g. T1087.002 Domain Account Enumeration, T1046 Network Scanning, T1135 Network Share Discovery]**\n\n**[Describe internal reconnaissance conducted after initial access]**\n\n| Date/Time (UTC) | Technique | Host | Tool / Method | Scope |\n|-----------------|-----------|------|--------------|-------|\n| | | | | |\n\n### TA0008 — Lateral Movement\n\n**Techniques observed:**\n\n**[e.g. T1021.001 RDP, T1021.002 SMB/Windows Admin Shares, T1570 Lateral Tool Transfer]**\n\n**[Detail how the threat actor moved between systems and expanded access]**\n\n| Date/Time (UTC) | Technique | Source Host | Destination Host | Account Used | Evidence Source |\n|-----------------|-----------|------------|-----------------|--------------|----------------|\n| | | | | | |\n\n### TA0011 — Command and Control\n\n**Techniques observed:**\n\n**[e.g. T1071.001 Web Protocols, T1071.004 DNS, T1573 Encrypted Channel]**\n\n**[Document the C2 infrastructure, protocols, and beaconing behaviour observed]**\n\n| Indicator | Type | Protocol / Port | First Seen (UTC) | Last Seen (UTC) |\n|-----------|------|----------------|-----------------|----------------|\n| | IP / Domain / URL | | | |\n\n### TA0010 — Exfiltration\n\n**Techniques observed:**\n\n**[e.g. T1074.001 Local Data Staging, T1048.002 Exfiltration Over HTTPS]**\n\n**Exfiltration confirmed:** <!-- Yes / No / Under investigation -->\n\n**Estimated volume:** <!-- e.g. ~4.2 GB / Unknown -->\n\n**[Describe staging, compression, and transfer activity. Identify data types at risk and regulatory sensitivity where relevant]**\n\n| Date/Time (UTC) | Technique | Source Host | Destination | Volume | Evidence Source |\n|-----------------|-----------|------------|-------------|--------|-----------------|\n| | | | | | |\n\n**Data types at risk:**\n\n| Data Type | Location | Estimated Volume | Regulatory Classification |\n|-----------|----------|-----------------|--------------------------|\n| | | | |\n\n### TA0040 — Impact to Entity\n\n**Techniques observed:**\n\n**[e.g. T1486 Data Encrypted for Impact, T1490 Inhibit System Recovery]**\n\n**[Document final-stage actions used to disrupt, destroy, or manipulate the environment. Include ransomware deployment method, encryption scope, and operational impact]**\n\n| Date/Time (UTC) | Technique | Scope | Description | Evidence Source |\n|-----------------|-----------|-------|-------------|----------------|\n| | | | | |\n\n---\n\n## Cyber Threat Intelligence (CTI) Findings\n\n**[Document CTI findings that provide context for the incident. Include threat actor attribution (if known or suspected), campaign associations, intelligence source references, and any correlations with known threat groups, malware families, or active campaigns]**\n\n### Threat Actor Profile\n\n**Suspected group / alias:** <!-- e.g. Wizard Spider / UNC1878 / Unknown -->\n\n**Attribution confidence:** <!-- High / Moderate / Low / Unattributed -->\n\n**Assessed motivation:** <!-- Financial / Espionage / Hacktivism / Unknown -->\n\n**ATT&CK Group:** <!-- e.g. G0102 -->\n\n**[Provide a narrative summary of the suspected or confirmed threat actor, including known aliases, affiliation, observed TTPs, and links to prior campaigns or public reporting]**\n\n| Intelligence Source | Reference | Relevance |\n|--------------------|-----------|----------|\n| | | |\n\n---\n\n## Remediation & Recommendations\n\n**[Prioritised remediation actions to contain the incident, eradicate the threat, and prevent recurrence]**\n\n### Immediate Actions\n\n| # | Action | Owner | Priority | Due |\n|---|--------|-------|----------|-----|\n| 1 | Isolate compromised systems and block confirmed IOCs at all network boundaries | | Critical | |\n| 2 | Reset credentials for all affected and privileged accounts; enforce domain-wide reset if domain compromise confirmed | | Critical | |\n| 3 | Preserve forensic evidence and engage legal counsel for regulatory notification obligations | | Critical | |\n| 4 | Reimage compromised systems from trusted baselines and patch all exploited vulnerabilities | | High | |\n| 5 | Deploy enhanced SIEM/EDR detection rules based on observed TTPs and IOCs | | High | |\n\n### Strategic Improvements\n\n| # | Recommendation | Category | Priority |\n|---|---------------|----------|----------|\n| 1 | Enforce phishing-resistant MFA across all remote access, email, and privileged accounts | Identity | High |\n| 2 | Extend log retention to 12+ months with centralised, immutable storage | Logging | High |\n| 3 | Conduct network segmentation review to limit lateral movement paths | Architecture | High |\n| 4 | Implement offline / immutable backup strategy with regular restore validation | Resilience | High |\n| 5 | Conduct tabletop exercises and red team assessments based on observed TTPs | Preparedness | Medium |\n\n---\n\n## Conclusion\n\n**[Closing summary reinforcing key findings, overall impact, and the path forward. Suitable for sharing with executive leadership. Address overall attack chain from initial access to impact, threat actor sophistication, estimated dwell time, whether attribution is possible, and confidence in containment and recovery]**\n",
+  "tags": [
+    "tlp:amber",
+    "CERT-XLM:malicious-code=\"ransomware\"",
+    "CERT-XLM:information-content-security=\"Unauthorised-information-access\"",
+    "framework:NIST-800-53r5",
+    "framework:ICS4ICS"
+  ],
+  "tasks": [
+    {
+      "title": "Validate ransomware activity",
+      "description": "Confirm whether ransomware activity is present by identifying file encryption, ransom notes, destructive actions, service disruption, extortion messaging, or other supporting evidence. Determine whether the case is confirmed ransomware, attempted ransomware, suspicious activity, or a false positive.\n\nNIST 800-53r5: IR-4(a) — Detection and analysis is the first phase of incident handling.\n\nICS4ICS: Notify the ICS/OT Team lead immediately if any OT assets, HMIs, historian servers, or engineering workstations are affected or suspected. Do not assume an IT-only scope until the OT environment has been explicitly assessed. Activate the Safety Officer if there is any possibility of physical process impact.",
+      "tags": [
+        "triage",
+        "validation",
+        "ransomware",
+        "NIST:IR-4",
+        "ICS4ICS:safety-assessment"
+      ]
+    },
+    {
+      "title": "Activate ICS4ICS command structure and declare incident",
+      "description": "Declare the incident and activate the ICS4ICS command structure. Confirm the Incident Commander (IC) per the Delegation of Authority. Assign or confirm: Safety Officer (SOFR), Operations Section Chief, Planning Section Chief, Logistics Section Chief, Finance/Admin Section Chief, Public Information Officer (PIO), and Liaison Officer (LOFR). Notify the Crisis Management Team (CMT) — CEO, COO, CFO, CIO, Legal Counsel, and HES representative — per incident severity.\n\nConduct an ICS Form 201 (Incident Briefing) to establish shared situational awareness across the CIRT, ICS/OT Team, and IT Team. Begin the first operational period using the Planning P cycle.\n\nNIST 800-53r5: IR-4(a) — Preparation is a defined phase of incident handling. IR-6 — Incident information must be reported to designated authorities within defined timeframes.\n\nICS4ICS: The IC holds Delegation of Authority and financial expenditure authority. If internal staffing cannot fill required roles, activate Mutual Aid agreements. Reference the ICS4ICS Delegation of Authority Template and ICS4ICS Mutual Aid Procedure Template.",
+      "tags": [
+        "ICS4ICS:command-structure",
+        "ICS4ICS:incident-commander",
+        "ICS4ICS:planning-P",
+        "communications",
+        "escalation",
+        "management",
+        "NIST:IR-4",
+        "NIST:IR-6"
+      ]
+    },
+    {
+      "title": "Initiate incident communications and stakeholder notifications",
+      "description": "Notify required internal stakeholders and activate the appropriate incident response, management, legal, privacy, communications, and executive escalation paths based on case severity and business impact.\n\nNIST 800-53r5: IR-6 — Personnel must report suspected incidents to the organizational IR capability within defined timeframes. IR-6(1) — Automated reporting mechanisms should be used where available. IR-7 — Incident response assistance resources must be made available to users.\n\nICS4ICS: The Public Information Officer (PIO) manages all external communications. The Liaison Officer (LOFR) coordinates with external agencies including CISA, sector ISACs, regulators, and law enforcement. All communications must flow through the ICS4ICS command structure — direct communication that bypasses the IC should be avoided during an active incident.",
+      "tags": [
+        "communications",
+        "escalation",
+        "management",
+        "NIST:IR-6",
+        "NIST:IR-7",
+        "ICS4ICS:PIO",
+        "ICS4ICS:liaison-officer"
+      ]
+    },
+    {
+      "title": "Identify affected systems, accounts, and business impact",
+      "description": "Determine the scope of the incident by identifying affected hosts, user accounts, servers, shares, applications, backup systems, and business functions. Document confirmed and suspected impact.\n\nNIST 800-53r5: IR-5 — All incidents and affected systems must be tracked and documented. IR-4(a) — Accurate scope is required for containment and eradication. CM-8 — System component inventory must be used to validate scope.\n\nICS4ICS: Explicitly assess whether the incident has reached or could reach OT network segments. Identify affected or potentially affected assets by type: engineering workstations, HMIs, historian servers, PLCs, RTUs, DCS components, safety instrumented systems (SIS), and IT/OT boundary systems such as jump servers or data diodes. The Safety Officer must assess whether any process safety function has been impaired before operational decisions are made. Coordinate Recovery Time Objectives (RTO) and Recovery Point Objectives (RPO) for OT systems with the Business Continuity Planning (BCP) Team.",
+      "tags": [
+        "scope",
+        "impact",
+        "assets",
+        "NIST:IR-4",
+        "NIST:IR-5",
+        "NIST:CM-8",
+        "ICS4ICS:ot-scope",
+        "ICS4ICS:safety-officer"
+      ]
+    },
+    {
+      "title": "Preserve forensic evidence",
+      "description": "Collect and preserve volatile and non-volatile evidence from affected and suspected systems, including memory, disk artifacts, ransom notes, binaries, scripts, event logs, authentication logs, EDR telemetry, network telemetry, scheduled tasks, services, and persistence artifacts.\n\nNIST 800-53r5: IR-4(12) — Forensic analysis of malicious code is a defined IR-4 enhancement. AU-9 — Audit log integrity must be preserved. AU-11 — Audit records must be retained for defined periods and protected from unauthorized modification.\n\nICS4ICS: Evidence collection from OT assets must be coordinated with the ICS/OT Team and, where required, the OEM or system integrator. Forensic procedures safe on IT systems may not be safe or feasible on live OT assets — always confirm with the ICS/OT Team before imaging or acquiring data from PLCs, RTUs, or DCS components. Preserve OT-specific artifacts: controller configuration backups, historian exports, network captures from OT segments, and HMI alarm and event logs.",
+      "tags": [
+        "forensics",
+        "evidence",
+        "collection",
+        "NIST:IR-4",
+        "NIST:AU-9",
+        "NIST:AU-11",
+        "ICS4ICS:ot-forensics"
+      ]
+    },
+    {
+      "title": "Contain hosts, accounts, and network access",
+      "description": "Isolate affected or suspected systems, disable or restrict compromised accounts, revoke sessions, disable remote access paths as needed, and block malicious or suspicious infrastructure to prevent further spread.\n\nNIST 800-53r5: IR-4(a) — Containment is a defined phase of incident handling. IR-4(2) — Dynamic reconfiguration of systems supports containment. AC-2 — Account management actions (disable, revoke) support containment. AC-17 — Remote access should be disabled or restricted as appropriate. SC-7 — Boundary protection controls should be leveraged for network-level containment.\n\nICS4ICS: CRITICAL — Isolating OT assets carries risk of physical process disruption. The Safety Officer must assess and approve all OT isolation actions before they are executed. Containment actions for OT systems must be coordinated with the ICS/OT Team and plant operations. Do not apply IT-standard isolation procedures to live OT systems without operational risk assessment. Document every OT containment action in the Incident Action Plan (IAP). Use ICS Form 215A (Incident Action Plan Safety Analysis) to formally record the safety risk assessment for proposed OT containment actions.",
+      "tags": [
+        "containment",
+        "network",
+        "identity",
+        "NIST:IR-4",
+        "NIST:AC-2",
+        "NIST:AC-17",
+        "NIST:SC-7",
+        "ICS4ICS:safety-gate",
+        "ICS4ICS:ot-containment"
+      ]
+    },
+    {
+      "title": "Develop and maintain the Incident Action Plan (IAP)",
+      "description": "Document and maintain the Incident Action Plan (IAP) for each operational period using the ICS4ICS Planning P cycle. The IAP defines incident objectives, tactical assignments, resource requirements, and safety considerations per operational period.\n\nComplete for each operational period:\n- ICS Form 202 (Incident Objectives) — overall objectives and commander's intent\n- ICS Form 204 (Assignment List) — tactical assignments by section and branch\n- ICS Form 215 (Operational Planning Worksheet) — resource and task coordination\n- ICS Form 215A (IAP Safety Analysis) — safety risks for planned tactics, especially OT isolation or recovery actions\n\nBrief all Section Chiefs before each operational period transition.\n\nNIST 800-53r5: IR-4(a) — Incident handling must be consistent with the incident response plan. IR-8 — The incident response plan must address the structure and organization of the IR capability.\n\nICS4ICS: The Planning Section Chief owns the IAP. The IC approves it. The Planning P cycle keeps the response objectives-driven and prevents reactive, uncoordinated action.",
+      "tags": [
+        "ICS4ICS:IAP",
+        "ICS4ICS:planning-P",
+        "ICS4ICS:operational-period",
+        "planning",
+        "NIST:IR-4",
+        "NIST:IR-8"
+      ]
+    },
+    {
+      "title": "Identify initial access vector",
+      "description": "Investigate how the threat actor gained access — phishing, exposed VPN, RDP, credential compromise, software vulnerability exploitation, malicious downloads, or third-party access.\n\nNIST 800-53r5: IR-4(a) — Root cause analysis supports eradication and recurrence prevention. SI-3 — Malicious code protection controls should be assessed against the observed initial access method. RA-3 — Risk assessment findings inform the scope of the exploited vulnerability.\n\nICS4ICS: Assess whether the initial access vector provides or could have provided a path into OT network segments. Common OT-relevant vectors include: compromised vendor or contractor VPN credentials, phishing targeting OT operations staff, remote desktop access to engineering workstations, and exploitation of internet-exposed OT management interfaces. If vendor or third-party remote access is implicated, notify the Liaison Officer to coordinate vendor engagement.",
+      "tags": [
+        "investigation",
+        "initial-access",
+        "root-cause",
+        "NIST:IR-4",
+        "NIST:SI-3",
+        "NIST:RA-3",
+        "ICS4ICS:vendor-access"
+      ]
+    },
+    {
+      "title": "Investigate privilege escalation and lateral movement",
+      "description": "Determine how the threat actor elevated privileges, moved through the environment, accessed additional systems, and expanded control across users, hosts, shares, or management infrastructure.\n\nNIST 800-53r5: IR-4(4) — Information correlation across systems supports lateral movement analysis. IR-4(13) — Behavior analysis is a defined incident handling enhancement. AC-6 — Least privilege failures identified during investigation should be documented for post-incident remediation.\n\nICS4ICS: Explicitly determine whether lateral movement crossed the IT/OT boundary. Key pivot points include: OT jump servers or remote desktop gateways, historian servers with dual-network connectivity, shared domain accounts used across IT and OT, and vendor remote access paths. If the OT network was reached, escalate immediately to the IC and activate OT-specific containment procedures.",
+      "tags": [
+        "investigation",
+        "lateral-movement",
+        "privilege-escalation",
+        "NIST:IR-4",
+        "NIST:AC-6",
+        "ICS4ICS:IT-OT-boundary"
+      ]
+    },
+    {
+      "title": "Assess data exfiltration and extortion risk",
+      "description": "Determine whether data was staged, compressed, transferred, or exposed prior to encryption. Identify sensitive data types, possible destinations, extortion indicators, and any leak-site or ransom communication references.\n\nNIST 800-53r5: IR-4(a) — Exfiltration assessment is part of the analysis phase of incident handling. AU-6 — Audit log review and analysis supports detection of data staging and transfer. IR-6 — Confirmed or suspected exfiltration of regulated data may trigger mandatory reporting obligations.\n\nICS4ICS: Activate the ICS4ICS Ransomware Procedure. This pre-established procedure convenes the pre-authorized ransomware decision team — including Legal Counsel, CFO, and the IC — who hold authority over ransom payment decisions and associated legal and regulatory considerations. No contact with the threat actor should occur before this team is convened and OFAC sanctions screening has been completed. The Liaison Officer coordinates government reporting obligations via the ICS4ICS Government Reporting Procedure.",
+      "tags": [
+        "exfiltration",
+        "extortion",
+        "data-loss",
+        "NIST:IR-4",
+        "NIST:AU-6",
+        "NIST:IR-6",
+        "ICS4ICS:ransomware-procedure",
+        "ICS4ICS:government-reporting"
+      ]
+    },
+    {
+      "title": "Analyze ransomware artifacts and behavior",
+      "description": "Analyze ransomware binaries, scripts, ransom notes, file extensions, process execution, command lines, persistence mechanisms, and related artifacts. Identify the ransomware family or variant if possible.\n\nNIST 800-53r5: IR-4(12) — Malicious code and forensic analysis is a defined incident handling enhancement. SI-3 — Malicious code protection controls should be reviewed against the variant's observed evasion techniques.\n\nICS4ICS: Determine whether the ransomware variant has known OT or ICS-specific capabilities — including targeting of OT file types, ICS software installations, historian databases, or backup systems used in industrial environments. Search threat intelligence sources for prior reporting on this variant in OT contexts. Coordinate binary analysis with the ICS/OT Team if artifacts are found on OT-connected assets.",
+      "tags": [
+        "analysis",
+        "malware",
+        "ransomware-family",
+        "NIST:IR-4",
+        "NIST:SI-3",
+        "ICS4ICS:ot-malware-capability"
+      ]
+    },
+    {
+      "title": "Extract, validate, and track IOCs",
+      "description": "Extract and validate indicators of compromise from malware artifacts, host evidence, network telemetry, and external intelligence sources. Add confirmed IOCs to the case, tag appropriately, and share with downstream systems as authorized.\n\nNIST 800-53r5: IR-4(4) — IOC correlation with external organizations is a defined enhancement. IR-5 — Incidents and associated indicators must be tracked and documented. SI-4 — IOCs should be deployed into monitoring systems to detect related activity.\n\nICS4ICS: Share validated IOCs with sector ISACs and CISA as appropriate via the Liaison Officer. OT-specific IOCs — such as engineering workstation indicators, historian-targeted file hashes, or OT protocol anomalies — should be flagged separately for distribution to OT-focused intelligence communities.",
+      "tags": [
+        "iocs",
+        "intel",
+        "tracking",
+        "NIST:IR-4",
+        "NIST:IR-5",
+        "NIST:SI-4",
+        "ICS4ICS:ISAC-sharing"
+      ]
+    },
+    {
+      "title": "Eradicate persistence and unauthorized access",
+      "description": "Remove malicious binaries, scripts, scheduled tasks, services, persistence mechanisms, unauthorized accounts, and attacker tools. Reset compromised credentials, revoke tokens, and remediate exposed services or exploited vulnerabilities.\n\nNIST 800-53r5: IR-4(a) — Eradication is a defined phase of incident handling. IA-5 — Compromised credentials must be reset per authenticator management controls. CM-7 — Systems should be returned to a least-functionality baseline post-eradication. SI-2 — Exploited vulnerabilities must be remediated.\n\nICS4ICS: Eradication actions on OT systems must be approved by the Safety Officer and coordinated with the ICS/OT Team. Removing persistence from OT assets — including PLCs, RTUs, or DCS components — may require vendor engagement and a controlled maintenance window. Standard IT reimaging procedures must not be applied to OT assets without explicit ICS/OT Team confirmation. OT patch schedules must respect vendor support constraints and operational windows.",
+      "tags": [
+        "eradication",
+        "remediation",
+        "persistence",
+        "NIST:IR-4",
+        "NIST:IA-5",
+        "NIST:CM-7",
+        "NIST:SI-2",
+        "ICS4ICS:ot-eradication",
+        "ICS4ICS:vendor-coordination"
+      ]
+    },
+    {
+      "title": "Validate backup integrity and recovery readiness",
+      "description": "Confirm that backups are clean, available, and uncompromised. Identify safe restore points and verify that containment, credential remediation, and persistence removal are complete before restoration begins.\n\nNIST 800-53r5: CP-9 — System backup controls require that backups are conducted, protected, and regularly tested. CP-10 — System recovery and reconstitution requires systems be restored to a known state. IR-4(3) — Continuity of operations must be coordinated with contingency planning activities (CP-2).\n\nICS4ICS: Validate OT configuration backups separately from IT system backups. OT backup artifacts include: PLC and RTU logic, DCS and HMI project files, historian database backups, network configuration archives, and safety system parameter backups. Confirm these are stored offline or in a network-isolated location and predate the incident. The Disaster Recovery Planning (DRP) Team must confirm RPO/RTO alignment before recovery is authorized. The Safety Officer must confirm safety system integrity is validated before any OT recovery operation begins.",
+      "tags": [
+        "recovery",
+        "backups",
+        "validation",
+        "NIST:CP-9",
+        "NIST:CP-10",
+        "NIST:IR-4",
+        "ICS4ICS:ot-backup-validation",
+        "ICS4ICS:safety-gate"
+      ]
+    },
+    {
+      "title": "Restore systems and data",
+      "description": "Restore affected systems, services, and data from validated clean backups or rebuilt systems. Validate restored functionality, monitor for reinfection, and ensure all recovery actions are documented.\n\nNIST 800-53r5: IR-4(a) — Recovery is a defined phase of incident handling. CP-10 — System recovery and reconstitution controls define how systems are restored to a known secure state. SI-4 — Enhanced monitoring must be applied to recovered systems to detect reinfection or residual attacker activity.\n\nICS4ICS: OT recovery must follow a staged, IC-approved process. Required steps before resuming automated control: confirm the OT network is clean and isolated from the threat; restore and validate OT configurations from offline backups; perform functional testing of control systems before reconnection to the process; obtain Safety Officer confirmation that safety system integrity is intact. The ICS/OT Team leads OT restoration. Vendor or OEM support must be arranged in advance through the Logistics Section Chief.",
+      "tags": [
+        "recovery",
+        "restoration",
+        "operations",
+        "NIST:IR-4",
+        "NIST:CP-10",
+        "NIST:SI-4",
+        "ICS4ICS:ot-recovery",
+        "ICS4ICS:safety-gate",
+        "ICS4ICS:functional-testing"
+      ]
+    },
+    {
+      "title": "Assess external reporting and notification obligations",
+      "description": "Determine whether law enforcement, regulators, cyber insurance, customers, partners, or other external parties must be notified based on contractual, legal, regulatory, or policy requirements.\n\nNIST 800-53r5: IR-6 — Incident information must be reported to designated organizational authorities within defined timeframes. IR-6(2) — Vulnerabilities associated with the incident should be reported to designated disclosure authorities.\n\nICS4ICS: Execute the ICS4ICS Government Reporting Procedure. This pre-established procedure defines the pre-authorized team and criteria for government reporting decisions. The Liaison Officer coordinates all external agency contacts including: CISA (888-282-0870 / report@cisa.gov), FBI / IC3, sector-specific regulators (e.g. NERC CIP for energy, TSA for pipelines and rail, NRC for nuclear, EPA for water/wastewater), sector ISACs, and the cyber insurer. The Finance/Admin Section Chief tracks all insurance notification deadlines and expenditures for claims purposes.",
+      "tags": [
+        "reporting",
+        "legal",
+        "compliance",
+        "NIST:IR-6",
+        "ICS4ICS:government-reporting",
+        "ICS4ICS:liaison-officer",
+        "ICS4ICS:cyber-insurance"
+      ]
+    },
+    {
+      "title": "Harden controls and increase monitoring",
+      "description": "Implement security improvements identified during the investigation, including MFA enforcement, segmentation, credential hygiene, logging improvements, detection coverage, patching, backup protection, and monitoring enhancements.\n\nNIST 800-53r5: IR-4(a) — Lessons from incident handling must be incorporated into IR procedures. SI-4 — System monitoring improvements should be applied based on observed TTPs. IA-2 — MFA enforcement addresses identity control gaps. AU-2 / AU-6 — Audit event coverage and log review should be enhanced based on gaps identified during the incident. SC-7 — Boundary protection improvements address lateral movement paths identified during investigation.\n\nICS4ICS: Hardening actions in OT environments must be change-managed through the ICS/OT Team and coordinated with vendor support constraints. Priority OT hardening actions: enforce MFA on all remote access paths to OT systems; review and restrict all IT/OT cross-segment connections; ensure OT network monitoring is in place across all zones; validate that OT configuration backup processes are tested and stored offline.",
+      "tags": [
+        "hardening",
+        "security",
+        "monitoring",
+        "NIST:IR-4",
+        "NIST:SI-4",
+        "NIST:IA-2",
+        "NIST:AU-2",
+        "NIST:SC-7",
+        "ICS4ICS:ot-hardening"
+      ]
+    },
+    {
+      "title": "Conduct hotwash, lessons learned, and close case",
+      "description": "Lead an After-Action Review (Hotwash) to evaluate response performance against IAP objectives, capture lessons learned, and identify improvement actions. Confirm recovery is complete, no ongoing malicious activity is observed, required notifications are resolved, and closure criteria are met. Update the IR plan and ICS4ICS program based on findings.\n\nNIST 800-53r5: IR-4(a) — Lessons learned from incident handling must be incorporated into IR procedures, training, and testing. IR-8 — The incident response plan must be updated based on lessons learned. IR-3 — IR testing and exercises must be updated to reflect observed TTPs and identified gaps.\n\nICS4ICS: The Hotwash is the final activity of the last operational period, led by the IC with all Section Chiefs and key responders. Evaluate: whether IAP objectives were met; effectiveness of each ICS4ICS role; coordination between CIRT, ICS/OT Team, and IT Team; and gaps in pre-incident procedures. Findings must feed back into the ICS4ICS program: updated Ransomware and Government Reporting Procedures, revised Job Aids, and improved exercise scenarios. The IC formally demobilizes the ICS structure and returns authority to normal operations.",
+      "tags": [
+        "lessons-learned",
+        "closure",
+        "post-incident",
+        "NIST:IR-4",
+        "NIST:IR-8",
+        "NIST:IR-3",
+        "ICS4ICS:hotwash",
+        "ICS4ICS:demobilization"
+      ]
+    }
+  ],
+  "note_directories": [
+    {
+      "title": "Incident Overview",
+      "notes": [
+        {
+          "title": "Initial summary",
+          "content": "## Incident Summary\n\n**Case opened:** <!-- date / time -->\n**Opened by:** <!-- analyst name -->\n**Severity:** <!-- Critical / High / Medium / Low -->\n**Classification:** <!-- Confirmed Ransomware / Suspected Ransomware / Under Investigation -->\n**OT/ICS in scope:** <!-- Yes / No / Unknown — if Yes or Unknown, notify ICS/OT Team immediately -->\n\n> NIST 800-53r5: IR-5 — All incidents must be tracked and documented from first detection.\n\n---\n\n## How the Incident Was Identified\n\n<!-- Describe how this incident was first detected or reported. Include the source (EDR alert, user report, SOC detection, third-party notification, OT anomaly detection, historian outage, HMI alarm anomaly, etc.) and the date/time of first awareness. -->\n\n---\n\n## Initial Indicators\n\n<!-- List the first observable indicators that prompted this case to be opened. -->\n\n| Indicator | Type | First Observed | Source | IT / OT |\n|-----------|------|---------------|--------|--------|\n| | | | | |\n\n---\n\n## Narrative\n\n<!-- Write a brief factual narrative (3-6 sentences) summarising the known facts at the time of case creation. Avoid inference. Update as the investigation progresses. -->\n"
+        },
+        {
+          "title": "Current status",
+          "content": "## Current Response Status\n\n**Last updated:** <!-- date / time / analyst -->\n**Current phase:** <!-- Triage / Containment / Investigation / Eradication / Recovery / Closed -->\n**Current IAP operational period:** <!-- e.g. OP-1 / OP-2 -->\n**Incident Commander:** <!-- name -->\n**Safety Officer status:** <!-- Activated / Not activated / N/A -->\n\n> NIST 800-53r5: IR-4 — Incident handling phases: Preparation > Detection and Analysis > Containment > Eradication > Recovery.\n> ICS4ICS: Response is structured around Planning P operational periods. Update the IAP (ICS Form 202) at each period boundary and brief all Section Chiefs before transitioning.\n\n---\n\n## Phase Checklist\n\n- [ ] Ransomware activity validated — IR-4(a)\n- [ ] ICS4ICS command structure activated and IC confirmed — IR-4 / ICS4ICS\n- [ ] CMT notified — IR-6\n- [ ] OT/ICS scope explicitly assessed; Safety Officer engaged if OT in scope — ICS4ICS\n- [ ] Scope assessment underway / complete — IR-5\n- [ ] Evidence preservation started / complete — AU-9, AU-11\n- [ ] Containment actioned; OT isolation safety-approved where applicable — IR-4, SC-7, ICS4ICS\n- [ ] IAP completed for current operational period — ICS4ICS\n- [ ] Root cause identified\n- [ ] Persistence removed — CM-7\n- [ ] Credentials remediated — IA-5\n- [ ] OT safety system integrity confirmed before recovery — ICS4ICS\n- [ ] Backup integrity validated — CP-9\n- [ ] Recovery approved and in progress / complete — CP-10\n- [ ] External notifications assessed and actioned — IR-6\n- [ ] Government Reporting Procedure executed if required — ICS4ICS\n\n---\n\n## Active Blockers\n\n| Blocker | Owner | Raised | Status |\n|---------|-------|--------|--------|\n| | | | |\n\n---\n\n## Latest Operational Update\n\n<!-- Update at each material development or IAP operational period boundary. -->\n\n**[DATE/TIME] [OP PERIOD]** -\n"
+        },
+        {
+          "title": "Business impact",
+          "content": "## Business Impact Summary\n\n**Last updated:** <!-- date / time -->\n**Overall impact rating:** <!-- Critical / High / Medium / Low / Unknown -->\n**OT/ICS operational impact:** <!-- None confirmed / Under assessment / Process disruption / Safety system affected -->\n\n> ICS4ICS: OT operational impact must be assessed separately from IT impact. Process disruption and safety system status are distinct from IT service availability and require ICS/OT Team and Safety Officer assessment.\n> NIST 800-53r5: IR-4(3) — Continuity of operations must be coordinated with contingency planning activities (CP-2).\n\n---\n\n## Affected Business Units and Functions\n\n| Business Unit / Function | Impact Description | IT / OT | Status |\n|--------------------------|--------------------|---------|--------|\n| | | | |\n\n---\n\n## Operational Disruption\n\n**IT disruption:**\n<!-- Describe affected services, applications, workflows, or customer-facing capabilities. -->\n\n**OT / Process disruption (if applicable):**\n<!-- Describe affected control systems, process areas, or production functions. -->\n\n**Safety system status (if applicable):** <!-- Unaffected and confirmed / Under assessment / Impaired -->\n\n---\n\n## Financial and Regulatory Exposure\n\n<!-- Note any known or estimated financial impact (ransom demand, recovery costs, production downtime, SLA breach) and any triggered regulatory or contractual obligations. -->\n\n---\n\n## Communication to Leadership / CMT\n\n<!-- ICS4ICS: The Crisis Management Team (CMT) empowers the IC and provides direction. Document all CMT briefings and decisions here. -->\n\n| Date/Time | Audience | Key Message | Decision / Action |\n|-----------|----------|-------------|-------------------|\n| | | | |\n"
+        },
+        {
+          "title": "Decision log",
+          "content": "## Decision Log\n\n> Record key response decisions as they are made. Include context, approver, and any risks accepted.\n> ICS4ICS: Major decisions — OT isolation, ransom payment consideration, government reporting, OT recovery authorization — must be made by the pre-authorized team defined in the applicable ICS4ICS procedure. Document which procedure governed each decision.\n\n---\n\n| # | Date/Time | Decision | Rationale | Approved By | ICS4ICS Procedure Referenced | Risk Accepted |\n|---|-----------|----------|-----------|-------------|------------------------------|---------------|\n| 1 | | | | | | |\n| 2 | | | | | | |\n| 3 | | | | | | |\n\n---\n\n## Notes on Major Turning Points\n\n<!-- Annotate significant moments: OT scope confirmed, IT/OT boundary crossed, exfiltration confirmed, ransom decision made, government reporting triggered, Safety Officer intervention, OT recovery authorized. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "ICS4ICS Command and Coordination",
+      "notes": [
+        {
+          "title": "ICS4ICS command structure",
+          "content": "## ICS4ICS Command Structure\n\n> ICS4ICS applies the FEMA Incident Command System to OT/ICS cybersecurity incidents, separating technical cyber response from incident management so the right people are doing the right tasks. This structure applies even in IT-only ransomware incidents where OT scope has not been ruled out.\n\n**Incident declared:** <!-- Yes / No -->\n**Incident Commander (IC):** <!-- name -->\n**Delegation of Authority confirmed:** <!-- Yes / No -->\n**Mutual Aid activated:** <!-- Yes / No / N/A -->\n\n---\n\n## Command and General Staff\n\n| Role | Name | Organisation | Activated? | Contact |\n|------|------|-------------|------------|--------|\n| Incident Commander (IC) | | | | |\n| Deputy IC | | | | |\n| Safety Officer (SOFR) | | | | |\n| Public Information Officer (PIO) | | | | |\n| Liaison Officer (LOFR) | | | | |\n| Operations Section Chief | | | | |\n| Planning Section Chief | | | | |\n| Logistics Section Chief | | | | |\n| Finance / Admin Section Chief | | | | |\n\n---\n\n## Supporting Teams\n\n| Team | Lead | Activated? | Notes |\n|------|------|------------|-------|\n| Computer Incident Response Team (CIRT) | | | IT-side technical response |\n| ICS/OT Team | | | OT engineering, safety, and system recovery |\n| IT Team | | | IT infrastructure support |\n| Crisis Management Team (CMT) | | | Senior executive oversight and direction |\n| Disaster Recovery Planning (DRP) Team | | | Backup and recovery coordination |\n| Business Continuity Planning (BCP) Team | | | RTO/RPO and business function recovery |\n| Legal Counsel | | | | |\n| Cyber Insurance Contact | | | |\n\n---\n\n## ICS Forms Completed\n\n| Form | Title | Completed? | Operational Period |\n|------|-------|------------|-------------------|\n| ICS-201 | Incident Briefing | | |\n| ICS-202 | Incident Objectives | | |\n| ICS-204 | Assignment List | | |\n| ICS-207 | Organizational Chart | | |\n| ICS-213RR | Resource Request | | |\n| ICS-215 | Operational Planning Worksheet | | |\n| ICS-215A | IAP Safety Analysis | | |\n\n---\n\n## External Agency Contacts (Liaison Officer)\n\n| Agency | Contact | Notified? | Date/Time | Reference |\n|--------|---------|-----------|-----------|----------|\n| CISA (888-282-0870 / report@cisa.gov) | | | | |\n| FBI / IC3 | | | | |\n| Sector ISAC | | | | |\n| Sector Regulator | | | | |\n| OEM / Vendor | | | | |\n"
+        },
+        {
+          "title": "Operational periods and IAP log",
+          "content": "## Operational Period Log\n\n> ICS4ICS structures response using the Planning P cycle. Each operational period has defined objectives, tactical assignments, and a safety analysis. Update this note at each period boundary.\n\n---\n\n## Operational Period Summary\n\n| OP Period | Start | End | Incident Commander | Planning Section Chief | Key Objectives | Outcome |\n|-----------|-------|-----|--------------------|----------------------|---------------|---------|\n| OP-1 | | | | | | |\n| OP-2 | | | | | | |\n| OP-3 | | | | | | |\n\n---\n\n## OP Detail Template\n\n<!-- Copy this block for each operational period. -->\n\n**OP Period:**\n**Start / End:**\n**Incident Commander:**\n**Objectives (ICS-202):**\n**Safety concerns (ICS-215A):**\n**Completed assignments:**\n**Incomplete / carried forward:**\n**Period outcome summary:**\n\n---\n\n## Hotwash Schedule\n\n**Hotwash date/time:** <!-- Conducted at close of final operational period -->\n**Facilitator:** <!-- Typically the IC -->\n**Attendees:**\n"
+        },
+        {
+          "title": "Ransomware decision procedure",
+          "content": "## Ransomware Decision Procedure\n\n> ICS4ICS requires a pre-established Ransomware Procedure defining the team authorized to make ransom payment decisions and the legal and policy framework governing those decisions. This note documents the activation and outcome of that procedure.\n> Reference: ICS4ICS Ransomware Procedure Template — https://www.ics4ics.org\n> OFAC sanctions screening must be completed before any payment is considered.\n\n**Procedure activated:** <!-- Yes / No -->\n**Authorized decision team convened:** <!-- Yes / No -->\n**Date/time of first decision meeting:**\n\n---\n\n## Decision Team\n\n| Role | Name | Present? |\n|------|------|----------|\n| Incident Commander | | |\n| Legal Counsel | | |\n| CFO / Finance Authority | | |\n| CISO / Security Lead | | |\n| Cyber Insurance Representative | | |\n| Executive Sponsor | | |\n\n---\n\n## Ransom Demand Details\n\n**Demand amount:**\n**Currency / payment method:**\n**Deadline:**\n**Communication channel:**\n**Threat actor portal / contact:** <!-- Do not access without legal approval -->\n\n---\n\n## Decision Log\n\n| Date/Time | Decision | Rationale | Approved By |\n|-----------|----------|-----------|-------------|\n| | Do not pay / Pay / Negotiate / Defer | | |\n\n---\n\n## Legal and Regulatory Considerations\n\n**OFAC sanctions screening completed:** <!-- Yes / No / N/A -->\n**Legal counsel advice received:** <!-- Yes / No -->\n**Insurance coverage confirmed:** <!-- Yes / No / Pending -->\n\n<!-- Document legal counsel advice, sanctions screening outcome, insurance coverage status, and any regulatory notification triggered by the ransom demand or payment decision. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Technical Investigation",
+      "notes": [
+        {
+          "title": "Initial access",
+          "content": "## Initial Access\n\n**Assessment status:** <!-- Confirmed / Suspected / Unknown -->\n**ATT&CK Technique(s):** <!-- e.g. T1566.001 Phishing: Spearphishing Attachment -->\n**OT access implicated:** <!-- Yes / No / Unknown -->\n\n> NIST 800-53r5: IR-4(a) — Root cause analysis is required to support eradication and prevent recurrence.\n> ICS4ICS: If vendor or third-party remote access is implicated, notify the Liaison Officer to coordinate vendor engagement.\n\n---\n\n## Hypothesis\n\n<!-- State the current working hypothesis for initial access. Be explicit about what is confirmed vs inferred. -->\n\n---\n\n## Supporting Evidence\n\n| Evidence Item | Source | Date/Time | Analyst | Confidence |\n|---------------|--------|-----------|---------|------------|\n| | | | | |\n\n---\n\n## Initial Access Timeline\n\n| Date/Time (UTC) | Host | Account | Activity | IT / OT | Source |\n|-----------------|------|---------|----------|---------|--------|\n| | | | | | |\n\n---\n\n## Gaps and Open Questions\n\n- [ ]\n- [ ]\n"
+        },
+        {
+          "title": "Privilege escalation and lateral movement",
+          "content": "## Privilege Escalation and Lateral Movement\n\n**ATT&CK Techniques observed:**\n<!-- e.g. T1078 Valid Accounts, T1021.001 RDP, T1570 Lateral Tool Transfer -->\n**IT/OT boundary crossed:** <!-- Yes / No / Unknown -->\n\n> NIST 800-53r5: IR-4(4) — Information correlation across systems is a defined enhancement.\n> ICS4ICS: If the IT/OT boundary was crossed, escalate immediately to the IC and activate OT-specific containment procedures.\n\n---\n\n## Privilege Escalation Findings\n\n| Date/Time (UTC) | Host | Account | Technique | IT / OT | Evidence Source | Confidence |\n|-----------------|------|---------|-----------|---------|-----------------|------------|\n| | | | | | | |\n\n---\n\n## Lateral Movement Findings\n\n| Date/Time (UTC) | Source Host | Destination Host | IT/OT Boundary Crossed | Account Used | Method | Evidence Source |\n|-----------------|-------------|-----------------|------------------------|--------------|--------|-----------------|\n| | | | Yes / No | | | |\n\n---\n\n## Highest Privilege Reached\n\n<!-- Document the highest-privilege account the threat actor obtained and how. -->\n\n---\n\n## Management Plane Access\n\n<!-- Note any access to domain controllers, hypervisors, backup infrastructure, or management consoles. -->\n\n---\n\n## OT Pivot Assessment\n\n<!-- If the IT/OT boundary was crossed or is suspected: document the pivot path, affected OT assets, and the ICS/OT Team's assessment of what the threat actor could have observed, modified, or disrupted. -->\n\n---\n\n## Open Questions\n\n- [ ]\n- [ ]\n"
+        },
+        {
+          "title": "Persistence",
+          "content": "## Persistence Mechanisms\n\n**ATT&CK Techniques observed:**\n<!-- e.g. T1053.005 Scheduled Task, T1543.003 Windows Service, T1136 Create Account -->\n**Persistence on OT assets identified:** <!-- Yes / No / Unknown -->\n\n> NIST 800-53r5: IR-4(a) — Eradication phase requires full identification and removal of all persistence mechanisms.\n> ICS4ICS: Removing persistence from OT assets may require vendor engagement. Flag any OT persistence items that cannot be removed without a vendor or maintenance window.\n\n---\n\n## Identified Persistence Artifacts\n\n| Host | Mechanism Type | Detail (path / name / value) | IT / OT | Date Created | Status |\n|------|---------------|------------------------------|---------|--------------|--------|\n| | | | | | Confirmed / Removed / Pending / Vendor Required |\n\n---\n\n## Backdoors and Remote Access Tools\n\n| Host | Tool / Binary | Path | IT / OT | C2 / Callback | First Seen | Removed? |\n|------|--------------|------|---------|---------------|------------|----------|\n| | | | | | | |\n\n---\n\n## Unauthorized Accounts\n\n| Account Name | Type | Host / Domain | IT / OT | Created | Removed? |\n|-------------|------|---------------|---------|---------|----------|\n| | | | | | |\n\n---\n\n## Notes\n\n<!-- Additional context on how persistence was established, maintained, or discovered. -->\n"
+        },
+        {
+          "title": "Exfiltration findings",
+          "content": "## Data Exfiltration Assessment\n\n**Exfiltration confirmed:** <!-- Yes / No / Under Investigation -->\n**Extortion threat active:** <!-- Yes / No / Unknown -->\n**ICS4ICS Ransomware Procedure activated:** <!-- Yes / No -->\n\n> NIST 800-53r5: AU-6 — Audit log review supports detection of staging and transfer activity. IR-6 — Exfiltration of regulated data may trigger mandatory external reporting obligations.\n> ICS4ICS: Activate the Government Reporting Procedure if exfiltration of sensitive or operationally significant data is confirmed or suspected.\n\n---\n\n## Staging and Compression Activity\n\n| Date/Time (UTC) | Host | Path | Tool / Method | Volume | IT / OT | Evidence Source |\n|-----------------|------|------|---------------|--------|---------|----------------|\n| | | | | | | |\n\n---\n\n## Transfer Activity\n\n| Date/Time (UTC) | Source Host | Destination IP/Domain | Protocol/Port | Volume | Evidence Source |\n|-----------------|-------------|----------------------|---------------|--------|-----------------|\n| | | | | | |\n\n---\n\n## Data Types at Risk\n\n| Data Type | Location | Estimated Volume | Regulatory Classification |\n|-----------|----------|-----------------|--------------------------|\n| | | | |\n\n---\n\n## Threat Actor Extortion Activity\n\n<!-- Document any leak site references, ransom notes mentioning data theft, or direct communications. -->\n\n---\n\n## Government Reporting Status\n\n**Government Reporting Procedure activated:** <!-- Yes / No -->\n**Liaison Officer notified:** <!-- Yes / No -->\n\n---\n\n## Open Questions\n\n- [ ] Is the full transfer volume accounted for?\n- [ ] Have all staging locations been identified?\n- [ ]\n"
+        },
+        {
+          "title": "Ransomware variant and behavior",
+          "content": "## Ransomware Variant and Behavior\n\n**Identified family / variant:** <!-- e.g. LockBit 3.0, BlackCat/ALPHV, Akira, Unknown -->\n**Identification confidence:** <!-- Confirmed / Likely / Unknown -->\n**ATT&CK Group (if attributed):** <!-- e.g. G0092 -->\n**Known OT/ICS targeting capability:** <!-- Yes / No / Unknown -->\n\n> NIST 800-53r5: IR-4(12) — Malicious code and forensic analysis is a defined incident handling enhancement. SI-3 — Malicious code protection controls should be assessed against this variant's evasion techniques.\n\n---\n\n## Identification Basis\n\n<!-- How was the variant identified? Ransom note, file extension, binary analysis, threat intel match, etc. -->\n\n---\n\n## Ransom Note Details\n\n**Note filename(s):**\n**Note location(s):**\n**Ransom amount / demand:**\n**Payment address / portal:**\n**Deadline:**\n\n> <!-- Paste ransom note text or reference the attached evidence item. Do not follow links or access portals without legal approval and OFAC sanctions screening. -->\n\n---\n\n## Encryption Behavior\n\n| Detail | Value |\n|--------|-------|\n| File extension appended | |\n| Encryption scope (local / network / backup) | |\n| OT-specific file types or software targeted | |\n| Shadow copy deletion observed | |\n| MBR / boot sector impacted | |\n| Known decryptor available | |\n\n---\n\n## Malware Artifacts\n\n| Artifact | Path | SHA-256 | IT / OT | First Seen | Notes |\n|----------|------|---------|---------|------------|-------|\n| | | | | | |\n\n---\n\n## Execution Behavior Summary\n\n<!-- Describe observed process execution, command-line arguments, defense evasion, and notable behavioral patterns. -->\n\n---\n\n## External Intelligence References\n\n<!-- Link to public reporting, sandbox reports, or threat intel sources. Note any known OT/ICS targeting history for this group or variant. -->\n"
+        },
+        {
+          "title": "IOC summary",
+          "content": "## IOC Summary\n\n> Authoritative IOC records are tracked in the case IOC objects. This note summarises validated indicators with context and sourcing rationale.\n> NIST 800-53r5: IR-5 — Incidents and associated indicators must be tracked and documented. IR-4(4) — IOC correlation with external organizations is a defined enhancement.\n\n---\n\n## File-Based Indicators\n\n| Filename | SHA-256 | Type | IT / OT | Context | Confidence | Added to Case |\n|----------|---------|------|---------|---------|------------|---------------|\n| | | | | | | |\n\n---\n\n## Network Indicators\n\n| Indicator | Type | IT / OT | Context | First Seen | Confidence | Added to Case |\n|-----------|------|---------|---------|------------|------------|---------------|\n| | | | | | | |\n\n---\n\n## Account / Credential Indicators\n\n| Account | Domain | IT / OT | Context | Confidence | Remediated |\n|---------|--------|---------|---------|------------|------------|\n| | | | | | |\n\n---\n\n## IOC Sharing\n\n| Platform / System | Shared? | Date | Approved By |\n|-------------------|---------|------|-------------|\n| Internal SIEM / EDR | | | |\n| Sector ISAC | | | |\n| CISA (AIS / report@cisa.gov) | | | |\n| Other | | | |\n\n---\n\n## Intelligence Context\n\n<!-- Summarise threat intelligence contextualising these IOCs. Note any OT/ICS-relevant context. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Affected Environment",
+      "notes": [
+        {
+          "title": "Affected hosts",
+          "content": "## Affected Hosts\n\n**Total confirmed affected:** <!-- number -->\n**Total suspected / under investigation:** <!-- number -->\n**OT assets confirmed affected:** <!-- number / None / Unknown -->\n**Last updated:** <!-- date / time -->\n\n> NIST 800-53r5: IR-5 — All affected systems must be tracked and documented. CM-8 — System component inventory should be used to validate scope.\n> ICS4ICS: OT asset status must be confirmed by the ICS/OT Team. Do not assess OT asset status without ICS/OT Team input.\n\n---\n\n## Host Inventory\n\n| Hostname | IP Address | Type | OS | Role | IT / OT | Status | Contained? | Evidence Collected? |\n|----------|-----------|------|----|------|---------|--------|------------|---------------------|\n| | | Workstation / Server / VM / DC / HMI / Historian / EWS / PLC / Infra | | | IT / OT / IT-OT Boundary | Confirmed / Suspected | Yes / No | Yes / No |\n\n---\n\n## Critical Asset Exposure\n\n| Asset | Sensitivity | IT / OT | Exposure Level | Notes |\n|-------|------------|---------|---------------|-------|\n| | | | Confirmed impacted / Accessed / Not impacted | |\n\n---\n\n## OT Asset Status\n\n<!-- ICS4ICS: Completed in coordination with the ICS/OT Team and Safety Officer. -->\n\n| OT Asset | Type | Process Role | Operational Status | Safety Impact Assessed? |\n|----------|------|--------------|--------------------|------------------------|\n| | HMI / PLC / RTU / DCS / Historian / SIS / EWS | | Operational / Degraded / Offline | Yes / No |\n\n---\n\n## Scope Confidence\n\n<!-- Note what has and has not been ruled out. Is the OT network scope fully confirmed? Are there unassessed segments? -->\n"
+        },
+        {
+          "title": "Affected accounts",
+          "content": "## Affected Accounts\n\n**Last updated:** <!-- date / time -->\n**Total confirmed affected:** <!-- number -->\n**OT / shared IT-OT accounts affected:** <!-- Yes / No / Unknown -->\n\n> NIST 800-53r5: IA-5 — Compromised credentials must be reset per authenticator management controls. AC-2 — Account management actions (disable, revoke) are containment actions.\n> ICS4ICS: Shared accounts used across IT and OT, vendor remote access accounts, and domain accounts with OT system access must be assessed and remediated with ICS/OT Team involvement. OT credential changes may require vendor coordination.\n\n---\n\n## Account Inventory\n\n| Account Name | Type | Domain / Host | IT / OT | Privileges | Compromise Confirmed | Remediated? |\n|-------------|------|---------------|---------|------------|---------------------|-------------|\n| | | | | | Yes / Suspected / No | Yes / No |\n\n---\n\n## Credential Exposure Assessment\n\n<!-- Were hashes dumped? Were plaintext credentials exposed? Were service accounts affected? Were OT or shared IT/OT credentials exposed? -->\n\n---\n\n## Remediation Status\n\n| Action | Status | Completed By | Date |\n|--------|--------|-------------|------|\n| Password resets — standard users | | | |\n| Password resets — privileged accounts | | | |\n| Service account rotation | | | |\n| OT / shared IT-OT account rotation (ICS/OT Team) | | | |\n| Vendor remote access credential revocation | | | |\n| Token / session revocation | | | |\n| MFA enforcement review — IA-2 | | | |\n"
+        }
+      ]
+    },
+    {
+      "title": "Response Actions",
+      "notes": [
+        {
+          "title": "Containment actions",
+          "content": "## Containment Actions Log\n\n**Containment status:** <!-- Not started / In progress / Contained / Partially contained -->\n**Last updated:** <!-- date / time -->\n**OT containment safety-approved:** <!-- Yes / No / N/A -->\n\n> NIST 800-53r5: IR-4(a) — Containment is a defined phase of incident handling. IR-4(2) — Dynamic reconfiguration supports containment. SC-7 — Boundary protection controls support network-level containment.\n> ICS4ICS: All OT isolation actions require Safety Officer approval before execution. Use ICS Form 215A to document the safety analysis for any OT containment action. Incorrect isolation of OT systems can cause physical process disruption or loss of safety function.\n\n---\n\n## Host Isolation\n\n| Hostname | IT / OT | Isolated? | Safety Approval Obtained? | Method | Actioned By | Date/Time | Notes |\n|----------|---------|-----------|--------------------------|--------|-------------|-----------|-------|\n| | | Yes / No / Pending | Yes / No / N/A | | | | |\n\n---\n\n## Network Blocks\n\n| Indicator Blocked | Type | Blocked On | Actioned By | Date/Time |\n|-------------------|------|------------|-------------|----------|\n| | IP / Domain / Range | Firewall / EDR / DNS / OT Boundary | | |\n\n---\n\n## Remote Access Controls\n\n| Access Path | IT / OT | Action Taken | Actioned By | Date/Time |\n|-------------|---------|-------------|-------------|----------|\n| | | | | |\n\n---\n\n## Containment Gaps\n\n<!-- Systems not yet isolated, paths not yet blocked, accounts not yet disabled, OT assets pending ICS/OT Team assessment. -->\n"
+        },
+        {
+          "title": "Eradication actions",
+          "content": "## Eradication Actions Log\n\n**Eradication status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n\n> NIST 800-53r5: IR-4(a) — Eradication is a defined phase of incident handling. SI-2 — Exploited vulnerabilities must be remediated. CM-7 — Systems must be returned to a least-functionality baseline.\n> ICS4ICS: OT eradication must be coordinated with the ICS/OT Team and Safety Officer. Standard IT reimaging procedures must not be applied to OT assets without explicit confirmation. Vendor engagement may be required for persistence removal from PLCs, RTUs, or DCS components.\n\n---\n\n## Malicious Artifacts Removed\n\n| Host | IT / OT | Artifact | Path | Removed By | Date/Time | Confirmed? |\n|------|---------|----------|------|-----------|-----------|------------|\n| | | | | | | Yes / No |\n\n---\n\n## Persistence Mechanisms Removed\n\n| Host | IT / OT | Mechanism | Detail | Removed By | Date/Time | Vendor Required? | Confirmed? |\n|------|---------|-----------|--------|-----------|-----------|------------------|------------|\n| | | | | | | Yes / No | Yes / No |\n\n---\n\n## Vulnerability Remediation\n\n| System | IT / OT | Vulnerability / Gap | Remediation Applied | Vendor Coordination Required? | Status |\n|--------|---------|--------------------|--------------------|-------------------------------|--------|\n| | | | | Yes / No | |\n\n---\n\n## Eradication Validation\n\n<!-- How was eradication confirmed? EDR clean scan, manual review, reimaging, ICS/OT Team sign-off, vendor confirmation. -->\n"
+        },
+        {
+          "title": "Recovery actions",
+          "content": "## Recovery Actions Log\n\n**Recovery status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n**OT recovery Safety Officer approved:** <!-- Yes / No / N/A -->\n\n> NIST 800-53r5: IR-4(a) — Recovery is a defined phase of incident handling. CP-10 — Systems must be restored to a known secure state. CP-9 — Backup integrity must be confirmed before restoration. SI-4 — Enhanced monitoring must be applied to recovered systems.\n> ICS4ICS: OT recovery is a staged, IC-approved process. Safety Officer must confirm safety system integrity before automated control is resumed. Functional testing of control systems must be completed before process reconnection. Vendor or OEM support should be arranged in advance through the Logistics Section Chief.\n\n---\n\n## Backup Validation\n\n| System | IT / OT | Backup Source | Backup Date | Offline / Air-gapped? | Validated Clean? | Validated By |\n|--------|---------|--------------|-------------|----------------------|-----------------|-------------|\n| | | | | Yes / No | Yes / No | |\n\n---\n\n## OT Configuration Backup Validation\n\n| Asset | Config Type | Backup Date | Offline? | Validated? | Validated By |\n|-------|------------|-------------|----------|------------|-------------|\n| | PLC Logic / HMI Project / DCS Config / Historian / SIS Params | | Yes / No | Yes / No | |\n\n---\n\n## OT Recovery Gating Checklist\n\n<!-- ICS4ICS: All items must be confirmed before OT recovery proceeds. -->\n\n- [ ] OT network confirmed clean and isolated from the threat\n- [ ] Safety Officer has confirmed safety system integrity\n- [ ] OT configuration backups validated as pre-incident and unmodified\n- [ ] Functional testing of control systems completed before process reconnection\n- [ ] ICS/OT Team lead has authorized recovery\n- [ ] IC has formally approved OT recovery to proceed\n\n---\n\n## Restoration Log\n\n| System | IT / OT | Restore Method | Restore Point Date | Functional Test Passed? | Restored By | Date/Time | Validated? |\n|--------|---------|---------------|-------------------|------------------------|-------------|-----------|------------|\n| | | Clean backup / Rebuild / Vendor restore / Decryptor | | Yes / No / N/A | | | Yes / No |\n\n---\n\n## Post-Recovery Monitoring\n\n<!-- NIST 800-53r5 SI-4 — Enhanced monitoring must detect reinfection or residual activity on recovered systems. -->\n\n| System | IT / OT | Monitoring Applied | Duration | Owner |\n|--------|---------|-------------------|----------|-------|\n| | | | | |\n\n---\n\n## Recovery Blockers\n\n<!-- Anything preventing full recovery. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Communications and Reporting",
+      "notes": [
+        {
+          "title": "Stakeholder communications",
+          "content": "## Stakeholder Communications Log\n\n<!-- Record all significant internal communications. ICS4ICS: All external communications must be coordinated through the PIO. Internal communications must flow through the ICS4ICS command structure. -->\n\n| Date/Time | From | To / Audience | Channel | Summary | Action Required |\n|-----------|------|--------------|---------|---------|----------------|\n| | | | | | |\n\n---\n\n## ICS4ICS Escalation Path\n\n| Role | Name | Contact | Notified? | Date/Time |\n|------|------|---------|-----------|----------|\n| Incident Commander | | | | |\n| Safety Officer | | | | |\n| Operations Section Chief | | | | |\n| Planning Section Chief | | | | |\n| CISO / Security Leadership | | | | |\n| CMT — CEO / COO / CFO / CIO | | | | |\n| Legal Counsel | | | | |\n| Privacy Officer | | | | |\n| PR / Communications (via PIO) | | | | |\n| ICS/OT Team Lead | | | | |\n| HR (if insider threat element) | | | | |\n\n---\n\n## Pending Communications\n\n<!-- All external communications require PIO and Legal review before release. -->\n\n| Communication | Target Audience | Owner | Status | Due By |\n|---------------|----------------|-------|--------|--------|\n| | | | Draft / Pending Approval / Sent | |\n"
+        },
+        {
+          "title": "External notifications",
+          "content": "## External Notification Assessment\n\n**Assessment status:** <!-- Not started / In progress / Complete -->\n**Last updated:** <!-- date / time -->\n**ICS4ICS Government Reporting Procedure activated:** <!-- Yes / No -->\n\n> NIST 800-53r5: IR-6 — Incident information must be reported to designated authorities within defined timeframes. IR-6(2) — Vulnerabilities should be reported to relevant disclosure authorities.\n> ICS4ICS: Execute the Government Reporting Procedure before making any government notification. The Liaison Officer coordinates all external agency contacts. The pre-authorized reporting decision team must approve notifications before they are sent.\n\n---\n\n## Regulatory Obligations\n\n| Regulator / Framework | Obligation Triggered? | Notification Deadline | Status | Notified Date |\n|----------------------|----------------------|--------------------|--------|---------------|\n| CISA — CIRCIA (Critical Infrastructure) | Yes / No / Under Review | 72 hours (cyber incident) / 24 hours (ransomware payment) | | |\n| Sector Regulator (e.g. NERC CIP / TSA / NRC / EPA) | Yes / No / Under Review | | | |\n| Data Protection (e.g. GDPR / HIPAA / state breach law) | Yes / No / Under Review | | | |\n| Other | | | | |\n\n---\n\n## Law Enforcement\n\n| Agency | Reported? | Date | Reference / Case Number | Notes |\n|--------|-----------|------|------------------------|-------|\n| FBI / IC3 | | | | |\n| Local / National Law Enforcement | | | | |\n\n---\n\n## Cyber Insurance\n\n| Insurer | Policy Number | Notified? | Date | Notes |\n|---------|--------------|-----------|------|-------|\n| | | | | |\n\n---\n\n## Sector ISAC Notification\n\n| ISAC | Notified? | Date | IOCs Shared? | Notes |\n|------|-----------|------|-------------|-------|\n| | | | | |\n\n---\n\n## Customer / Partner Notifications\n\n| Party | Notification Required? | Method | Status | Date |\n|-------|----------------------|--------|--------|------|\n| | | | | |\n\n---\n\n## Legal Hold\n\n<!-- Document whether a legal hold has been triggered and what evidence is subject to preservation. NIST 800-53r5 AU-11 requires audit records be retained for defined periods. -->\n"
+        }
+      ]
+    },
+    {
+      "title": "Post-Incident",
+      "notes": [
+        {
+          "title": "Hotwash and lessons learned",
+          "content": "## Hotwash and Lessons Learned\n\n**Hotwash date:** <!-- date -->\n**Facilitator:** <!-- Incident Commander or designee -->\n**Attendees:** <!-- All Section Chiefs, CIRT lead, ICS/OT Team lead, IT Team lead, Legal, key responders -->\n\n> ICS4ICS: The Hotwash (After-Action Review) is the final activity of the last operational period. It evaluates performance against IAP objectives and produces updates to the ICS4ICS program — revised procedures, job aids, and exercise scenarios.\n> NIST 800-53r5: IR-4(a) — Lessons learned must be incorporated into IR procedures, training, and testing. IR-8 — The incident response plan must be updated. IR-3 — Exercises must be updated based on observed TTPs and gaps.\n\n---\n\n## Incident Summary (Final)\n\n<!-- Concise final summary suitable for CMT or board reporting. -->\n\n---\n\n## Root Cause\n\n<!-- Final confirmed root cause(s). -->\n\n---\n\n## What Went Well\n\n| Observation | Category |\n|-------------|----------|\n| | Detection / Containment / Communications / ICS4ICS Command / OT Coordination / Tools / Process |\n\n---\n\n## What Could Be Improved\n\n| Observation | Category | Priority |\n|-------------|----------|----------|\n| | | High / Medium / Low |\n\n---\n\n## Action Items\n\n| # | Action | Owner | Due Date | NIST 800-53r5 Control | Status |\n|---|--------|-------|----------|-----------------------|--------|\n| 1 | | | | | |\n| 2 | | | | | |\n| 3 | | | | | |\n\n---\n\n## IR Plan and ICS4ICS Program Updates\n\n<!-- NIST 800-53r5 IR-8: The IR plan must be updated based on lessons learned. ICS4ICS: Procedures, job aids, and exercises must be updated based on hotwash findings. -->\n\n| Document / Procedure | Update Required? | Owner | Target Date |\n|----------------------|-----------------|-------|-------------|\n| Incident Response Plan — IR-8 | | | |\n| ICS4ICS Ransomware Procedure | | | |\n| ICS4ICS Government Reporting Procedure | | | |\n| ICS4ICS Job Aids | | | |\n| Tabletop / Exercise Scenario — IR-3 | | | |\n\n---\n\n## Closure Confirmation\n\n- [ ] Recovery complete and validated — IT and OT\n- [ ] No ongoing malicious activity observed\n- [ ] OT safety system integrity confirmed and process restored to normal operation\n- [ ] All required notifications sent — IR-6\n- [ ] Evidence preserved per retention policy — AU-11\n- [ ] Lessons learned documented and action items assigned — IR-4\n- [ ] IR plan and ICS4ICS procedures updated or update scheduled — IR-8\n- [ ] ICS4ICS command structure formally demobilized\n- [ ] Case formally closed\n"
+        }
+      ]
+    }
+  ]
+}
